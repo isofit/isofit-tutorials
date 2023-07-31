@@ -1,2 +1,8 @@
 # Local dev directory
 .idea/
+
+# ISOFIT output directories
+output/
+
+# Jupyter server files
+.ipynb*

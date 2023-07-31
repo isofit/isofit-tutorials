@@ -1,4 +1,9 @@
+import logging
+
 from spectral.io import envi
+
+
+Logger = logging.getLogger(__file__)
 
 
 def getMetadata(file, remove=['fwhm', 'band names', 'wavelength', 'wavelength units']):
@@ -18,7 +23,7 @@ def getMetadata(file, remove=['fwhm', 'band names', 'wavelength', 'wavelength un
         if key in metadata:
             del metadata[key]
         else:
-            print(f'Key {key!r} not found in the metadata, skipping')
+            Logger.warning(f'Key {key!r} not found in the metadata, skipping')
 
     return metadata
 
@@ -42,26 +47,24 @@ def fakeLOC(rdn, lon, lat, elv, output=None, **kwargs):
     **kwargs
         Additional arguments passed to getMetadata()
     """
-    metadata = getMetadata(rdn, **kwargs)
-
     if not output:
         if 'rdn' in rdn:
             output = rdn.replace('rdn', 'loc')
         else:
-            print('Error: No ouput file specified and cannot generate a unique name')
+            Logger.error('No ouput file specified and cannot generate a unique name')
             return False
 
-    loc_ds = envi.create_image(output, metadata, ext='',force=True)
-    loc    = loc_ds.open_memmap(interleave='bip', writable=True)
-
+    metadata = getMetadata(rdn, **kwargs)
     metadata['bands'] = 3
-    lon, lat, elv = 0, 1, 2
+
+    ds  = envi.create_image(output, metadata, ext='', force=True)
+    loc = ds.open_memmap(interleave='bip', writable=True)
+
     loc[..., 0] = lon
     loc[..., 1] = lat
     loc[..., 2] = elv
 
-    del loc
-    del loc_ds
+    del ds, loc
 
 def fakeOBS(rdn, param0=0, sea=0, sez=0, soa=0, soz=0, phase=0, slope=0, aspect=0, cosi=0, param9=0, param10=0, output=None, **kwargs):
     """
@@ -99,20 +102,19 @@ def fakeOBS(rdn, param0=0, sea=0, sez=0, soa=0, soz=0, phase=0, slope=0, aspect=
     **kwargs
         Additional arguments passed to getMetadata()
     """
-    rdn_ds   = envi.open(rdn)
-    metadata = getMetadata(rdn, **kwargs)
-
     if not output:
         if 'rdn' in rdn:
             output = rdn.replace('rdn', 'loc')
         else:
-            print('Error: No ouput file specified and cannot generate a unique name')
+            Logger.error('No ouput file specified and cannot generate a unique name')
             return False
 
-    obs_ds = envi.create_image(output, metadata, ext='',force=True)
-    obs    = obs_ds.open_memmap(interleave='bip', writable=True)
-
+    rdn_ds   = envi.open(rdn)
+    metadata = getMetadata(rdn, **kwargs)
     metadata['bands'] = 11
+
+    ds  = envi.create_image(output, metadata, ext='', force=True)
+    obs = ds.open_memmap(interleave='bip', writable=True)
 
     obs[...,  0] = param0
     obs[...,  1] = sea
@@ -126,5 +128,4 @@ def fakeOBS(rdn, param0=0, sea=0, sez=0, soa=0, soz=0, phase=0, slope=0, aspect=
     obs[...,  9] = param9
     obs[..., 10] = param10
 
-    del obs
-    del obs_ds
+    del ds, obs
