@@ -1,6 +1,6 @@
 {
-  "output_model_file": "../input/ecostress_surface_model.mat",
-  "wavelength_file":   "../input/avirisc_hytes_wavelengths.txt",
+  "output_model_file": "{examples}/20190806_ThermalIR/input/ecostress_surface_model.mat",
+  "wavelength_file":   "{examples}/20190806_ThermalIR/input/avirisc_hytes_wavelengths.txt",
   "normalize":"None",
   "reference_windows":[[400,1300],[1450,1700],[2100,2450]],
   "sources":
@@ -8,7 +8,7 @@
       {
         "input_spectrum_files":
           [
-            "../../../data/reflectance/ecostress_library_with_mixtures"
+            "{data}/reflectance/ecostress_library_with_mixtures"
           ],
         "n_components": 20,
         "windows": [

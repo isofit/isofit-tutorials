@@ -1,6 +1,6 @@
 {
-  "output_model_file": "../data/prm20151028_surface_coastal_model.mat", 
-  "wavelength_file": "../data/20140221_PRISM_wavelengths_truncated_clip.txt",
+  "output_model_file": "{examples}/20151026_SantaMonica/data/prm20151028_surface_coastal_model.mat",
+  "wavelength_file": "{examples}/20151026_SantaMonica/data/20140221_PRISM_wavelengths_truncated_clip.txt",
   "normalize":"Euclidean",
   "reference_windows":[[400,1000]],
   "sources":
@@ -8,10 +8,10 @@
       {
         "input_spectrum_files":
           [
-            "../../../data/reflectance/ocean_spectra_rev2"
+            "{data}/reflectance/ocean_spectra_rev2"
           ],
         "n_components": 8,
-        "windows": 
+        "windows":
           [
             {
               "interval":[350,370],
@@ -43,10 +43,10 @@
       {
         "input_spectrum_files":
           [
-            "../../../data/reflectance/surface_model_ucsb"
+            "{data}/reflectance/surface_model_ucsb"
           ],
         "n_components": 8,
-        "windows": 
+        "windows":
           [
             {
               "interval":[350,370],

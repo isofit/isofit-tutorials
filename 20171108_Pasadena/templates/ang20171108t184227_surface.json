@@ -1,6 +1,6 @@
 {
-  "output_model_file": "../remote/ang20170228_surface_model.mat",
-  "wavelength_file":   "../remote/20170320_ang20170228_wavelength_fit.txt",
+  "output_model_file": "{examples}/20171108_Pasadena/remote/ang20170228_surface_model.mat",
+  "wavelength_file":   "{examples}/20171108_Pasadena/remote/20170320_ang20170228_wavelength_fit.txt",
   "normalize":"Euclidean",
   "reference_windows":[[400,1300],[1450,1700],[2100,2450]],
   "sources":
@@ -8,7 +8,7 @@
       {
         "input_spectrum_files":
           [
-            "../../../data/reflectance/surface_model_ucsb"
+            "{data}/reflectance/surface_model_ucsb"
           ],
         "n_components": 8,
         "windows": [
