@@ -5,7 +5,10 @@
 
 # ISOFIT output directories
 isotuts/NEON/*
-!isotuts/NEON/neon.ipynb
+!isotuts/NEON/*.ipynb
 
 # Jupyter server files
 .ipynb*/
+
+# MAC
+.DS_Store
