@@ -17,7 +17,7 @@
 
     "instrument": {
       "wavelength_file": "{examples}/20171108_Pasadena/remote/20170320_ang20170228_wavelength_fit.txt",
-      "parametric_noise_file": ".{data}/avirisng_noise.txt",
+      "parametric_noise_file": "{data}/avirisng_noise.txt",
       "integrations":294,
       "unknowns": {
         "channelized_radiometric_uncertainty_file":
