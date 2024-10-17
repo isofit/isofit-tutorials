@@ -1,0 +1,13 @@
+[
+  "{imagecube}/medium/ang20170323t202244_rdn_7k-8k",
+  "{imagecube}/medium/ang20170323t202244_obs_7k-8k",
+  "{imagecube}/medium/ang20170323t202244_loc_7k-8k",
+  "{examples}/image_cube/medium",
+  "ang",
+  "--surface_path {examples}/image_cube/medium/configs/surface.json",
+  "--emulator_base {srtmnet}/sRTMnet_v120.h5",
+  "--n_cores {cores}",
+  "--presolve",
+  "--segmentation_size 400",
+  "--pressure_elevation"
+]
