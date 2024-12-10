@@ -1,19 +1,25 @@
-import logging
-import os
-import numpy as np
+import sys
 
-logging.basicConfig(level=logging.DEBUG)
+print("Executing this file directly is not the intended purpose. Please see the README. Exiting")
+sys.exit()
+
+#%%
+
+import os
+import logging
+
+logging.basicConfig(level=logging.INFO)
 
 from isofit.configs import configs
+from isofit.data    import env
 from isofit.radiative_transfer.modtran import ModtranRT
 
+env.load()
 
-example = 'examples/20171108_Pasadena'
-
-cf = f"{example}/configs/ang20171108t184227_beckmanlawn.json"
-fc = full_config = configs.create_new_config(cf)
+cf = env.path('examples', '20171108_Pasadena', 'configs', 'modtran', 'ang20171108t184227_beckmanlawn.json')
+fc = full_config   = configs.create_new_config(cf)
 ec = engine_config = fc.forward_model.radiative_transfer.radiative_transfer_engines[0]
-lg = lut_grid = fc.forward_model.radiative_transfer.lut_grid
+lg = lut_grid      = fc.forward_model.radiative_transfer.lut_grid
 
 # Update config for this test
 ...
@@ -38,5 +44,5 @@ rte = ModtranRT(
 )
 
 #%%
-
+# Load the LUT and look around
 rte.lut.load()
