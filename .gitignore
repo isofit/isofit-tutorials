@@ -1,11 +1,14 @@
 # Local dev directory
+local/
 .idea/
 *.egg*/
 *__pycache__/
 
 # ISOFIT output directories
-isotuts/NEON/*
-!isotuts/NEON/*.ipynb
+NEON/output
+
+# Data directories
+NEON/data
 
 # Jupyter server files
 .ipynb*/
