@@ -27,6 +27,7 @@ def getMetadata(file, remove=['fwhm', 'band names', 'wavelength', 'wavelength un
 
     return metadata
 
+
 def fakeLOC(rdn, lon, lat, elv, output=None, **kwargs):
     """
     Creates a fake LOC file
@@ -66,6 +67,9 @@ def fakeLOC(rdn, lon, lat, elv, output=None, **kwargs):
 
     del ds, loc
 
+    return output
+
+
 def fakeOBS(rdn, param0=0, sea=0, sez=0, soa=0, soz=0, phase=0, slope=0, aspect=0, cosi=0, param9=0, param10=0, output=None, **kwargs):
     """
     Creates a fake OBS file
@@ -104,7 +108,7 @@ def fakeOBS(rdn, param0=0, sea=0, sez=0, soa=0, soz=0, phase=0, slope=0, aspect=
     """
     if not output:
         if 'rdn' in rdn:
-            output = rdn.replace('rdn', 'loc')
+            output = rdn.replace('rdn', 'obs')
         else:
             Logger.error('No ouput file specified and cannot generate a unique name')
             return False
@@ -129,3 +133,5 @@ def fakeOBS(rdn, param0=0, sea=0, sez=0, soa=0, soz=0, phase=0, slope=0, aspect=
     obs[..., 10] = param10
 
     del ds, obs
+
+    return output
