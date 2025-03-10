@@ -1,6 +1,6 @@
 {
-  "output_model_file": "{examples}/image_cube/medium/remote/surface_model.mat",
-  "wavelength_file":   "{examples}/image_cube/medium/remote/wavelength_fit.txt",
+  "output_model_file": "{examples}/image_cube/medium/data/surface_model.mat",
+  "wavelength_file":   "{examples}/image_cube/medium/data/wavelengths.txt",
   "normalize": "Euclidean",
   "reference_windows": [[400,1300],[1450,1700],[2100,2450]],
   "sources":
