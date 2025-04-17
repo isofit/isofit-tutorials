@@ -1,0 +1,130 @@
+{
+    "forward_model": {
+        "instrument": {
+            "SNR": 500,
+            "integrations": 1,
+            "unknowns": {
+                "uncorrelated_radiometric_uncertainty": 0.01
+            },
+            "wavelength_file": "{examples}/20250308_AV3Calibration/remote/wavelengths.txt",
+            "calibration_fixed": false,
+            "statevector": {
+                "GROW_FWHM": {
+                    "bounds": [
+                        -7,
+                        7
+                    ],
+                    "init": 0,
+                    "prior_mean": 0,
+                    "prior_sigma": 100.0,
+                    "scale": 1
+                },
+                "WL_SHIFT": {
+                    "bounds": [
+                        -7,
+                        7
+                    ],
+                    "init": 0,
+                    "prior_mean": 0,
+                    "prior_sigma": 100.0,
+                    "scale": 1
+                }
+            }
+        },
+        "radiative_transfer": {
+            "lut_grid": {
+                "AOT550": [
+                    0.01,
+                    0.1
+                ],
+                "H2OSTR": [
+                    2.03,
+                    2.2775
+                ]
+            },
+            "radiative_transfer_engines": {
+                "vswir": {
+                    "aerosol_model_file": "{data}/aerosol_model.txt",
+                    "aerosol_template_file": "{data}/data/aerosol_template.json",
+                    "earth_sun_distance_file": "{data}/earth_sun_distance.txt",
+                    "wavelength_file": "{examples}/20250308_AV3Calibration/remote/wavelengths_highres.txt",
+                    "irradiance_file": "{examples}/20151026_SantaMonica/data/prism_optimized_irr.dat",
+                    "engine_name": "sRTMnet",
+                    "lut_names": {
+                        "AOT550": null,
+                        "H2OSTR": null
+                    },
+                    "lut_path": "{examples}/20250308_AV3Calibration/lut_full/lut.nc",
+                    "multipart_transmittance": false,
+                    "sim_path": "{examples}/20250308_AV3Calibration/lut_full",
+                    "statevector_names": [
+                        "AOT550",
+                        "H2OSTR"
+                    ],
+                    "template_file": "{examples}/20250308_AV3Calibration/configs/AV320250308t200738_modtran_tpl.json"
+                }
+            },
+            "statevector": {
+                "AOT550": {
+                    "bounds": [
+                        0.01,
+                        1.0
+                    ],
+                    "init": 0.5,
+                    "prior_mean": 0.5,
+                    "prior_sigma": 100.0,
+                    "scale": 1
+                },
+                "H2OSTR": {
+                    "bounds": [
+                        0.05,
+                        5.0
+                    ],
+                    "init": 2.64875,
+                    "prior_mean": 2.64875,
+                    "prior_sigma": 100.0,
+                    "scale": 1
+                }
+            },
+            "unknowns": {
+                "H2O_ABSCO": 0.0
+            }
+        },
+        "surface": {
+            "select_on_init": true,
+            "surface_category": "multicomponent_surface",
+            "surface_file": "{examples}/20250308_AV3Calibration/surface/surface.mat"
+        }
+    },
+    "implementation": {
+        "debug_mode": false,
+        "inversion": {
+            "windows": [
+                [
+                    380.0,
+                    1350.0
+                ],
+                [
+                    1435,
+                    1800.0
+                ],
+                [
+                    1970.0,
+                    2500.0
+                ]
+            ]
+        },
+        "n_cores": 1,
+        "ray_temp_dir": "/tmp/ray"
+    },
+    "input": {
+        "loc_file": "{examples}/20250308_AV3Calibration/remote/AV320250308t200738_loc.txt",
+        "measured_radiance_file": "{examples}/20250308_AV3Calibration/remote/AV320250308t200738_rdn.txt",
+        "obs_file": "{examples}/20250308_AV3Calibration/remote/AV320250308t200738_obs.txt"
+    },
+    "output": {
+        "estimated_reflectance_file": "{examples}/20250308_AV3Calibration/output/AV320250308t200738_rfl_aband_shift",
+        "estimated_state_file": "{examples}/20250308_AV3Calibration/output/AV320250308t200738_state_aband_shift",
+        "posterior_uncertainty_file": "{examples}/20250308_AV3Calibration/output/AV320250308t200738_uncert_aband_shift"
+    }
+}

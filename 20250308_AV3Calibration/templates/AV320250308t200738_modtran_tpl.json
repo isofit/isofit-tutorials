@@ -1,0 +1,71 @@
+{
+    "MODTRAN": [
+        {
+            "MODTRANINPUT": {
+                "AEROSOLS": {
+                    "IHAZE": "AER_RURAL"
+                },
+                "ATMOSPHERE": {
+                    "CO2MX": 410.0,
+                    "H2OSTR": 1.0,
+                    "H2OUNIT": "g",
+                    "M1": "ATM_MIDLAT_SUMMER",
+                    "M2": "ATM_MIDLAT_SUMMER",
+                    "M3": "ATM_MIDLAT_SUMMER",
+                    "M4": "ATM_MIDLAT_SUMMER",
+                    "M5": "ATM_MIDLAT_SUMMER",
+                    "M6": "ATM_MIDLAT_SUMMER",
+                    "MODEL": "ATM_MIDLAT_SUMMER",
+                    "O3STR": 0.3,
+                    "O3UNIT": "a"
+                },
+                "CASE": 0,
+                "DESCRIPTION": "",
+                "FILEOPTIONS": {
+                    "CKPRNT": true,
+                    "NOPRNT": 2
+                },
+                "GEOMETRY": {
+                    "GMTIME": 20.133333333333333,
+                    "H1ALT": 2.4279478816986084,
+                    "IDAY": 67,
+                    "IPARM": 12,
+                    "ITYPE": 3,
+                    "OBSZEN": 165.6011562347412,
+                    "PARM1": 58.04399871826172,
+                    "PARM2": 40.26881408691406,
+                    "TRUEAZ": 244.34500122070312
+                },
+                "NAME": "AV320250308t200738",
+                "RTOPTIONS": {
+                    "DISALB": false,
+                    "IEMSCT": "RT_SOLAR_AND_THERMAL",
+                    "IMULT": "RT_DISORT",
+                    "LYMOLC": false,
+                    "MODTRN": "RT_CORRK_FAST",
+                    "NSTR": 8,
+                    "SOLCON": 0.0,
+                    "T_BEST": false
+                },
+                "SPECTRAL": {
+                    "BMNAME": "p1_2013",
+                    "DV": 0.1,
+                    "FLAGS": "NT A   ",
+                    "FWHM": 0.1,
+                    "V1": 340.0,
+                    "V2": 2520.0,
+                    "XFLAG": "N",
+                    "YFLAG": "R"
+                },
+                "SURFACE": {
+                    "GNDALT": 0.79368603515625,
+                    "NSURF": 1,
+                    "SURFP": {
+                        "CSALB": "LAMB_CONST_0_PCT"
+                    },
+                    "SURFTYPE": "REFL_LAMBER_MODEL"
+                }
+            }
+        }
+    ]
+}

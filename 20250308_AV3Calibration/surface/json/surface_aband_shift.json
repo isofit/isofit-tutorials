@@ -1,0 +1,165 @@
+{
+    "output_model_file": "/store/reckert/20250308_AVIRIS3_Calibration//surface/surface_aband_shift.mat",
+    "wavelength_file": "/store/reckert/20250308_AVIRIS3_Calibration/wavelength/AV320250308t200738//AV320250308t200738_000_L1B_RDN_a3c2852e_RDN_average.hdr",
+    "normalize": "Euclidean",
+    "reference_windows": [
+        [
+            400,
+            1250
+        ],
+        [
+            1450,
+            1750
+        ],
+        [
+            2050,
+            2450
+        ]
+    ],
+    "sources": [
+        {
+            "input_spectrum_files": [
+                "/store/reckert/isocal//surface/filtered_other"
+            ],
+            "n_components": 1,
+            "windows": [
+                {
+                    "interval": [
+                        300,
+                        740
+                    ],
+                    "regularizer": 10,
+                    "correlation": "decorrelated"
+                },
+                {
+                    "interval": [
+                        740,
+                        1250
+                    ],
+                    "regularizer": 1e-06,
+                    "correlation": "EM"
+                },
+                {
+                    "interval": [
+                        1250,
+                        2500
+                    ],
+                    "regularizer": 10,
+                    "correlation": "decorrelated"
+                }
+            ]
+        },
+        {
+            "input_spectrum_files": [
+                "/store/reckert/isocal//surface/filtered_veg"
+            ],
+            "n_components": 1,
+            "windows": [
+                {
+                    "interval": [
+                        300,
+                        350
+                    ],
+                    "regularizer": 10,
+                    "correlation": "decorrelated"
+                },
+                {
+                    "interval": [
+                        350,
+                        480
+                    ],
+                    "regularizer": 1e-06,
+                    "correlation": "EM"
+                },
+                {
+                    "interval": [
+                        480,
+                        740
+                    ],
+                    "regularizer": 10,
+                    "correlation": "decorrelated"
+                },
+                {
+                    "interval": [
+                        740,
+                        1250
+                    ],
+                    "regularizer": 1e-06,
+                    "correlation": "EM"
+                },
+                {
+                    "interval": [
+                        1250,
+                        2500
+                    ],
+                    "regularizer": 10,
+                    "correlation": "decorrelated"
+                }
+            ]
+        },
+        {
+            "input_spectrum_files": [
+                "/store/reckert/isocal//surface/filtered_ocean"
+            ],
+            "n_components": 1,
+            "windows": [
+                {
+                    "interval": [
+                        300,
+                        740
+                    ],
+                    "regularizer": 10,
+                    "correlation": "decorrelated"
+                },
+                {
+                    "interval": [
+                        740,
+                        1250
+                    ],
+                    "regularizer": 1e-06,
+                    "correlation": "EM"
+                },
+                {
+                    "interval": [
+                        1250,
+                        2500
+                    ],
+                    "regularizer": 10,
+                    "correlation": "decorrelated"
+                }
+            ]
+        },
+        {
+            "input_spectrum_files": [
+                "/store/reckert/isocal//surface/surface_Liquids"
+            ],
+            "n_components": 2,
+            "windows": [
+                {
+                    "interval": [
+                        300,
+                        740
+                    ],
+                    "regularizer": 10,
+                    "correlation": "decorrelated"
+                },
+                {
+                    "interval": [
+                        740,
+                        1250
+                    ],
+                    "regularizer": 1e-06,
+                    "correlation": "EM"
+                },
+                {
+                    "interval": [
+                        1250,
+                        2500
+                    ],
+                    "regularizer": 10,
+                    "correlation": "decorrelated"
+                }
+            ]
+        }
+    ]
+}
