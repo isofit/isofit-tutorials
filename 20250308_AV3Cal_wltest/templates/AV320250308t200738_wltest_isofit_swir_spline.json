@@ -154,8 +154,8 @@
         "obs_file": "{examples}/20250308_AV3Cal_wltest/remote/AV320250308t200738_obs.txt"
     },
     "output": {
-        "estimated_reflectance_file": "{examples}/20250308_AV3Cal_wltest/output/AV320250308t200738_rfl_aband_shift",
-        "estimated_state_file": "{examples}/20250308_AV3Cal_wltest/output/AV320250308t200738_state_aband_shift",
-        "posterior_uncertainty_file": "{examples}/20250308_AV3Cal_wltest/output/AV320250308t200738_uncert_aband_shift"
+        "estimated_reflectance_file": "{examples}/20250308_AV3Cal_wltest/output/AV320250308t200738_rfl_swir_spline",
+        "estimated_state_file": "{examples}/20250308_AV3Cal_wltest/output/AV320250308t200738_state_swirt_spline",
+        "posterior_uncertainty_file": "{examples}/20250308_AV3Cal_wltest/output/AV320250308t200738_uncert_swirt_spline"
     }
 }
