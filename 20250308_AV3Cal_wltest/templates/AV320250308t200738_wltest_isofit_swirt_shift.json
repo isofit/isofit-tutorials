@@ -6,7 +6,30 @@
             "unknowns": {
                 "uncorrelated_radiometric_uncertainty": 0.01
             },
-            "wavelength_file": "{examples}/20250308_AV3Cal_demo/remote/wavelengths.txt"
+            "wavelength_file": "{examples}/20250308_AV3Cal_wltest/remote/wavelengths.txt",
+            "calibration_fixed": false,
+            "statevector": {
+                "GROW_FWHM": {
+                    "bounds": [
+                        -7,
+                        7
+                    ],
+                    "init": 0,
+                    "prior_mean": 0,
+                    "prior_sigma": 100.0,
+                    "scale": 1
+                },
+                "WL_SHIFT": {
+                    "bounds": [
+                        -7,
+                        7
+                    ],
+                    "init": 0,
+                    "prior_mean": 0,
+                    "prior_sigma": 100.0,
+                    "scale": 1
+                }
+            }
         },
         "radiative_transfer": {
             "lut_grid": {
@@ -24,21 +47,21 @@
                     "aerosol_model_file": "{data}/aerosol_model.txt",
                     "aerosol_template_file": "{data}/data/aerosol_template.json",
                     "earth_sun_distance_file": "{data}/earth_sun_distance.txt",
-                    "wavelength_file": "{examples}/20250308_AV3Cal_demo/remote/wavelengths_highres.txt",
+                    "wavelength_file": "{examples}/20250308_AV3Cal_wltest/remote/wavelengths_highres.txt",
                     "irradiance_file": "{examples}/20151026_SantaMonica/data/prism_optimized_irr.dat",
                     "engine_name": "sRTMnet",
                     "lut_names": {
                         "AOT550": null,
                         "H2OSTR": null
                     },
-                    "lut_path": "{examples}/20250308_AV3Cal_demo/lut_full/test_lut.nc",
+                    "lut_path": "{examples}/20250308_AV3Cal_wltest/lut_full/test_lut.nc",
                     "multipart_transmittance": false,
-                    "sim_path": "{examples}/20250308_AV3Cal_demo/lut_full",
+                    "sim_path": "{examples}/20250308_AV3Cal_wltest/lut_full",
                     "statevector_names": [
                         "AOT550",
                         "H2OSTR"
                     ],
-                    "template_file": "{examples}/20250308_AV3Cal_demo/configs/AV320250308t200738_modtran_tpl.json"
+                    "template_file": "{examples}/20250308_AV3Cal_wltest/configs/AV320250308t200738_modtran_tpl.json"
                 }
             },
             "statevector": {
@@ -70,12 +93,12 @@
         "surface": {
             "select_on_init": true,
             "surface_category": "multicomponent_surface",
-            "surface_file": "{examples}/20250308_AV3Cal_demo/surface/surface.mat"
+            "surface_file": "{examples}/20250308_AV3Cal_wltest/surface/surface_swir_shift.mat"
         }
     },
     "implementation": {
-            "debug_mode": false,
-            "inversion": {
+        "debug_mode": false,
+        "inversion": {
             "windows": [
                 [
                     380.0,
@@ -95,13 +118,13 @@
         "ray_temp_dir": "/tmp/ray"
     },
     "input": {
-        "loc_file": "{examples}/20250308_AV3Cal_demo/remote/AV320250308t200738_loc.txt",
-        "measured_radiance_file": "{examples}/20250308_AV3Cal_demo/remote/AV320250308t200738_rdn.txt",
-        "obs_file": "{examples}/20250308_AV3Cal_demo/remote/AV320250308t200738_obs.txt"
+        "loc_file": "{examples}/20250308_AV3Cal_wltest/remote/AV320250308t200738_loc.txt",
+        "measured_radiance_file": "{examples}/20250308_AV3Cal_wltest/remote/AV320250308t200738_rdn.txt",
+        "obs_file": "{examples}/20250308_AV3Cal_wltest/remote/AV320250308t200738_obs.txt"
     },
     "output": {
-        "estimated_reflectance_file": "{examples}/20250308_AV3Cal_demo/output/AV320250308t200738_rfl",
-        "estimated_state_file": "{examples}/20250308_AV3Cal_demo/output/AV320250308t200738_state",
-        "posterior_uncertainty_file": "{examples}/20250308_AV3Cal_demo/output/AV320250308t200738_uncert"
+        "estimated_reflectance_file": "{examples}/20250308_AV3Cal_wltest/output/AV320250308t200738_rfl_aband_shift",
+        "estimated_state_file": "{examples}/20250308_AV3Cal_wltest/output/AV320250308t200738_state_aband_shift",
+        "posterior_uncertainty_file": "{examples}/20250308_AV3Cal_wltest/output/AV320250308t200738_uncert_aband_shift"
     }
 }
