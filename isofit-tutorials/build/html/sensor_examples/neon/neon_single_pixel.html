@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Setup &mdash; ISOFIT: Imaging Spectrometer Optimal FITting Tutorials  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../_static/nbsphinx-code-cells.css?v=2aa19091" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            ISOFIT: Imaging Spectrometer Optimal FITting Tutorials
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Running Isofit</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../how_to_run/apply_oe.html">Apply OE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../how_to_run/functions.html">Internal Functions</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Sensor examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../neon.html">NEON</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Information</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../information/contribute.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../information/code_of_conduct.html">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../information/project_support.html">Project Support</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">ISOFIT: Imaging Spectrometer Optimal FITting Tutorials</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Setup</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/sensor_examples/neon/neon_single_pixel.ipynb.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="Setup">
+<h1>Setup<a class="headerlink" href="#Setup" title="Link to this heading"></a></h1>
+<p>This notebook is an excercise in running ISOFIT in pixel mode (dynamically from python), in order to get into some configuation details.</p>
+<p>Prerequisites:</p>
+<ul class="simple">
+<li><p>Run the neon.ipynb notebook succesfully - we’ll use some of the outputs created from that intiial sample run</p></li>
+</ul>
+<section id="Running-Per-Pixel-Retrievals">
+<h2>Running Per-Pixel Retrievals<a class="headerlink" href="#Running-Per-Pixel-Retrievals" title="Link to this heading"></a></h2>
+<p>That gave us a baseline run, but its not clear what might be improved. Let’s load up some individual retrievals so we can understand the performance a bit better. To get started with executing ISOFIT for iterable improvements, ISOFIT is comprised of three primary pieces:</p>
+<ol class="arabic simple">
+<li><p>The <code class="docutils literal notranslate"><span class="pre">ForwardModel</span></code> object</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">IO</span></code> object</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">Inverse</span></code> object</p></li>
+</ol>
+<p>There is also an <code class="docutils literal notranslate"><span class="pre">Isofit</span></code> object that holds each of the other three, and is commonly used for more generic runs (it is what is called by apply_oe).</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">isofit.core.isofit</span><span class="w"> </span><span class="kn">import</span> <span class="n">Isofit</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">isofit.core.fileio</span><span class="w"> </span><span class="kn">import</span> <span class="n">IO</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">isofit.core.forward</span><span class="w"> </span><span class="kn">import</span> <span class="n">ForwardModel</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">isofit.inversion.inverse</span><span class="w"> </span><span class="kn">import</span> <span class="n">Inversion</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">isofit.inversion.inverse_simple</span><span class="w"> </span><span class="kn">import</span> <span class="n">invert_algebraic</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">isofit.configs</span><span class="w"> </span><span class="kn">import</span> <span class="n">configs</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">isofit.core.geometry</span><span class="w"> </span><span class="kn">import</span> <span class="n">Geometry</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">spectral.io</span><span class="w"> </span><span class="kn">import</span> <span class="n">envi</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+
+<span class="c1"># Enable the ISOFIT logger</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">()</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="c1"># Extract the image locations of each point of interest (POI)</span>
+<span class="c1"># These are defined in the NEON report as pixel locations, so we round here to convert to indices</span>
+<span class="n">report</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">report</span><span class="p">[</span><span class="s1">&#39;173647&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>           <span class="c1"># Upp L Y  | Low R Y  | Upp L X | Low R X</span>
+    <span class="s1">&#39;WhiteTarp&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">([</span><span class="mf">2224.9626</span><span class="p">,</span> <span class="mf">2230.9771</span><span class="p">,</span> <span class="mf">316.0078</span><span class="p">,</span> <span class="mf">324.9385</span><span class="p">,])</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">),</span>
+    <span class="s1">&#39;BlackTarp&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">([</span><span class="mf">2224.9626</span><span class="p">,</span> <span class="mf">2231.0032</span><span class="p">,</span> <span class="mf">328.0086</span><span class="p">,</span> <span class="mf">333.9731</span><span class="p">,])</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">),</span>
+    <span class="s1">&#39;Veg&#39;</span>      <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">([</span><span class="mf">2245.0381</span><span class="p">,</span> <span class="mf">2258.8103</span><span class="p">,</span> <span class="mf">343.9006</span><span class="p">,</span> <span class="mf">346.9423</span><span class="p">,])</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">),</span>
+    <span class="s1">&#39;RoadEW&#39;</span>   <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">([</span><span class="mf">2214.9905</span><span class="p">,</span> <span class="mf">2216.9978</span><span class="p">,</span> <span class="mf">348.9902</span><span class="p">,</span> <span class="mf">373.0080</span><span class="p">,])</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">),</span>
+    <span class="s1">&#39;RoadNS&#39;</span>   <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">([</span><span class="mf">2205.9580</span><span class="p">,</span> <span class="mf">2225.9612</span><span class="p">,</span> <span class="mf">357.9536</span><span class="p">,</span> <span class="mf">359.9608</span><span class="p">,])</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="n">report</span><span class="p">[</span><span class="s1">&#39;174150&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>           <span class="c1"># Upp L Y | Low R Y | Upp L X  | Low R X</span>
+    <span class="s1">&#39;WhiteTarp&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">([</span><span class="mf">653.9626</span><span class="p">,</span> <span class="mf">659.9771</span><span class="p">,</span> <span class="mf">3143.0078</span><span class="p">,</span> <span class="mf">3151.9385</span><span class="p">])</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">),</span>
+    <span class="s1">&#39;BlackTarp&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">([</span><span class="mf">653.9626</span><span class="p">,</span> <span class="mf">660.0032</span><span class="p">,</span> <span class="mf">3155.0086</span><span class="p">,</span> <span class="mf">3160.9731</span><span class="p">])</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">),</span>
+    <span class="s1">&#39;Veg&#39;</span>      <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">([</span><span class="mf">674.0381</span><span class="p">,</span> <span class="mf">687.8103</span><span class="p">,</span> <span class="mf">3170.9006</span><span class="p">,</span> <span class="mf">3173.9423</span><span class="p">])</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">),</span>
+    <span class="s1">&#39;RoadEW&#39;</span>   <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">([</span><span class="mf">643.9905</span><span class="p">,</span> <span class="mf">645.9978</span><span class="p">,</span> <span class="mf">3175.9902</span><span class="p">,</span> <span class="mf">3200.0080</span><span class="p">])</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">),</span>
+    <span class="s1">&#39;RoadNS&#39;</span>   <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">([</span><span class="mf">634.9580</span><span class="p">,</span> <span class="mf">654.9612</span><span class="p">,</span> <span class="mf">3184.9536</span><span class="p">,</span> <span class="mf">3186.9608</span><span class="p">])</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="c1"># Converts numpy array to comma-separated string for ISOFIT</span>
+<span class="n">toString</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">array</span><span class="p">:</span> <span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">array</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><br/><span></span><span class="c1"># Find where we&#39;re running the tutorial from</span>
+<span class="n">home</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">())</span>
+<span class="n">output</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">home</span><span class="p">,</span><span class="s1">&#39;outputs&#39;</span><span class="p">)</span>
+<span class="n">output_surface_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">output</span><span class="p">,</span> <span class="s1">&#39;surface.mat&#39;</span><span class="p">)</span>
+<span class="n">neon_id</span> <span class="o">=</span> <span class="s1">&#39;173647&#39;</span> <span class="c1">#one of 173647, 174150</span>
+<span class="n">roi</span> <span class="o">=</span> <span class="n">report</span><span class="p">[</span><span class="n">neon_id</span><span class="p">]</span>
+<span class="n">indata</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">home</span><span class="p">,</span> <span class="s1">&#39;data&#39;</span><span class="p">)</span>
+
+<span class="c1"># Now run actual retrievals</span>
+<span class="n">config</span> <span class="o">=</span> <span class="n">configs</span><span class="o">.</span><span class="n">create_new_config</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">output</span><span class="p">,</span><span class="sa">f</span><span class="s1">&#39;NIS01_20210403_</span><span class="si">{</span><span class="n">neon_id</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span><span class="s1">&#39;config&#39;</span><span class="p">,</span><span class="sa">f</span><span class="s1">&#39;NIS01_20210403_</span><span class="si">{</span><span class="n">neon_id</span><span class="si">}</span><span class="s1">_isofit.json&#39;</span><span class="p">))</span>
+<span class="n">config</span><span class="o">.</span><span class="n">forward_model</span><span class="o">.</span><span class="n">surface</span><span class="o">.</span><span class="n">surface_file</span> <span class="o">=</span> <span class="n">output_surface_file</span>
+<span class="c1">#model = Isofit(os.path.join(output,f&#39;NIS01_20210403_{neon_id}&#39;,&#39;config&#39;,f&#39;NIS01_20210403_{neon_id}_isofit.json&#39;))</span>
+<span class="n">config</span><span class="o">.</span><span class="n">input</span><span class="o">.</span><span class="n">measured_radiance_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">indata</span><span class="p">,</span><span class="sa">f</span><span class="s1">&#39;NIS01_20210403_</span><span class="si">{</span><span class="n">neon_id</span><span class="si">}</span><span class="s1">_rdn_ort&#39;</span><span class="p">)</span>
+<span class="n">config</span><span class="o">.</span><span class="n">input</span><span class="o">.</span><span class="n">obs_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">indata</span><span class="p">,</span><span class="sa">f</span><span class="s1">&#39;NIS01_20210403_</span><span class="si">{</span><span class="n">neon_id</span><span class="si">}</span><span class="s1">_rdn_obs_ort&#39;</span><span class="p">)</span>
+<span class="n">config</span><span class="o">.</span><span class="n">input</span><span class="o">.</span><span class="n">loc_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">indata</span><span class="p">,</span><span class="sa">f</span><span class="s1">&#39;NIS01_20210403_</span><span class="si">{</span><span class="n">neon_id</span><span class="si">}</span><span class="s1">_loc_ort&#39;</span><span class="p">)</span>
+
+<span class="n">fm</span> <span class="o">=</span> <span class="n">ForwardModel</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+<span class="n">io</span> <span class="o">=</span> <span class="n">IO</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">fm</span><span class="p">)</span>
+<span class="n">inv</span> <span class="o">=</span> <span class="n">Inversion</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">fm</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+INFO:root:Loading config file: /Users/brodrick/repos/isofit-tutorials/isotuts/NEON/outputs/NIS01_20210403_173647/config/NIS01_20210403_173647_isofit.json
+INFO:/Users/brodrick/repos/isofit/isofit/radiative_transfer/radiative_transfer_engine.py:Loading from wavelength_file: /Users/brodrick/repos/isofit-tutorials/isotuts/NEON/outputs/NIS01_20210403_173647/data/wavelengths.txt
+INFO:/Users/brodrick/repos/isofit/isofit/radiative_transfer/radiative_transfer_engine.py:Prebuilt LUT provided
+WARNING:/Users/brodrick/repos/isofit/isofit/radiative_transfer/luts.py:Detected NaNs in the following LUT variable and may cause issues: thermal_upwelling
+WARNING:/Users/brodrick/repos/isofit/isofit/radiative_transfer/luts.py:Detected NaNs in the following LUT variable and may cause issues: thermal_downwelling
+INFO:/Users/brodrick/repos/isofit/isofit/radiative_transfer/radiative_transfer_engine.py:Resampling LUT to instrument spectral response.
+</pre></div></div>
+</div>
+<p>Now that we have the basic setup, we can run some retrievals.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">region</span> <span class="o">=</span> <span class="s1">&#39;Veg&#39;</span>
+<span class="n">offsets</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">miny</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">([</span><span class="n">i</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">i</span><span class="p">[</span><span class="mi">1</span><span class="p">]])</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">i</span> <span class="ow">in</span> <span class="n">report</span><span class="p">[</span><span class="n">neon_id</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">()])</span><span class="o">-</span><span class="mi">5</span>
+<span class="n">maxy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">([</span><span class="n">i</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">i</span><span class="p">[</span><span class="mi">1</span><span class="p">]])</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">i</span> <span class="ow">in</span> <span class="n">report</span><span class="p">[</span><span class="n">neon_id</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">()])</span><span class="o">+</span><span class="mi">5</span>
+<span class="n">minx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">([</span><span class="n">i</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="n">i</span><span class="p">[</span><span class="mi">3</span><span class="p">]])</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">i</span> <span class="ow">in</span> <span class="n">report</span><span class="p">[</span><span class="n">neon_id</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">()])</span><span class="o">-</span><span class="mi">5</span>
+<span class="n">maxx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">([</span><span class="n">i</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="n">i</span><span class="p">[</span><span class="mi">3</span><span class="p">]])</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">i</span> <span class="ow">in</span> <span class="n">report</span><span class="p">[</span><span class="n">neon_id</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">()])</span><span class="o">+</span><span class="mi">5</span>
+<span class="n">offsets</span><span class="p">[</span><span class="n">neon_id</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">minx</span><span class="p">,</span><span class="n">miny</span><span class="p">]</span>
+<span class="n">adj_roi</span> <span class="o">=</span> <span class="p">[</span><span class="n">roi</span><span class="p">[</span><span class="n">region</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">offsets</span><span class="p">[</span><span class="n">neon_id</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span> <span class="n">roi</span><span class="p">[</span><span class="n">region</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">offsets</span><span class="p">[</span><span class="n">neon_id</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span> <span class="n">roi</span><span class="p">[</span><span class="n">region</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span> <span class="o">-</span> <span class="n">offsets</span><span class="p">[</span><span class="n">neon_id</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">roi</span><span class="p">[</span><span class="n">region</span><span class="p">][</span><span class="mi">3</span><span class="p">]</span> <span class="o">-</span> <span class="n">offsets</span><span class="p">[</span><span class="n">neon_id</span><span class="p">][</span><span class="mi">0</span><span class="p">]]</span>
+
+<span class="n">rdn</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">envi</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">input</span><span class="o">.</span><span class="n">measured_radiance_file</span> <span class="o">+</span> <span class="s1">&#39;.hdr&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">open_memmap</span><span class="p">(</span><span class="n">interleave</span><span class="o">=</span><span class="s1">&#39;bip&#39;</span><span class="p">)[</span><span class="n">adj_roi</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span><span class="n">adj_roi</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">adj_roi</span><span class="p">[</span><span class="mi">2</span><span class="p">]:</span><span class="n">adj_roi</span><span class="p">[</span><span class="mi">3</span><span class="p">],:]</span><span class="o">.</span><span class="n">copy</span><span class="p">(),</span><span class="n">axis</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">obs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">envi</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">input</span><span class="o">.</span><span class="n">obs_file</span> <span class="o">+</span> <span class="s1">&#39;.hdr&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">open_memmap</span><span class="p">(</span><span class="n">interleave</span><span class="o">=</span><span class="s1">&#39;bip&#39;</span><span class="p">)[</span><span class="n">adj_roi</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span><span class="n">adj_roi</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">adj_roi</span><span class="p">[</span><span class="mi">2</span><span class="p">]:</span><span class="n">adj_roi</span><span class="p">[</span><span class="mi">3</span><span class="p">],:]</span><span class="o">.</span><span class="n">copy</span><span class="p">(),</span><span class="n">axis</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">loc</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">envi</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">input</span><span class="o">.</span><span class="n">loc_file</span> <span class="o">+</span> <span class="s1">&#39;.hdr&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">open_memmap</span><span class="p">(</span><span class="n">interleave</span><span class="o">=</span><span class="s1">&#39;bip&#39;</span><span class="p">)[</span><span class="n">adj_roi</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span><span class="n">adj_roi</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">adj_roi</span><span class="p">[</span><span class="mi">2</span><span class="p">]:</span><span class="n">adj_roi</span><span class="p">[</span><span class="mi">3</span><span class="p">],:]</span><span class="o">.</span><span class="n">copy</span><span class="p">(),</span><span class="n">axis</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+
+<span class="n">geom</span> <span class="o">=</span> <span class="n">Geometry</span><span class="p">(</span><span class="n">obs</span><span class="o">=</span><span class="n">obs</span><span class="p">,</span><span class="n">loc</span><span class="o">=</span><span class="n">loc</span><span class="p">)</span>
+<span class="n">states</span> <span class="o">=</span> <span class="n">inv</span><span class="o">.</span><span class="n">invert</span><span class="p">(</span><span class="n">rdn</span><span class="p">,</span> <span class="n">geom</span><span class="p">)</span>
+
+<span class="n">x_surface</span><span class="p">,</span> <span class="n">x_RT</span><span class="p">,</span> <span class="n">x_instrument</span> <span class="o">=</span> <span class="n">fm</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="n">states</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,:])</span>
+
+<span class="n">x_alg</span><span class="p">,</span> <span class="n">Ls</span><span class="p">,</span> <span class="n">coeffs</span> <span class="o">=</span> <span class="n">invert_algebraic</span><span class="p">(</span><span class="n">fm</span><span class="o">.</span><span class="n">surface</span><span class="p">,</span> <span class="n">fm</span><span class="o">.</span><span class="n">RT</span><span class="p">,</span> <span class="n">fm</span><span class="o">.</span><span class="n">instrument</span><span class="p">,</span>
+                           <span class="n">x_surface</span><span class="p">,</span> <span class="n">x_RT</span><span class="p">,</span> <span class="n">x_instrument</span><span class="p">,</span>
+                           <span class="n">rdn</span><span class="p">,</span> <span class="n">geom</span><span class="p">,</span>
+                           <span class="p">)</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+(12, 428)
+[0.11728845 0.61252989]
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/sensor_examples_neon_neon_single_pixel_7_1.png" src="../../_images/sensor_examples_neon_neon_single_pixel_7_1.png" />
+</div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright Copyright 2018 California Institute of Technology.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

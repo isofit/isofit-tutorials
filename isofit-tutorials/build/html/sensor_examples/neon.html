@@ -1,0 +1,1633 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NEON &mdash; ISOFIT: Imaging Spectrometer Optimal FITting Tutorials  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../_static/nbsphinx-code-cells.css?v=2aa19091" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Contributing" href="../information/contribute.html" />
+    <link rel="prev" title="Internal Functions" href="../how_to_run/functions.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            ISOFIT: Imaging Spectrometer Optimal FITting Tutorials
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Running Isofit</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../how_to_run/apply_oe.html">Apply OE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../how_to_run/functions.html">Internal Functions</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Sensor examples</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">NEON</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#Full-image-example">Full image example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#Setup">Setup</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#Loc-file-generation">Loc file generation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Apply-OE">Apply OE</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#Per-Pixel-Retrievals">Per-Pixel Retrievals</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Information</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../information/contribute.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../information/code_of_conduct.html">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../information/project_support.html">Project Support</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">ISOFIT: Imaging Spectrometer Optimal FITting Tutorials</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">NEON</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/sensor_examples/neon.ipynb.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="NEON">
+<h1>NEON<a class="headerlink" href="#NEON" title="Link to this heading"></a></h1>
+<p>Here, we show how one would apply ISOFIT to data collected by the NEON imaging spectrometer.</p>
+<section id="Full-image-example">
+<h2>Full image example<a class="headerlink" href="#Full-image-example" title="Link to this heading"></a></h2>
+<p>This is an excercise in executing ISOFIT on entire images collected on two dates from the NEON dataset.</p>
+<p>Prerequisites:</p>
+<ul class="simple">
+<li><p>Download sample data from <a class="reference external" href="https://avng.jpl.nasa.gov/pub/PBrodrick/isofit/tutorials/subset_data.zip">https://avng.jpl.nasa.gov/pub/PBrodrick/isofit/tutorials/subset_data.zip</a>. This dataset was prepped already from the data_prep notebook. Place the dataset into the NEON folder in this repo and unzip it, which will create the ‘data’ folder which includes the ‘subsets’ directory.</p></li>
+<li><p>Have a working installation of ISOFIT, with sRTMnet installed and configured (see environment variable specification on the next line)</p></li>
+</ul>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">types</span><span class="w"> </span><span class="kn">import</span> <span class="n">SimpleNamespace</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">scipy</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">spectral.io</span><span class="w"> </span><span class="kn">import</span> <span class="n">envi</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">isofit</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">isofit.utils.apply_oe</span><span class="w"> </span><span class="kn">import</span> <span class="n">apply_oe</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">isofit.utils.surface_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">surface_model</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">isofit</span><span class="w"> </span><span class="kn">import</span> <span class="n">ray</span>
+<span class="n">ray</span><span class="o">.</span><span class="n">shutdown</span><span class="p">()</span>
+<br/></pre></div>
+</div>
+</div>
+<section id="Setup">
+<h3>Setup<a class="headerlink" href="#Setup" title="Link to this heading"></a></h3>
+<p>ISOFIT needs at minimum three pieces as input:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>1. Radiance measurements (rdn)
+2. Observation values    (obs)
+3. Location information  (loc)
+</pre></div>
+</div>
+<p>This sample dataset from NEON has radiance and observation data, but no location values (more recent NEON datasets include the location file). However, we can ‘fake’ the location file with sufficient accuracy for ISOFIT to run successfully. Note that there are data available for two dates:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Radiance
+├── 173647
+│   ├── NIS01_20210403_173647_obs_ort
+│   ├── NIS01_20210403_173647_obs_ort.hdr
+│   ├── NIS01_20210403_173647_rdn_ort
+│   └── NIS01_20210403_173647_rdn_ort.hdr
+└── 174150
+    ├── NIS01_20210403_174150_obs_ort
+    ├── NIS01_20210403_174150_obs_ort.hdr
+    ├── NIS01_20210403_174150_rdn_ort
+    └── NIS01_20210403_174150_rdn_ort.hdr
+</pre></div>
+</div>
+<p>These files have corresponding in situ data as well, and below we’ve encoded the locations of each, which we can use to help subset data files.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Enable the ISOFIT logger</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">()</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
+
+<span class="c1"># Find where we&#39;re running the tutorial from</span>
+<span class="n">home</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">())</span>
+
+<span class="c1"># Path to the input NEON data</span>
+<span class="n">subset_dir</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="s1">&#39;~/.isofit/neon_subset&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">expanduser</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Data subset directory at: </span><span class="si">{</span><span class="n">subset_dir</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="c1"># Path to write isofit output</span>
+<span class="n">output</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="s1">&#39;~/.isofit/neon_subset/output&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">expanduser</span><span class="p">())</span>
+<span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">output</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">:</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">subset_dir</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">:</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">subset_dir</span><span class="p">)</span>
+
+<span class="n">surface_model_path</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="s1">&#39;~/.isofit/examples/20171108_Pasadena/configs/ang20171108t184227_surface.json&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">expanduser</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Surface model at: </span><span class="si">{</span><span class="n">surface_model_path</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">neon_id</span> <span class="o">=</span> <span class="s1">&#39;173647&#39;</span>
+
+
+<span class="c1"># Optionally set some environment variables as needed</span>
+<span class="c1">#os.environ[&#39;EMULATOR_PATH&#39;] = &#39;/Users/brodrick/isofit_support/sRTMnet_v120.h5&#39;</span>
+<span class="c1">#os.environ[&#39;SIXS_DIR&#39;] = &#39;/Users/brodrick/6s/&#39;</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;sRTMnet emulator path (required): </span><span class="si">{</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;EMULATOR_PATH&quot;</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;6s path (required): </span><span class="si">{</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;SIXS_DIR&quot;</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="o">%</span><span class="k">matplotlib</span> inline
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Data subset directory at: /Users/bgreenbe/.isofit/neon_subset
+Surface model at: /Users/bgreenbe/.isofit/examples/20171108_Pasadena/configs/ang20171108t184227_surface.json
+sRTMnet emulator path (required): /Users/bgreenbe/.isofit/srtmnet/sRTMnet_v120.h5
+6s path (required): /Users/bgreenbe/Github/6sMultiComponentFN/Sixs
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Extract the image locations of each point of interest (POI)</span>
+<span class="c1"># These are defined in the NEON report as pixel locations, so we round here to convert to indices</span>
+<span class="n">report</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">report</span><span class="p">[</span><span class="s1">&#39;173647&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>           <span class="c1"># Upp L Y  | Low R Y  | Upp L X | Low R X</span>
+    <span class="s1">&#39;WhiteTarp&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">([</span><span class="mf">2224.9626</span><span class="p">,</span> <span class="mf">2230.9771</span><span class="p">,</span> <span class="mf">316.0078</span><span class="p">,</span> <span class="mf">324.9385</span><span class="p">,])</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">),</span>
+    <span class="s1">&#39;BlackTarp&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">([</span><span class="mf">2224.9626</span><span class="p">,</span> <span class="mf">2231.0032</span><span class="p">,</span> <span class="mf">328.0086</span><span class="p">,</span> <span class="mf">333.9731</span><span class="p">,])</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">),</span>
+    <span class="s1">&#39;Veg&#39;</span>      <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">([</span><span class="mf">2245.0381</span><span class="p">,</span> <span class="mf">2258.8103</span><span class="p">,</span> <span class="mf">343.9006</span><span class="p">,</span> <span class="mf">346.9423</span><span class="p">,])</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">),</span>
+    <span class="s1">&#39;RoadEW&#39;</span>   <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">([</span><span class="mf">2214.9905</span><span class="p">,</span> <span class="mf">2216.9978</span><span class="p">,</span> <span class="mf">348.9902</span><span class="p">,</span> <span class="mf">373.0080</span><span class="p">,])</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">),</span>
+    <span class="s1">&#39;RoadNS&#39;</span>   <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">([</span><span class="mf">2205.9580</span><span class="p">,</span> <span class="mf">2225.9612</span><span class="p">,</span> <span class="mf">357.9536</span><span class="p">,</span> <span class="mf">359.9608</span><span class="p">,])</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="n">report</span><span class="p">[</span><span class="s1">&#39;174150&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>           <span class="c1"># Upp L Y | Low R Y | Upp L X  | Low R X</span>
+    <span class="s1">&#39;WhiteTarp&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">([</span><span class="mf">653.9626</span><span class="p">,</span> <span class="mf">659.9771</span><span class="p">,</span> <span class="mf">3143.0078</span><span class="p">,</span> <span class="mf">3151.9385</span><span class="p">])</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">),</span>
+    <span class="s1">&#39;BlackTarp&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">([</span><span class="mf">653.9626</span><span class="p">,</span> <span class="mf">660.0032</span><span class="p">,</span> <span class="mf">3155.0086</span><span class="p">,</span> <span class="mf">3160.9731</span><span class="p">])</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">),</span>
+    <span class="s1">&#39;Veg&#39;</span>      <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">([</span><span class="mf">674.0381</span><span class="p">,</span> <span class="mf">687.8103</span><span class="p">,</span> <span class="mf">3170.9006</span><span class="p">,</span> <span class="mf">3173.9423</span><span class="p">])</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">),</span>
+    <span class="s1">&#39;RoadEW&#39;</span>   <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">([</span><span class="mf">643.9905</span><span class="p">,</span> <span class="mf">645.9978</span><span class="p">,</span> <span class="mf">3175.9902</span><span class="p">,</span> <span class="mf">3200.0080</span><span class="p">])</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">),</span>
+    <span class="s1">&#39;RoadNS&#39;</span>   <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">([</span><span class="mf">634.9580</span><span class="p">,</span> <span class="mf">654.9612</span><span class="p">,</span> <span class="mf">3184.9536</span><span class="p">,</span> <span class="mf">3186.9608</span><span class="p">])</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="c1"># Converts numpy array to comma-separated string for ISOFIT</span>
+<span class="n">toString</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">array</span><span class="p">:</span> <span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">array</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Which NEON date to process - change this to process a different date</span>
+<span class="n">neon_id</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">report</span><span class="o">.</span><span class="n">keys</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="c1"># Select the locations from the neon id -- roi == Regions of Interest</span>
+<span class="n">roi</span> <span class="o">=</span> <span class="n">report</span><span class="p">[</span><span class="n">neon_id</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<section id="Loc-file-generation">
+<h4>Loc file generation<a class="headerlink" href="#Loc-file-generation" title="Link to this heading"></a></h4>
+<p>NEON doesn’t distribute (?) a loc file, so let’s fake one for now. We’ll do this for the full file and for the subset.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">getMetadata</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">remove</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;fwhm&#39;</span><span class="p">,</span> <span class="s1">&#39;band names&#39;</span><span class="p">,</span> <span class="s1">&#39;wavelength&#39;</span><span class="p">,</span> <span class="s1">&#39;wavelength units&#39;</span><span class="p">]):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Retrieves the metadata from an envi header</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    rdn: str</span>
+<span class="sd">        Path to the RDN header file containing metadata</span>
+<span class="sd">    remove: list, default=[&#39;fwhm&#39;, &#39;band names&#39;, &#39;wavelength&#39;, &#39;wavelength units&#39;]</span>
+<span class="sd">        Removes keys from the metadata dictionary</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">rdn_ds</span>   <span class="o">=</span> <span class="n">envi</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+    <span class="n">metadata</span> <span class="o">=</span> <span class="n">rdn_ds</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">remove</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">metadata</span><span class="p">:</span>
+            <span class="k">del</span> <span class="n">metadata</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Key </span><span class="si">{</span><span class="n">key</span><span class="si">!r}</span><span class="s1"> not found in the metadata, skipping&#39;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">metadata</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">fakeLOC</span><span class="p">(</span><span class="n">rdn</span><span class="p">,</span> <span class="n">lon</span><span class="p">,</span> <span class="n">lat</span><span class="p">,</span> <span class="n">elv</span><span class="p">,</span> <span class="n">output</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Creates a fake LOC file</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    rdn: str</span>
+<span class="sd">        Path to the RDN header file containing metadata</span>
+<span class="sd">    lon: float</span>
+<span class="sd">        Longitude value for location</span>
+<span class="sd">    lat: float</span>
+<span class="sd">        Latitude value for location</span>
+<span class="sd">    elv: float</span>
+<span class="sd">        Elevation in kilometers</span>
+<span class="sd">    output: str, default=None</span>
+<span class="sd">        Path to write the LOC file to. If None, will attempt to replace the</span>
+<span class="sd">        substring &#39;rdn&#39; in the `rdn` path with `loc`</span>
+<span class="sd">    **kwargs</span>
+<span class="sd">        Additional arguments passed to getMetadata()</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">output</span><span class="p">:</span>
+        <span class="k">if</span> <span class="s1">&#39;rdn&#39;</span> <span class="ow">in</span> <span class="n">rdn</span><span class="p">:</span>
+            <span class="n">output</span> <span class="o">=</span> <span class="n">rdn</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;rdn&#39;</span><span class="p">,</span> <span class="s1">&#39;loc&#39;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">Logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s1">&#39;No ouput file specified and cannot generate a unique name&#39;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span>
+
+    <span class="n">metadata</span> <span class="o">=</span> <span class="n">getMetadata</span><span class="p">(</span><span class="n">rdn</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="n">metadata</span><span class="p">[</span><span class="s1">&#39;bands&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">3</span>
+
+    <span class="n">ds</span>  <span class="o">=</span> <span class="n">envi</span><span class="o">.</span><span class="n">create_image</span><span class="p">(</span><span class="n">output</span><span class="p">,</span> <span class="n">metadata</span><span class="p">,</span> <span class="n">ext</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">force</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">loc</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">open_memmap</span><span class="p">(</span><span class="n">interleave</span><span class="o">=</span><span class="s1">&#39;bip&#39;</span><span class="p">,</span> <span class="n">writable</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="n">loc</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">lon</span>
+    <span class="n">loc</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">lat</span>
+    <span class="n">loc</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">elv</span>
+
+    <span class="k">del</span> <span class="n">ds</span><span class="p">,</span> <span class="n">loc</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">fakeOBS</span><span class="p">(</span><span class="n">rdn</span><span class="p">,</span> <span class="n">param0</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">sea</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">sez</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">soa</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">soz</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">phase</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">slope</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">cosi</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">param9</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">param10</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">output</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Creates a fake OBS file</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    rdn: str</span>
+<span class="sd">        Path to the RDN file containing metadata</span>
+<span class="sd">    param0: int, float, default=0</span>
+<span class="sd">        Parameter 0</span>
+<span class="sd">    sea: int, float, default=0</span>
+<span class="sd">        Solar Azimuth</span>
+<span class="sd">    sez: int, float, default=0</span>
+<span class="sd">        Sensor Zenith</span>
+<span class="sd">    soa: int, float, default=0</span>
+<span class="sd">        Solar Azimuth</span>
+<span class="sd">    soz: int, float, default=0</span>
+<span class="sd">        Solar Zenith</span>
+<span class="sd">    phase: int, float, default=0</span>
+<span class="sd">        Phase</span>
+<span class="sd">    slope: int, float, default=0</span>
+<span class="sd">        Slope</span>
+<span class="sd">    aspect: int, float, default=0</span>
+<span class="sd">        Aspect</span>
+<span class="sd">    cosi: int, float, default=0</span>
+<span class="sd">        COS(i)</span>
+<span class="sd">    param9: int, float, default=0</span>
+<span class="sd">        Parameter 9</span>
+<span class="sd">    param10: int, float, default=0</span>
+<span class="sd">        Parameter 10</span>
+<span class="sd">    output: str, default=None</span>
+<span class="sd">        Path to write the OBS file to. If None, will attempt to replace the</span>
+<span class="sd">        substring &#39;rdn&#39; in the `rdn` path with `obs`</span>
+<span class="sd">    **kwargs</span>
+<span class="sd">        Additional arguments passed to getMetadata()</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">output</span><span class="p">:</span>
+        <span class="k">if</span> <span class="s1">&#39;rdn&#39;</span> <span class="ow">in</span> <span class="n">rdn</span><span class="p">:</span>
+            <span class="n">output</span> <span class="o">=</span> <span class="n">rdn</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;rdn&#39;</span><span class="p">,</span> <span class="s1">&#39;loc&#39;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;No ouput file specified and cannot generate a unique name&#39;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span>
+
+    <span class="n">rdn_ds</span>   <span class="o">=</span> <span class="n">envi</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">rdn</span><span class="p">)</span>
+    <span class="n">metadata</span> <span class="o">=</span> <span class="n">getMetadata</span><span class="p">(</span><span class="n">rdn</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="n">metadata</span><span class="p">[</span><span class="s1">&#39;bands&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">11</span>
+
+    <span class="n">ds</span>  <span class="o">=</span> <span class="n">envi</span><span class="o">.</span><span class="n">create_image</span><span class="p">(</span><span class="n">output</span><span class="p">,</span> <span class="n">metadata</span><span class="p">,</span> <span class="n">ext</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">force</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">obs</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">open_memmap</span><span class="p">(</span><span class="n">interleave</span><span class="o">=</span><span class="s1">&#39;bip&#39;</span><span class="p">,</span> <span class="n">writable</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="n">obs</span><span class="p">[</span><span class="o">...</span><span class="p">,</span>  <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">param0</span>
+    <span class="n">obs</span><span class="p">[</span><span class="o">...</span><span class="p">,</span>  <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">sea</span>
+    <span class="n">obs</span><span class="p">[</span><span class="o">...</span><span class="p">,</span>  <span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">sez</span>
+    <span class="n">obs</span><span class="p">[</span><span class="o">...</span><span class="p">,</span>  <span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">soa</span>
+    <span class="n">obs</span><span class="p">[</span><span class="o">...</span><span class="p">,</span>  <span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="n">soz</span>
+    <span class="n">obs</span><span class="p">[</span><span class="o">...</span><span class="p">,</span>  <span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="n">phase</span>
+    <span class="n">obs</span><span class="p">[</span><span class="o">...</span><span class="p">,</span>  <span class="mi">6</span><span class="p">]</span> <span class="o">=</span> <span class="n">slope</span>
+    <span class="n">obs</span><span class="p">[</span><span class="o">...</span><span class="p">,</span>  <span class="mi">7</span><span class="p">]</span> <span class="o">=</span> <span class="n">aspect</span>
+    <span class="n">obs</span><span class="p">[</span><span class="o">...</span><span class="p">,</span>  <span class="mi">8</span><span class="p">]</span> <span class="o">=</span> <span class="n">cosi</span>
+    <span class="n">obs</span><span class="p">[</span><span class="o">...</span><span class="p">,</span>  <span class="mi">9</span><span class="p">]</span> <span class="o">=</span> <span class="n">param9</span>
+    <span class="n">obs</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span> <span class="o">=</span> <span class="n">param10</span>
+
+    <span class="k">del</span> <span class="n">ds</span><span class="p">,</span> <span class="n">obs</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fakeLOC</span><span class="p">(</span>
+    <span class="n">rdn</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">subset_dir</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;NIS01_20210403_</span><span class="si">{</span><span class="n">neon_id</span><span class="si">}</span><span class="s1">_rdn_ort.hdr&#39;</span><span class="p">),</span>
+    <span class="n">lon</span> <span class="o">=</span> <span class="o">-</span><span class="mf">105.237000</span><span class="p">,</span>
+    <span class="n">lat</span> <span class="o">=</span> <span class="mf">40.125000</span><span class="p">,</span>
+    <span class="n">elv</span> <span class="o">=</span> <span class="mf">1689.0</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Key &#39;band names&#39; not found in the metadata, skipping
+</pre></div></div>
+</div>
+</section>
+<section id="Apply-OE">
+<h4>Apply OE<a class="headerlink" href="#Apply-OE" title="Link to this heading"></a></h4>
+<p>The next part walks through running the ISOFIT utility script <code class="docutils literal notranslate"><span class="pre">isofit/utils/apply_oe.py</span></code>. This is the first step of executing ISOFIT and will generate a default configuration.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">output_surface_file</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="s1">&#39;~/.isofit/examples/20171108_Pasadena/configs/surface.mat&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">expanduser</span><span class="p">())</span>
+<span class="n">surface_model</span><span class="p">(</span><span class="o">**</span><span class="p">{</span>
+    <span class="s1">&#39;config_path&#39;</span><span class="p">:</span> <span class="n">surface_model_path</span><span class="p">,</span>
+    <span class="s1">&#39;output_path&#39;</span><span class="p">:</span> <span class="n">output_surface_file</span><span class="p">,</span>
+    <span class="s1">&#39;wavelength_path&#39;</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">subset_dir</span><span class="p">,</span><span class="sa">f</span><span class="s1">&#39;NIS01_20210403_</span><span class="si">{</span><span class="n">neon_id</span><span class="si">}</span><span class="s1">_rdn_ort.hdr&#39;</span><span class="p">)</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+0 [&#39;/Users/bgreenbe/.isofit/data/reflectance/surface_model_ucsb&#39;]
+1 [&#39;/Users/bgreenbe/.isofit/data/reflectance/surface_model_ucsb&#39;]
+2 [&#39;/Users/bgreenbe/.isofit/data/reflectance/surface_model_ucsb&#39;]
+3 [&#39;/Users/bgreenbe/.isofit/data/reflectance/surface_model_ucsb&#39;]
+4 [&#39;/Users/bgreenbe/.isofit/data/reflectance/surface_model_ucsb&#39;]
+5 [&#39;/Users/bgreenbe/.isofit/data/reflectance/surface_model_ucsb&#39;]
+6 [&#39;/Users/bgreenbe/.isofit/data/reflectance/surface_model_ucsb&#39;]
+7 [&#39;/Users/bgreenbe/.isofit/data/reflectance/surface_model_ucsb&#39;]
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">kwargs</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;input_radiance&#39;</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">subset_dir</span><span class="p">,</span><span class="sa">f</span><span class="s1">&#39;NIS01_20210403_</span><span class="si">{</span><span class="n">neon_id</span><span class="si">}</span><span class="s1">_rdn_ort&#39;</span><span class="p">),</span> <span class="c1"># Radiance</span>
+        <span class="s1">&#39;input_loc&#39;</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">subset_dir</span><span class="p">,</span><span class="sa">f</span><span class="s1">&#39;NIS01_20210403_</span><span class="si">{</span><span class="n">neon_id</span><span class="si">}</span><span class="s1">_loc_ort&#39;</span><span class="p">),</span> <span class="c1"># Location</span>
+        <span class="s1">&#39;input_obs&#39;</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">subset_dir</span><span class="p">,</span><span class="sa">f</span><span class="s1">&#39;NIS01_20210403_</span><span class="si">{</span><span class="n">neon_id</span><span class="si">}</span><span class="s1">_obs_ort&#39;</span><span class="p">),</span> <span class="c1"># Observations</span>
+        <span class="s1">&#39;working_directory&#39;</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">output</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;NIS01_20210403_</span><span class="si">{</span><span class="n">neon_id</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">),</span> <span class="c1"># Output directory</span>
+        <span class="s1">&#39;sensor&#39;</span><span class="p">:</span> <span class="s1">&#39;neon&#39;</span><span class="p">,</span>
+        <span class="s2">&quot;surface_path&quot;</span><span class="p">:</span> <span class="n">output_surface_file</span><span class="p">,</span> <span class="c1"># Surface priors - often changes</span>
+        <span class="s1">&#39;emulator_base&#39;</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;EMULATOR_PATH&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;n_cores&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+        <span class="s2">&quot;wavelength_path&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="s2">&quot;surface_category&quot;</span><span class="p">:</span> <span class="s2">&quot;multicomponent_surface&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;rdn_factors_path&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="c1"># RCC update used &#39;on the fly&#39;</span>
+        <span class="s2">&quot;channelized_uncertainty_path&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="c1"># Channelized uncertainty - if you have an instrument model</span>
+        <span class="s2">&quot;model_discrepancy_path&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="c1"># Model discrepancy term - handle things like unknown radiative transfer model effects</span>
+        <span class="s2">&quot;lut_config_file&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="s2">&quot;logging_level&quot;</span><span class="p">:</span> <span class="s2">&quot;INFO&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;log_file&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="s2">&quot;presolve&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="c1"># Attempts to solve for the right wv range</span>
+        <span class="s2">&quot;analytical_line&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="c1"># mathematical representation of OE given that the atmsophere is known</span>
+        <span class="s2">&quot;ray_temp_dir&quot;</span><span class="p">:</span> <span class="s2">&quot;/tmp/ray&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;segmentation_size&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+        <span class="s2">&quot;num_neighbors&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">5</span><span class="p">],</span>
+        <span class="s2">&quot;atm_sigma&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">],</span>
+        <span class="s2">&quot;pressure_elevation&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="n">apply_oe</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+INFO:2025-07-08,15:20:08 || apply_oe.py:apply_oe() | Checking input data files...
+INFO:2025-07-08,15:20:08 || apply_oe.py:apply_oe() | ...Data file checks complete
+INFO:2025-07-08,15:20:08 || apply_oe.py:apply_oe() | Setting up files and directories....
+INFO:2025-07-08,15:20:08 || template_construction.py:__init__() | Flightline ID: NIS01_20210403_173647
+INFO:2025-07-08,15:20:08 || template_construction.py:__init__() | no noise path found, proceeding without
+INFO:2025-07-08,15:20:08 || template_construction.py:stage_files() | Staging /Users/bgreenbe/.isofit/examples/20171108_Pasadena/configs/surface.mat to /Users/bgreenbe/.isofit/neon_subset/output/NIS01_20210403_173647/data/surface.mat
+INFO:2025-07-08,15:20:08 || apply_oe.py:apply_oe() | ...file/directory setup complete
+INFO:2025-07-08,15:20:08 || apply_oe.py:apply_oe() | Using inversion windows: [[350.0, 1360.0], [1410, 1800.0], [1970.0, 2500.0]]
+INFO:2025-07-08,15:20:08 || apply_oe.py:apply_oe() | No wavelength file provided. Obtaining wavelength grid from ENVI header of radiance cube.
+INFO:2025-07-08,15:20:08 || apply_oe.py:apply_oe() | Wavelength units of nm inferred...converting to microns
+WARNING:2025-07-08,15:20:08 || template_construction.py:check_surface_model() | Center wavelengths provided in surface model file do not match wavelengths in radiance cube. Please consider rebuilding your surface model for optimal performance.
+INFO:2025-07-08,15:20:08 || apply_oe.py:apply_oe() | Observation means:
+INFO:2025-07-08,15:20:08 || apply_oe.py:apply_oe() | Path (km): 1.0036078691482544
+INFO:2025-07-08,15:20:08 || apply_oe.py:apply_oe() | To-sensor azimuth (deg): 153.4481201171875
+INFO:2025-07-08,15:20:08 || apply_oe.py:apply_oe() | To-sensor zenith (deg): 1.619314193725586
+INFO:2025-07-08,15:20:08 || apply_oe.py:apply_oe() | To-sun azimuth (deg): 145.23248291015625
+INFO:2025-07-08,15:20:08 || apply_oe.py:apply_oe() | To-sun zenith (deg): 39.8218994140625
+INFO:2025-07-08,15:20:08 || apply_oe.py:apply_oe() | Relative to-sun azimuth (deg): 31.813383102416992
+INFO:2025-07-08,15:20:08 || apply_oe.py:apply_oe() | Altitude (km): 2.692207098007202
+INFO:2025-07-08,15:20:08 || apply_oe.py:apply_oe() | Segmenting...
+2025-07-08 15:20:10,698 INFO worker.py:1917 -- Started a local Ray instance.
+<span class="ansi-cyan-fg">(segment_chunk pid=17119)</span> INFO:2025-07-08,15:20:11 ||| 0: starting
+INFO:2025-07-08,15:20:11 || apply_oe.py:apply_oe() | Extracting /Users/bgreenbe/.isofit/neon_subset/output/NIS01_20210403_173647/input/NIS01_20210403_173647_subs_rdn
+2025-07-08 15:20:11,728 INFO worker.py:1747 -- Calling ray.init() again after it has already been called.
+INFO:2025-07-08,15:20:11 || apply_oe.py:apply_oe() | Extracting /Users/bgreenbe/.isofit/neon_subset/output/NIS01_20210403_173647/input/NIS01_20210403_173647_subs_obs
+<span class="ansi-cyan-fg">(segment_chunk pid=17119)</span> INFO:2025-07-08,15:20:11 ||| 0: completing
+2025-07-08 15:20:11,781 INFO worker.py:1747 -- Calling ray.init() again after it has already been called.
+<span class="ansi-cyan-fg">(extract_chunk pid=17119)</span> INFO:2025-07-08,15:20:11 ||| 0: starting
+INFO:2025-07-08,15:20:11 || apply_oe.py:apply_oe() | Extracting /Users/bgreenbe/.isofit/neon_subset/output/NIS01_20210403_173647/input/NIS01_20210403_173647_subs_loc
+2025-07-08 15:20:11,825 INFO worker.py:1747 -- Calling ray.init() again after it has already been called.
+INFO:2025-07-08,15:20:11 || apply_oe.py:apply_oe() | Pre-solve H2O grid: [0.2  0.84 1.49 2.13 2.77 3.42 4.06 4.7  5.35 5.99]
+INFO:2025-07-08,15:20:11 || apply_oe.py:apply_oe() | Writing H2O pre-solve configuration file.
+INFO:2025-07-08,15:20:11 || ini.py:toTemplate() | Saved converted json to: /Users/bgreenbe/.isofit/neon_subset/output/NIS01_20210403_173647/config/NIS01_20210403_173647_h2o.json.tmpl
+INFO:2025-07-08,15:20:11 || apply_oe.py:apply_oe() | Run ISOFIT initial guess
+INFO:2025-07-08,15:20:11 || configs.py:create_new_config() | Loading config file: /Users/bgreenbe/.isofit/neon_subset/output/NIS01_20210403_173647/config/NIS01_20210403_173647_h2o.json
+INFO:2025-07-08,15:20:11 || configs.py:get_config_errors() | Checking config sections for configuration issues
+INFO:2025-07-08,15:20:11 || configs.py:get_config_errors() | Configuration file checks complete, no errors found.
+<span class="ansi-cyan-fg">(extract_chunk pid=17119)</span> INFO:2025-07-08,15:20:11 ||| 0: starting
+2025-07-08 15:20:11,882 INFO worker.py:1747 -- Calling ray.init() again after it has already been called.
+INFO:2025-07-08,15:20:11 || isofit.py:run() | Building first forward model, will generate any necessary LUTs
+<span class="ansi-cyan-fg">(extract_chunk pid=17119)</span> INFO:2025-07-08,15:20:11 ||| 0: starting
+INFO:2025-07-08,15:20:11 || radiative_transfer_engine.py:__init__() | Loading from wavelength_file: /Users/bgreenbe/.isofit/neon_subset/output/NIS01_20210403_173647/data/wavelengths.txt
+INFO:2025-07-08,15:20:11 || radiative_transfer_engine.py:__init__() | No LUT store found, beginning initialization and simulations
+INFO:2025-07-08,15:20:11 || radiative_transfer_engine.py:__init__() | Initializing LUT file
+INFO:2025-07-08,15:20:11 || radiative_transfer_engine.py:runSimulations() | Running any pre-sim functions
+INFO:2025-07-08,15:20:11 || sRTMnet.py:preSim() | Creating a simulator configuration
+INFO:2025-07-08,15:20:11 || sRTMnet.py:preSim() | Building simulator and executing (6S)
+INFO:2025-07-08,15:20:11 || radiative_transfer_engine.py:__init__() | No LUT store found, beginning initialization and simulations
+INFO:2025-07-08,15:20:11 || radiative_transfer_engine.py:__init__() | Initializing LUT file
+INFO:2025-07-08,15:20:12 || radiative_transfer_engine.py:runSimulations() | Running any pre-sim functions
+INFO:2025-07-08,15:20:12 || radiative_transfer_engine.py:runSimulations() | Executing parallel simulations
+<span class="ansi-cyan-fg">(streamSimulation pid=17119)</span> INFO:2025-07-08,15:20:12 ||| Loaded ini from: /Users/bgreenbe/.isofit/isofit.ini
+INFO:2025-07-08,15:20:14 || common.py:__call__() |  20.00% simulations complete (elapsed: 0:00:02.100901, rate: 0:00:00.210090, eta: 0:00:18.908109)
+INFO:2025-07-08,15:20:14 || radiative_transfer_engine.py:runSimulations() | Flushing netCDF to disk
+INFO:2025-07-08,15:20:14 || common.py:__call__() |  30.00% simulations complete (elapsed: 0:00:02.151416, rate: 0:00:00.215142, eta: 0:00:08.605664)
+INFO:2025-07-08,15:20:14 || radiative_transfer_engine.py:runSimulations() | Flushing netCDF to disk
+INFO:2025-07-08,15:20:14 || common.py:__call__() |  40.00% simulations complete (elapsed: 0:00:02.198190, rate: 0:00:00.219819, eta: 0:00:05.129110)
+INFO:2025-07-08,15:20:14 || radiative_transfer_engine.py:runSimulations() | Flushing netCDF to disk
+INFO:2025-07-08,15:20:14 || common.py:__call__() |  50.00% simulations complete (elapsed: 0:00:02.768149, rate: 0:00:00.276815, eta: 0:00:04.152223)
+INFO:2025-07-08,15:20:14 || radiative_transfer_engine.py:runSimulations() | Flushing netCDF to disk
+INFO:2025-07-08,15:20:15 || common.py:__call__() |  60.00% simulations complete (elapsed: 0:00:03.296599, rate: 0:00:00.329660, eta: 0:00:03.296599)
+INFO:2025-07-08,15:20:15 || radiative_transfer_engine.py:runSimulations() | Flushing netCDF to disk
+INFO:2025-07-08,15:20:15 || common.py:__call__() |  70.00% simulations complete (elapsed: 0:00:03.347710, rate: 0:00:00.334771, eta: 0:00:02.231807)
+INFO:2025-07-08,15:20:15 || radiative_transfer_engine.py:runSimulations() | Flushing netCDF to disk
+INFO:2025-07-08,15:20:15 || common.py:__call__() |  80.00% simulations complete (elapsed: 0:00:03.396394, rate: 0:00:00.339639, eta: 0:00:01.455597)
+INFO:2025-07-08,15:20:15 || radiative_transfer_engine.py:runSimulations() | Flushing netCDF to disk
+INFO:2025-07-08,15:20:15 || common.py:__call__() |  90.00% simulations complete (elapsed: 0:00:03.946926, rate: 0:00:00.394693, eta: 0:00:00.986732)
+INFO:2025-07-08,15:20:15 || radiative_transfer_engine.py:runSimulations() | Flushing netCDF to disk
+INFO:2025-07-08,15:20:16 || common.py:__call__() | 100.00% simulations complete (elapsed: 0:00:04.459773, rate: 0:00:00.445977, eta: 0:00:00.495530)
+INFO:2025-07-08,15:20:16 || radiative_transfer_engine.py:runSimulations() | Flushing netCDF to disk
+INFO:2025-07-08,15:20:16 || radiative_transfer_engine.py:runSimulations() | Running any post-sim functions
+INFO:2025-07-08,15:20:16 || radiative_transfer_engine.py:runSimulations() | Saving post-sim data to index zero of all dimensions except wl
+INFO:2025-07-08,15:20:16 || luts.py:load() | Loading LUT into memory
+WARNING:2025-07-08,15:20:16 || luts.py:load() | thermal_upwelling is fully NaN, leaving as-is
+WARNING:2025-07-08,15:20:16 || luts.py:load() | thermal_downwelling is fully NaN, leaving as-is
+INFO:2025-07-08,15:20:16 || sRTMnet.py:preSim() | Interpolating simulator quantities to emulator size
+INFO:2025-07-08,15:20:16 || sRTMnet.py:preSim() | Loading and predicting with emulator
+INFO:2025-07-08,15:20:17 || sRTMnet.py:preSim() | Saving intermediary prediction results to: /Users/bgreenbe/.isofit/neon_subset/output/NIS01_20210403_173647/lut_h2o/sRTMnet.predicts.nc
+INFO:2025-07-08,15:20:17 || radiative_transfer_engine.py:runSimulations() | Saving pre-sim data to index zero of all dimensions except wl
+INFO:2025-07-08,15:20:18 || radiative_transfer_engine.py:runSimulations() | Executing parallel simulations
+<span class="ansi-cyan-fg">(streamSimulation pid=17119)</span> INFO:2025-07-08,15:20:18 ||| Loading LUT into memory
+INFO:2025-07-08,15:20:18 || common.py:__call__() |  20.00% simulations complete (elapsed: 0:00:00.133107, rate: 0:00:00.013311, eta: 0:00:01.197963)
+INFO:2025-07-08,15:20:18 || radiative_transfer_engine.py:runSimulations() | Flushing netCDF to disk
+INFO:2025-07-08,15:20:18 || common.py:__call__() |  30.00% simulations complete (elapsed: 0:00:00.190843, rate: 0:00:00.019084, eta: 0:00:00.763372)
+INFO:2025-07-08,15:20:18 || radiative_transfer_engine.py:runSimulations() | Flushing netCDF to disk
+<span class="ansi-cyan-fg">(streamSimulation pid=17119)</span> INFO:2025-07-08,15:20:18 ||| Loading LUT into memory
+INFO:2025-07-08,15:20:18 || common.py:__call__() |  40.00% simulations complete (elapsed: 0:00:00.242991, rate: 0:00:00.024299, eta: 0:00:00.566979)
+INFO:2025-07-08,15:20:18 || radiative_transfer_engine.py:runSimulations() | Flushing netCDF to disk
+INFO:2025-07-08,15:20:18 || common.py:__call__() |  50.00% simulations complete (elapsed: 0:00:00.291772, rate: 0:00:00.029177, eta: 0:00:00.437658)
+INFO:2025-07-08,15:20:18 || radiative_transfer_engine.py:runSimulations() | Flushing netCDF to disk
+INFO:2025-07-08,15:20:18 || common.py:__call__() |  60.00% simulations complete (elapsed: 0:00:00.343262, rate: 0:00:00.034326, eta: 0:00:00.343262)
+INFO:2025-07-08,15:20:18 || radiative_transfer_engine.py:runSimulations() | Flushing netCDF to disk
+INFO:2025-07-08,15:20:18 || common.py:__call__() |  70.00% simulations complete (elapsed: 0:00:00.392020, rate: 0:00:00.039202, eta: 0:00:00.261347)
+INFO:2025-07-08,15:20:18 || radiative_transfer_engine.py:runSimulations() | Flushing netCDF to disk
+INFO:2025-07-08,15:20:18 || common.py:__call__() |  80.00% simulations complete (elapsed: 0:00:00.437945, rate: 0:00:00.043794, eta: 0:00:00.187691)
+INFO:2025-07-08,15:20:18 || radiative_transfer_engine.py:runSimulations() | Flushing netCDF to disk
+INFO:2025-07-08,15:20:18 || common.py:__call__() |  90.00% simulations complete (elapsed: 0:00:00.481330, rate: 0:00:00.048133, eta: 0:00:00.120332)
+INFO:2025-07-08,15:20:18 || radiative_transfer_engine.py:runSimulations() | Flushing netCDF to disk
+INFO:2025-07-08,15:20:18 || common.py:__call__() | 100.00% simulations complete (elapsed: 0:00:00.522997, rate: 0:00:00.052300, eta: 0:00:00.058111)
+INFO:2025-07-08,15:20:18 || radiative_transfer_engine.py:runSimulations() | Flushing netCDF to disk
+INFO:2025-07-08,15:20:18 || radiative_transfer_engine.py:runSimulations() | Running any post-sim functions
+INFO:2025-07-08,15:20:18 || luts.py:load() | Loading LUT into memory
+WARNING:2025-07-08,15:20:18 || luts.py:load() | thermal_upwelling is fully NaN, leaving as-is
+WARNING:2025-07-08,15:20:18 || luts.py:load() | thermal_downwelling is fully NaN, leaving as-is
+INFO:2025-07-08,15:20:18 || isofit.py:run() | Beginning 420 inversions in 40 chunks using 4 cores
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1752013219.280426 2663633 chttp2_transport.cc:1182] ipv4:127.0.0.1:64327: Got goaway [2] err=UNAVAILABLE:GOAWAY received; Error code: 2; Debug Text: Cancelling all calls {grpc_status:14, http2_error:2, created_time:&#34;2025-07-08T15:20:19.280425-07:00&#34;, file_line:1171, file:&#34;external/com_github_grpc_grpc/src/core/ext/transport/chttp2/transport/chttp2_transport.cc&#34;}
+<span class="ansi-cyan-fg">(Worker pid=17157)</span> INFO:2025-07-08,15:20:20 ||| Worker 0 completed 1/~105.0:: 0.95% complete
+<span class="ansi-cyan-fg">(Worker pid=17157)</span> INFO:2025-07-08,15:20:23 ||| Worker at start location (42,0) completed 10/11
+<span class="ansi-cyan-fg">(Worker pid=17158)</span> INFO:2025-07-08,15:20:24 ||| Worker 3 completed 11/~105.0:: 10.48% complete<span class="ansi-green-fg"> [repeated 7x across cluster] (Ray deduplicates logs by default. Set RAY_DEDUP_LOGS=0 to disable log deduplication, or see https://docs.ray.io/en/master/ray-observability/user-guides/configure-logging.html#log-deduplication for more options.)</span>
+<span class="ansi-cyan-fg">(Worker pid=17159)</span> INFO:2025-07-08,15:20:29 ||| Worker at start location (95,0) completed 9/10<span class="ansi-green-fg"> [repeated 8x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17158)</span> INFO:2025-07-08,15:20:31 ||| Worker 3 completed 33/~105.0:: 31.43% complete<span class="ansi-green-fg"> [repeated 8x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17157)</span> INFO:2025-07-08,15:20:36 ||| Worker at start location (192,0) completed 9/10<span class="ansi-green-fg"> [repeated 8x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17158)</span> INFO:2025-07-08,15:20:37 ||| Worker 3 completed 55/~105.0:: 52.38% complete<span class="ansi-green-fg"> [repeated 8x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17159)</span> INFO:2025-07-08,15:20:43 ||| Worker at start location (268,0) completed 10/11<span class="ansi-green-fg"> [repeated 8x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17158)</span> INFO:2025-07-08,15:20:44 ||| Worker 3 completed 77/~105.0:: 73.33% complete<span class="ansi-green-fg"> [repeated 8x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17158)</span> INFO:2025-07-08,15:20:47 ||| Worker at start location (343,0) completed 10/11<span class="ansi-green-fg"> [repeated 7x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17158)</span> INFO:2025-07-08,15:20:48 ||| Worker 3 completed 88/~105.0:: 83.81% complete<span class="ansi-green-fg"> [repeated 4x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17160)</span> INFO:2025-07-08,15:20:53 ||| Worker at start location (397,0) completed 10/11<span class="ansi-green-fg"> [repeated 5x across cluster]</span>
+INFO:2025-07-08,15:20:53 || isofit.py:run() | Inversions complete.  34.78s total, 12.0769 spectra/s, 3.0192 spectra/s/core
+INFO:2025-07-08,15:20:53 || apply_oe.py:apply_oe() | Full (non-aerosol) LUTs:
+INFO:2025-07-08,15:20:53 || apply_oe.py:apply_oe() | Elevation: None
+INFO:2025-07-08,15:20:53 || apply_oe.py:apply_oe() | To-sensor zenith: [0.9608 2.9675]
+INFO:2025-07-08,15:20:53 || apply_oe.py:apply_oe() | To-sun zenith: None
+INFO:2025-07-08,15:20:53 || apply_oe.py:apply_oe() | Relative to-sun azimuth: [3.80000e-03 4.12002e+01 8.23965e+01]
+INFO:2025-07-08,15:20:53 || apply_oe.py:apply_oe() | H2O Vapor: [0.6025 0.6627]
+INFO:2025-07-08,15:20:53 || apply_oe.py:apply_oe() | /Users/bgreenbe/.isofit/neon_subset/output/NIS01_20210403_173647/output/NIS01_20210403_173647_subs_state
+INFO:2025-07-08,15:20:53 || apply_oe.py:apply_oe() | Writing main configuration file.
+INFO:2025-07-08,15:20:53 || template_construction.py:load_climatology() | Loading Climatology
+INFO:2025-07-08,15:20:53 || template_construction.py:load_climatology() | Climatology Loaded.  Aerosol State Vector:
+{&#39;AOT550&#39;: {&#39;bounds&#39;: [0.001, 1.0], &#39;scale&#39;: 1, &#39;init&#39;: 0.1009, &#39;prior_sigma&#39;: 10.0, &#39;prior_mean&#39;: 0.1009}}
+Aerosol LUT Grid:
+{&#39;AOT550&#39;: [0.001, 0.1009, 0.2008, 0.3007, 0.4006, 0.5005, 0.6004, 0.7003, 0.8002, 0.9001, 1.0]}
+Aerosol model path:/Users/bgreenbe/.isofit/data/aerosol_model.txt
+INFO:2025-07-08,15:20:53 || ini.py:toTemplate() | Saved converted json to: /Users/bgreenbe/.isofit/neon_subset/output/NIS01_20210403_173647/config/NIS01_20210403_173647_isofit.json.tmpl
+INFO:2025-07-08,15:20:53 || apply_oe.py:apply_oe() | Running ISOFIT with full LUT
+INFO:2025-07-08,15:20:53 || configs.py:create_new_config() | Loading config file: /Users/bgreenbe/.isofit/neon_subset/output/NIS01_20210403_173647/config/NIS01_20210403_173647_isofit.json
+INFO:2025-07-08,15:20:53 || configs.py:get_config_errors() | Checking config sections for configuration issues
+INFO:2025-07-08,15:20:53 || configs.py:get_config_errors() | Configuration file checks complete, no errors found.
+2025-07-08 15:20:53,541 INFO worker.py:1747 -- Calling ray.init() again after it has already been called.
+INFO:2025-07-08,15:20:53 || isofit.py:run() | Building first forward model, will generate any necessary LUTs
+INFO:2025-07-08,15:20:53 || radiative_transfer_engine.py:__init__() | Loading from wavelength_file: /Users/bgreenbe/.isofit/neon_subset/output/NIS01_20210403_173647/data/wavelengths.txt
+INFO:2025-07-08,15:20:53 || radiative_transfer_engine.py:__init__() | No LUT store found, beginning initialization and simulations
+INFO:2025-07-08,15:20:53 || radiative_transfer_engine.py:__init__() | Initializing LUT file
+INFO:2025-07-08,15:20:53 || radiative_transfer_engine.py:runSimulations() | Running any pre-sim functions
+INFO:2025-07-08,15:20:53 || sRTMnet.py:preSim() | Creating a simulator configuration
+INFO:2025-07-08,15:20:53 || sRTMnet.py:preSim() | Building simulator and executing (6S)
+INFO:2025-07-08,15:20:53 || radiative_transfer_engine.py:__init__() | No LUT store found, beginning initialization and simulations
+INFO:2025-07-08,15:20:53 || radiative_transfer_engine.py:__init__() | Initializing LUT file
+INFO:2025-07-08,15:20:53 || radiative_transfer_engine.py:runSimulations() | Running any pre-sim functions
+INFO:2025-07-08,15:20:53 || radiative_transfer_engine.py:runSimulations() | Executing parallel simulations
+INFO:2025-07-08,15:20:59 || common.py:__call__() |  10.61% simulations complete (elapsed: 0:00:06.067500, rate: 0:00:00.045966, eta: 0:00:54.607500)
+INFO:2025-07-08,15:20:59 || radiative_transfer_engine.py:runSimulations() | Flushing netCDF to disk
+INFO:2025-07-08,15:21:03 || common.py:__call__() |  20.45% simulations complete (elapsed: 0:00:10.271446, rate: 0:00:00.077814, eta: 0:00:41.085784)
+INFO:2025-07-08,15:21:03 || radiative_transfer_engine.py:runSimulations() | Flushing netCDF to disk
+INFO:2025-07-08,15:21:08 || common.py:__call__() |  30.30% simulations complete (elapsed: 0:00:14.459419, rate: 0:00:00.109541, eta: 0:00:33.738644)
+INFO:2025-07-08,15:21:08 || radiative_transfer_engine.py:runSimulations() | Flushing netCDF to disk
+INFO:2025-07-08,15:21:13 || common.py:__call__() |  40.15% simulations complete (elapsed: 0:00:19.976911, rate: 0:00:00.151340, eta: 0:00:29.965367)
+INFO:2025-07-08,15:21:13 || radiative_transfer_engine.py:runSimulations() | Flushing netCDF to disk
+INFO:2025-07-08,15:21:17 || common.py:__call__() |  50.00% simulations complete (elapsed: 0:00:24.268372, rate: 0:00:00.183851, eta: 0:00:24.268372)
+INFO:2025-07-08,15:21:17 || radiative_transfer_engine.py:runSimulations() | Flushing netCDF to disk
+INFO:2025-07-08,15:21:21 || common.py:__call__() |  60.61% simulations complete (elapsed: 0:00:28.106960, rate: 0:00:00.212932, eta: 0:00:18.737973)
+INFO:2025-07-08,15:21:21 || radiative_transfer_engine.py:runSimulations() | Flushing netCDF to disk
+INFO:2025-07-08,15:21:27 || common.py:__call__() |  70.45% simulations complete (elapsed: 0:00:33.346920, rate: 0:00:00.252628, eta: 0:00:14.291537)
+INFO:2025-07-08,15:21:27 || radiative_transfer_engine.py:runSimulations() | Flushing netCDF to disk
+INFO:2025-07-08,15:21:31 || common.py:__call__() |  80.30% simulations complete (elapsed: 0:00:37.560121, rate: 0:00:00.284546, eta: 0:00:09.390030)
+INFO:2025-07-08,15:21:31 || radiative_transfer_engine.py:runSimulations() | Flushing netCDF to disk
+INFO:2025-07-08,15:21:35 || common.py:__call__() |  90.15% simulations complete (elapsed: 0:00:42.008716, rate: 0:00:00.318248, eta: 0:00:04.667635)
+INFO:2025-07-08,15:21:35 || radiative_transfer_engine.py:runSimulations() | Flushing netCDF to disk
+INFO:2025-07-08,15:21:40 || common.py:__call__() | 100.00% simulations complete (elapsed: 0:00:46.415069, rate: 0:00:00.351629, eta: 0:00:00)
+INFO:2025-07-08,15:21:40 || radiative_transfer_engine.py:runSimulations() | Flushing netCDF to disk
+INFO:2025-07-08,15:21:40 || radiative_transfer_engine.py:runSimulations() | Running any post-sim functions
+INFO:2025-07-08,15:21:40 || radiative_transfer_engine.py:runSimulations() | Saving post-sim data to index zero of all dimensions except wl
+INFO:2025-07-08,15:21:40 || luts.py:load() | Loading LUT into memory
+WARNING:2025-07-08,15:21:40 || luts.py:load() | thermal_upwelling is fully NaN, leaving as-is
+WARNING:2025-07-08,15:21:40 || luts.py:load() | thermal_downwelling is fully NaN, leaving as-is
+INFO:2025-07-08,15:21:40 || sRTMnet.py:preSim() | Interpolating simulator quantities to emulator size
+INFO:2025-07-08,15:21:40 || sRTMnet.py:preSim() | Loading and predicting with emulator
+INFO:2025-07-08,15:21:43 || sRTMnet.py:preSim() | Saving intermediary prediction results to: /Users/bgreenbe/.isofit/neon_subset/output/NIS01_20210403_173647/lut_full/sRTMnet.predicts.nc
+INFO:2025-07-08,15:21:43 || radiative_transfer_engine.py:runSimulations() | Saving pre-sim data to index zero of all dimensions except wl
+INFO:2025-07-08,15:21:43 || radiative_transfer_engine.py:runSimulations() | Executing parallel simulations
+INFO:2025-07-08,15:21:43 || common.py:__call__() |  10.61% simulations complete (elapsed: 0:00:00.286329, rate: 0:00:00.002169, eta: 0:00:02.576961)
+INFO:2025-07-08,15:21:43 || radiative_transfer_engine.py:runSimulations() | Flushing netCDF to disk
+INFO:2025-07-08,15:21:44 || common.py:__call__() |  20.45% simulations complete (elapsed: 0:00:00.443106, rate: 0:00:00.003357, eta: 0:00:01.772424)
+INFO:2025-07-08,15:21:44 || radiative_transfer_engine.py:runSimulations() | Flushing netCDF to disk
+INFO:2025-07-08,15:21:44 || common.py:__call__() |  30.30% simulations complete (elapsed: 0:00:00.603308, rate: 0:00:00.004571, eta: 0:00:01.407719)
+INFO:2025-07-08,15:21:44 || radiative_transfer_engine.py:runSimulations() | Flushing netCDF to disk
+INFO:2025-07-08,15:21:44 || common.py:__call__() |  40.15% simulations complete (elapsed: 0:00:00.810682, rate: 0:00:00.006142, eta: 0:00:01.216023)
+INFO:2025-07-08,15:21:44 || radiative_transfer_engine.py:runSimulations() | Flushing netCDF to disk
+INFO:2025-07-08,15:21:44 || common.py:__call__() |  50.00% simulations complete (elapsed: 0:00:00.967955, rate: 0:00:00.007333, eta: 0:00:00.967955)
+INFO:2025-07-08,15:21:44 || radiative_transfer_engine.py:runSimulations() | Flushing netCDF to disk
+INFO:2025-07-08,15:21:44 || common.py:__call__() |  60.61% simulations complete (elapsed: 0:00:01.137875, rate: 0:00:00.008620, eta: 0:00:00.758583)
+INFO:2025-07-08,15:21:44 || radiative_transfer_engine.py:runSimulations() | Flushing netCDF to disk
+INFO:2025-07-08,15:21:45 || common.py:__call__() |  70.45% simulations complete (elapsed: 0:00:01.338172, rate: 0:00:00.010138, eta: 0:00:00.573502)
+INFO:2025-07-08,15:21:45 || radiative_transfer_engine.py:runSimulations() | Flushing netCDF to disk
+INFO:2025-07-08,15:21:45 || common.py:__call__() |  80.30% simulations complete (elapsed: 0:00:01.500123, rate: 0:00:00.011365, eta: 0:00:00.375031)
+INFO:2025-07-08,15:21:45 || radiative_transfer_engine.py:runSimulations() | Flushing netCDF to disk
+INFO:2025-07-08,15:21:45 || common.py:__call__() |  90.15% simulations complete (elapsed: 0:00:01.657305, rate: 0:00:00.012555, eta: 0:00:00.184145)
+INFO:2025-07-08,15:21:45 || radiative_transfer_engine.py:runSimulations() | Flushing netCDF to disk
+INFO:2025-07-08,15:21:45 || common.py:__call__() | 100.00% simulations complete (elapsed: 0:00:01.823216, rate: 0:00:00.013812, eta: 0:00:00)
+INFO:2025-07-08,15:21:45 || radiative_transfer_engine.py:runSimulations() | Flushing netCDF to disk
+INFO:2025-07-08,15:21:45 || radiative_transfer_engine.py:runSimulations() | Running any post-sim functions
+INFO:2025-07-08,15:21:45 || luts.py:load() | Loading LUT into memory
+WARNING:2025-07-08,15:21:45 || luts.py:load() | thermal_upwelling is fully NaN, leaving as-is
+WARNING:2025-07-08,15:21:45 || luts.py:load() | thermal_downwelling is fully NaN, leaving as-is
+INFO:2025-07-08,15:21:45 || isofit.py:run() | Beginning 420 inversions in 40 chunks using 4 cores
+I0000 00:00:1752013306.660474 2663633 chttp2_transport.cc:1182] ipv4:127.0.0.1:64423: Got goaway [2] err=UNAVAILABLE:GOAWAY received; Error code: 2; Debug Text: Cancelling all calls {file:&#34;external/com_github_grpc_grpc/src/core/ext/transport/chttp2/transport/chttp2_transport.cc&#34;, file_line:1171, created_time:&#34;2025-07-08T15:21:46.660474-07:00&#34;, http2_error:2, grpc_status:14}
+I0000 00:00:1752013306.660734 2663633 chttp2_transport.cc:1182] ipv4:127.0.0.1:64428: Got goaway [2] err=UNAVAILABLE:GOAWAY received; Error code: 2; Debug Text: Cancelling all calls {grpc_status:14, http2_error:2, created_time:&#34;2025-07-08T15:21:46.660733-07:00&#34;, file_line:1171, file:&#34;external/com_github_grpc_grpc/src/core/ext/transport/chttp2/transport/chttp2_transport.cc&#34;}
+<span class="ansi-cyan-fg">(Worker pid=17536)</span> ERROR:2025-07-08,15:21:47 |||
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>                     Encountered the following ValueError in (row,col) (32,0).
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>                     Results for this pixel will be all zeros.
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span> Traceback (most recent call last):
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>   File &#34;/Users/bgreenbe/Github/isofit/isofit/core/isofit.py&#34;, line 263, in run_set_of_spectra
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>     self.io.write_spectrum(row, col, states, self.fm, self.iv)
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>   File &#34;/Users/bgreenbe/Github/isofit/isofit/core/fileio.py&#34;, line 747, in write_spectrum
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>     to_write = self.build_output(states, self.current_input_data, fm, iv)
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>   File &#34;/Users/bgreenbe/Github/isofit/isofit/core/fileio.py&#34;, line 684, in build_output
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>     rfl_alg_opt, Ls, coeffs = invert_algebraic(
+<span class="ansi-cyan-fg">(Worker pid=17536)</span> ValueError: not enough values to unpack (expected 3, got 2)
+<span class="ansi-cyan-fg">(Worker pid=17536)</span> INFO:2025-07-08,15:21:47 ||| Worker 0 completed 1/~105.0:: 0.95% complete<span class="ansi-green-fg"> [repeated 4x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17159)</span> INFO:2025-07-08,15:20:53 ||| Worker at start location (408,0) completed 10/11<span class="ansi-green-fg"> [repeated 2x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span> ERROR:2025-07-08,15:21:52 ||| <span class="ansi-green-fg"> [repeated 27x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>                     Encountered the following ValueError in (row,col) (27,0).<span class="ansi-green-fg"> [repeated 27x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>                     Results for this pixel will be all zeros.<span class="ansi-green-fg"> [repeated 27x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span> Traceback (most recent call last):<span class="ansi-green-fg"> [repeated 27x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>   File &#34;/Users/bgreenbe/Github/isofit/isofit/core/isofit.py&#34;, line 263, in run_set_of_spectra<span class="ansi-green-fg"> [repeated 27x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>     self.io.write_spectrum(row, col, states, self.fm, self.iv)<span class="ansi-green-fg"> [repeated 27x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>   File &#34;/Users/bgreenbe/Github/isofit/isofit/core/fileio.py&#34;, line 747, in write_spectrum<span class="ansi-green-fg"> [repeated 27x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>     to_write = self.build_output(states, self.current_input_data, fm, iv)<span class="ansi-green-fg"> [repeated 27x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>   File &#34;/Users/bgreenbe/Github/isofit/isofit/core/fileio.py&#34;, line 684, in build_output<span class="ansi-green-fg"> [repeated 27x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>     rfl_alg_opt, Ls, coeffs = invert_algebraic(<span class="ansi-green-fg"> [repeated 27x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span> ValueError: not enough values to unpack (expected 3, got 2)<span class="ansi-green-fg"> [repeated 27x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span> INFO:2025-07-08,15:21:47 ||| Worker 1 completed 1/~105.0:: 0.95% complete<span class="ansi-green-fg"> [repeated 3x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span> INFO:2025-07-08,15:21:55 ||| Worker at start location (9,0) completed 9/10
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span> ERROR:2025-07-08,15:21:58 ||| <span class="ansi-green-fg"> [repeated 25x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>                     Encountered the following ValueError in (row,col) (55,0).<span class="ansi-green-fg"> [repeated 25x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>                     Results for this pixel will be all zeros.<span class="ansi-green-fg"> [repeated 25x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span> Traceback (most recent call last):<span class="ansi-green-fg"> [repeated 25x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>   File &#34;/Users/bgreenbe/Github/isofit/isofit/core/isofit.py&#34;, line 263, in run_set_of_spectra<span class="ansi-green-fg"> [repeated 25x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>     self.io.write_spectrum(row, col, states, self.fm, self.iv)<span class="ansi-green-fg"> [repeated 25x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>   File &#34;/Users/bgreenbe/Github/isofit/isofit/core/fileio.py&#34;, line 747, in write_spectrum<span class="ansi-green-fg"> [repeated 25x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>     to_write = self.build_output(states, self.current_input_data, fm, iv)<span class="ansi-green-fg"> [repeated 25x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>   File &#34;/Users/bgreenbe/Github/isofit/isofit/core/fileio.py&#34;, line 684, in build_output<span class="ansi-green-fg"> [repeated 25x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>     rfl_alg_opt, Ls, coeffs = invert_algebraic(<span class="ansi-green-fg"> [repeated 25x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span> ValueError: not enough values to unpack (expected 3, got 2)<span class="ansi-green-fg"> [repeated 25x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span> INFO:2025-07-08,15:21:57 ||| Worker 1 completed 12/~105.0:: 11.43% complete<span class="ansi-green-fg"> [repeated 4x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span> INFO:2025-07-08,15:21:56 ||| Worker at start location (31,0) completed 10/11<span class="ansi-green-fg"> [repeated 3x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span> ERROR:2025-07-08,15:22:03 ||| <span class="ansi-green-fg"> [repeated 25x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>                     Encountered the following ValueError in (row,col) (61,0).<span class="ansi-green-fg"> [repeated 25x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>                     Results for this pixel will be all zeros.<span class="ansi-green-fg"> [repeated 25x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span> Traceback (most recent call last):<span class="ansi-green-fg"> [repeated 25x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>   File &#34;/Users/bgreenbe/Github/isofit/isofit/core/isofit.py&#34;, line 263, in run_set_of_spectra<span class="ansi-green-fg"> [repeated 25x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>     self.io.write_spectrum(row, col, states, self.fm, self.iv)<span class="ansi-green-fg"> [repeated 25x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>   File &#34;/Users/bgreenbe/Github/isofit/isofit/core/fileio.py&#34;, line 747, in write_spectrum<span class="ansi-green-fg"> [repeated 25x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>     to_write = self.build_output(states, self.current_input_data, fm, iv)<span class="ansi-green-fg"> [repeated 25x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>   File &#34;/Users/bgreenbe/Github/isofit/isofit/core/fileio.py&#34;, line 684, in build_output<span class="ansi-green-fg"> [repeated 25x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>     rfl_alg_opt, Ls, coeffs = invert_algebraic(<span class="ansi-green-fg"> [repeated 25x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span> ValueError: not enough values to unpack (expected 3, got 2)<span class="ansi-green-fg"> [repeated 25x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span> INFO:2025-07-08,15:22:03 ||| Worker 3 completed 21/~105.0:: 20.0% complete
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span> INFO:2025-07-08,15:22:05 ||| Worker at start location (85,0) completed 10/11<span class="ansi-green-fg"> [repeated 4x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span> ERROR:2025-07-08,15:22:08 ||| <span class="ansi-green-fg"> [repeated 24x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>                     Encountered the following ValueError in (row,col) (99,0).<span class="ansi-green-fg"> [repeated 24x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>                     Results for this pixel will be all zeros.<span class="ansi-green-fg"> [repeated 24x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span> Traceback (most recent call last):<span class="ansi-green-fg"> [repeated 24x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>   File &#34;/Users/bgreenbe/Github/isofit/isofit/core/isofit.py&#34;, line 263, in run_set_of_spectra<span class="ansi-green-fg"> [repeated 24x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>     self.io.write_spectrum(row, col, states, self.fm, self.iv)<span class="ansi-green-fg"> [repeated 24x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>   File &#34;/Users/bgreenbe/Github/isofit/isofit/core/fileio.py&#34;, line 747, in write_spectrum<span class="ansi-green-fg"> [repeated 24x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>     to_write = self.build_output(states, self.current_input_data, fm, iv)<span class="ansi-green-fg"> [repeated 24x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>   File &#34;/Users/bgreenbe/Github/isofit/isofit/core/fileio.py&#34;, line 684, in build_output<span class="ansi-green-fg"> [repeated 24x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>     rfl_alg_opt, Ls, coeffs = invert_algebraic(<span class="ansi-green-fg"> [repeated 24x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span> ValueError: not enough values to unpack (expected 3, got 2)<span class="ansi-green-fg"> [repeated 24x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span> INFO:2025-07-08,15:22:06 ||| Worker 0 completed 23/~105.0:: 21.9% complete<span class="ansi-green-fg"> [repeated 3x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span> INFO:2025-07-08,15:22:11 ||| Worker at start location (95,0) completed 9/10
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span> ERROR:2025-07-08,15:22:13 ||| <span class="ansi-green-fg"> [repeated 24x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>                     Encountered the following ValueError in (row,col) (105,0).<span class="ansi-green-fg"> [repeated 24x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>                     Results for this pixel will be all zeros.<span class="ansi-green-fg"> [repeated 24x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span> Traceback (most recent call last):<span class="ansi-green-fg"> [repeated 24x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>   File &#34;/Users/bgreenbe/Github/isofit/isofit/core/isofit.py&#34;, line 263, in run_set_of_spectra<span class="ansi-green-fg"> [repeated 24x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>     self.io.write_spectrum(row, col, states, self.fm, self.iv)<span class="ansi-green-fg"> [repeated 24x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>   File &#34;/Users/bgreenbe/Github/isofit/isofit/core/fileio.py&#34;, line 747, in write_spectrum<span class="ansi-green-fg"> [repeated 24x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>     to_write = self.build_output(states, self.current_input_data, fm, iv)<span class="ansi-green-fg"> [repeated 24x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>   File &#34;/Users/bgreenbe/Github/isofit/isofit/core/fileio.py&#34;, line 684, in build_output<span class="ansi-green-fg"> [repeated 24x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>     rfl_alg_opt, Ls, coeffs = invert_algebraic(<span class="ansi-green-fg"> [repeated 24x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span> ValueError: not enough values to unpack (expected 3, got 2)<span class="ansi-green-fg"> [repeated 24x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span> INFO:2025-07-08,15:22:12 ||| Worker 3 completed 31/~105.0:: 29.52% complete
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span> INFO:2025-07-08,15:22:15 ||| Worker 2 completed 34/~105.0:: 32.38% complete
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span> INFO:2025-07-08,15:22:14 ||| Worker at start location (117,0) completed 10/11<span class="ansi-green-fg"> [repeated 3x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span> ERROR:2025-07-08,15:22:18 ||| <span class="ansi-green-fg"> [repeated 27x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>                     Encountered the following ValueError in (row,col) (166,0).<span class="ansi-green-fg"> [repeated 27x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>                     Results for this pixel will be all zeros.<span class="ansi-green-fg"> [repeated 27x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span> Traceback (most recent call last):<span class="ansi-green-fg"> [repeated 27x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>   File &#34;/Users/bgreenbe/Github/isofit/isofit/core/isofit.py&#34;, line 263, in run_set_of_spectra<span class="ansi-green-fg"> [repeated 27x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>     self.io.write_spectrum(row, col, states, self.fm, self.iv)<span class="ansi-green-fg"> [repeated 27x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>   File &#34;/Users/bgreenbe/Github/isofit/isofit/core/fileio.py&#34;, line 747, in write_spectrum<span class="ansi-green-fg"> [repeated 27x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>     to_write = self.build_output(states, self.current_input_data, fm, iv)<span class="ansi-green-fg"> [repeated 27x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>   File &#34;/Users/bgreenbe/Github/isofit/isofit/core/fileio.py&#34;, line 684, in build_output<span class="ansi-green-fg"> [repeated 27x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>     rfl_alg_opt, Ls, coeffs = invert_algebraic(<span class="ansi-green-fg"> [repeated 27x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span> ValueError: not enough values to unpack (expected 3, got 2)<span class="ansi-green-fg"> [repeated 27x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span> INFO:2025-07-08,15:22:15 ||| Worker 0 completed 34/~105.0:: 32.38% complete<span class="ansi-green-fg"> [repeated 2x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span> INFO:2025-07-08,15:22:20 ||| Worker at start location (139,0) completed 10/11
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span> INFO:2025-07-08,15:22:22 ||| Worker at start location (149,0) completed 9/10
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span> ERROR:2025-07-08,15:22:23 ||| <span class="ansi-green-fg"> [repeated 25x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>                     Encountered the following ValueError in (row,col) (193,0).<span class="ansi-green-fg"> [repeated 25x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>                     Results for this pixel will be all zeros.<span class="ansi-green-fg"> [repeated 25x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span> Traceback (most recent call last):<span class="ansi-green-fg"> [repeated 25x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>   File &#34;/Users/bgreenbe/Github/isofit/isofit/core/isofit.py&#34;, line 263, in run_set_of_spectra<span class="ansi-green-fg"> [repeated 25x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>     self.io.write_spectrum(row, col, states, self.fm, self.iv)<span class="ansi-green-fg"> [repeated 25x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>   File &#34;/Users/bgreenbe/Github/isofit/isofit/core/fileio.py&#34;, line 747, in write_spectrum<span class="ansi-green-fg"> [repeated 25x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>     to_write = self.build_output(states, self.current_input_data, fm, iv)<span class="ansi-green-fg"> [repeated 25x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>   File &#34;/Users/bgreenbe/Github/isofit/isofit/core/fileio.py&#34;, line 684, in build_output<span class="ansi-green-fg"> [repeated 25x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>     rfl_alg_opt, Ls, coeffs = invert_algebraic(<span class="ansi-green-fg"> [repeated 25x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span> ValueError: not enough values to unpack (expected 3, got 2)<span class="ansi-green-fg"> [repeated 25x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span> INFO:2025-07-08,15:22:24 ||| Worker 2 completed 45/~105.0:: 42.86% complete<span class="ansi-green-fg"> [repeated 4x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span> INFO:2025-07-08,15:22:23 ||| Worker at start location (160,0) completed 10/11<span class="ansi-green-fg"> [repeated 2x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span> ERROR:2025-07-08,15:22:28 ||| <span class="ansi-green-fg"> [repeated 26x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>                     Encountered the following ValueError in (row,col) (210,0).<span class="ansi-green-fg"> [repeated 26x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>                     Results for this pixel will be all zeros.<span class="ansi-green-fg"> [repeated 26x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span> Traceback (most recent call last):<span class="ansi-green-fg"> [repeated 26x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>   File &#34;/Users/bgreenbe/Github/isofit/isofit/core/isofit.py&#34;, line 263, in run_set_of_spectra<span class="ansi-green-fg"> [repeated 26x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>     self.io.write_spectrum(row, col, states, self.fm, self.iv)<span class="ansi-green-fg"> [repeated 26x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>   File &#34;/Users/bgreenbe/Github/isofit/isofit/core/fileio.py&#34;, line 747, in write_spectrum<span class="ansi-green-fg"> [repeated 26x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>     to_write = self.build_output(states, self.current_input_data, fm, iv)<span class="ansi-green-fg"> [repeated 26x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>   File &#34;/Users/bgreenbe/Github/isofit/isofit/core/fileio.py&#34;, line 684, in build_output<span class="ansi-green-fg"> [repeated 26x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>     rfl_alg_opt, Ls, coeffs = invert_algebraic(<span class="ansi-green-fg"> [repeated 26x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span> ValueError: not enough values to unpack (expected 3, got 2)<span class="ansi-green-fg"> [repeated 26x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span> INFO:2025-07-08,15:22:30 ||| Worker 3 completed 53/~105.0:: 50.48% complete
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span> INFO:2025-07-08,15:22:30 ||| Worker 1 completed 54/~105.0:: 51.43% complete
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span> INFO:2025-07-08,15:22:32 ||| Worker at start location (214,0) completed 10/11<span class="ansi-green-fg"> [repeated 4x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span> ERROR:2025-07-08,15:22:33 ||| <span class="ansi-green-fg"> [repeated 25x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>                     Encountered the following ValueError in (row,col) (230,0).<span class="ansi-green-fg"> [repeated 25x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>                     Results for this pixel will be all zeros.<span class="ansi-green-fg"> [repeated 25x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span> Traceback (most recent call last):<span class="ansi-green-fg"> [repeated 25x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>   File &#34;/Users/bgreenbe/Github/isofit/isofit/core/isofit.py&#34;, line 263, in run_set_of_spectra<span class="ansi-green-fg"> [repeated 25x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>     self.io.write_spectrum(row, col, states, self.fm, self.iv)<span class="ansi-green-fg"> [repeated 25x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>   File &#34;/Users/bgreenbe/Github/isofit/isofit/core/fileio.py&#34;, line 747, in write_spectrum<span class="ansi-green-fg"> [repeated 25x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>     to_write = self.build_output(states, self.current_input_data, fm, iv)<span class="ansi-green-fg"> [repeated 25x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>   File &#34;/Users/bgreenbe/Github/isofit/isofit/core/fileio.py&#34;, line 684, in build_output<span class="ansi-green-fg"> [repeated 25x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>     rfl_alg_opt, Ls, coeffs = invert_algebraic(<span class="ansi-green-fg"> [repeated 25x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span> ValueError: not enough values to unpack (expected 3, got 2)<span class="ansi-green-fg"> [repeated 25x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span> INFO:2025-07-08,15:22:32 ||| Worker 2 completed 56/~105.0:: 53.33% complete<span class="ansi-green-fg"> [repeated 2x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span> INFO:2025-07-08,15:22:37 ||| Worker at start location (235,0) completed 9/10
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span> INFO:2025-07-08,15:22:38 ||| Worker at start location (225,0) completed 10/11
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span> ERROR:2025-07-08,15:22:39 ||| <span class="ansi-green-fg"> [repeated 26x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>                     Encountered the following ValueError in (row,col) (269,0).<span class="ansi-green-fg"> [repeated 26x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>                     Results for this pixel will be all zeros.<span class="ansi-green-fg"> [repeated 26x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span> Traceback (most recent call last):<span class="ansi-green-fg"> [repeated 26x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>   File &#34;/Users/bgreenbe/Github/isofit/isofit/core/isofit.py&#34;, line 263, in run_set_of_spectra<span class="ansi-green-fg"> [repeated 26x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>     self.io.write_spectrum(row, col, states, self.fm, self.iv)<span class="ansi-green-fg"> [repeated 26x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>   File &#34;/Users/bgreenbe/Github/isofit/isofit/core/fileio.py&#34;, line 747, in write_spectrum<span class="ansi-green-fg"> [repeated 26x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>     to_write = self.build_output(states, self.current_input_data, fm, iv)<span class="ansi-green-fg"> [repeated 26x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>   File &#34;/Users/bgreenbe/Github/isofit/isofit/core/fileio.py&#34;, line 684, in build_output<span class="ansi-green-fg"> [repeated 26x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>     rfl_alg_opt, Ls, coeffs = invert_algebraic(<span class="ansi-green-fg"> [repeated 26x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span> ValueError: not enough values to unpack (expected 3, got 2)<span class="ansi-green-fg"> [repeated 26x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span> INFO:2025-07-08,15:22:39 ||| Worker 3 completed 64/~105.0:: 60.95% complete<span class="ansi-green-fg"> [repeated 2x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span> INFO:2025-07-08,15:22:41 ||| Worker at start location (257,0) completed 10/11<span class="ansi-green-fg"> [repeated 2x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span> ERROR:2025-07-08,15:22:44 ||| <span class="ansi-green-fg"> [repeated 24x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>                     Encountered the following ValueError in (row,col) (275,0).<span class="ansi-green-fg"> [repeated 24x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>                     Results for this pixel will be all zeros.<span class="ansi-green-fg"> [repeated 24x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span> Traceback (most recent call last):<span class="ansi-green-fg"> [repeated 24x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>   File &#34;/Users/bgreenbe/Github/isofit/isofit/core/isofit.py&#34;, line 263, in run_set_of_spectra<span class="ansi-green-fg"> [repeated 24x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>     self.io.write_spectrum(row, col, states, self.fm, self.iv)<span class="ansi-green-fg"> [repeated 24x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>   File &#34;/Users/bgreenbe/Github/isofit/isofit/core/fileio.py&#34;, line 747, in write_spectrum<span class="ansi-green-fg"> [repeated 24x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>     to_write = self.build_output(states, self.current_input_data, fm, iv)<span class="ansi-green-fg"> [repeated 24x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>   File &#34;/Users/bgreenbe/Github/isofit/isofit/core/fileio.py&#34;, line 684, in build_output<span class="ansi-green-fg"> [repeated 24x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>     rfl_alg_opt, Ls, coeffs = invert_algebraic(<span class="ansi-green-fg"> [repeated 24x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span> ValueError: not enough values to unpack (expected 3, got 2)<span class="ansi-green-fg"> [repeated 24x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span> INFO:2025-07-08,15:22:41 ||| Worker 2 completed 67/~105.0:: 63.81% complete<span class="ansi-green-fg"> [repeated 2x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span> INFO:2025-07-08,15:22:47 ||| Worker at start location (279,0) completed 10/11<span class="ansi-green-fg"> [repeated 2x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span> ERROR:2025-07-08,15:22:49 ||| <span class="ansi-green-fg"> [repeated 26x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>                     Encountered the following ValueError in (row,col) (303,0).<span class="ansi-green-fg"> [repeated 26x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>                     Results for this pixel will be all zeros.<span class="ansi-green-fg"> [repeated 26x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span> Traceback (most recent call last):<span class="ansi-green-fg"> [repeated 26x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>   File &#34;/Users/bgreenbe/Github/isofit/isofit/core/isofit.py&#34;, line 263, in run_set_of_spectra<span class="ansi-green-fg"> [repeated 26x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>     self.io.write_spectrum(row, col, states, self.fm, self.iv)<span class="ansi-green-fg"> [repeated 26x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>   File &#34;/Users/bgreenbe/Github/isofit/isofit/core/fileio.py&#34;, line 747, in write_spectrum<span class="ansi-green-fg"> [repeated 26x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>     to_write = self.build_output(states, self.current_input_data, fm, iv)<span class="ansi-green-fg"> [repeated 26x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>   File &#34;/Users/bgreenbe/Github/isofit/isofit/core/fileio.py&#34;, line 684, in build_output<span class="ansi-green-fg"> [repeated 26x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>     rfl_alg_opt, Ls, coeffs = invert_algebraic(<span class="ansi-green-fg"> [repeated 26x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span> ValueError: not enough values to unpack (expected 3, got 2)<span class="ansi-green-fg"> [repeated 26x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span> INFO:2025-07-08,15:22:49 ||| Worker 0 completed 77/~105.0:: 73.33% complete<span class="ansi-green-fg"> [repeated 3x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span> INFO:2025-07-08,15:22:50 ||| Worker at start location (300,0) completed 10/11<span class="ansi-green-fg"> [repeated 2x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span> ERROR:2025-07-08,15:22:55 ||| <span class="ansi-green-fg"> [repeated 25x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>                     Encountered the following ValueError in (row,col) (320,0).<span class="ansi-green-fg"> [repeated 25x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>                     Results for this pixel will be all zeros.<span class="ansi-green-fg"> [repeated 25x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span> Traceback (most recent call last):<span class="ansi-green-fg"> [repeated 25x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>   File &#34;/Users/bgreenbe/Github/isofit/isofit/core/isofit.py&#34;, line 263, in run_set_of_spectra<span class="ansi-green-fg"> [repeated 25x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>     self.io.write_spectrum(row, col, states, self.fm, self.iv)<span class="ansi-green-fg"> [repeated 25x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>   File &#34;/Users/bgreenbe/Github/isofit/isofit/core/fileio.py&#34;, line 747, in write_spectrum<span class="ansi-green-fg"> [repeated 25x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>     to_write = self.build_output(states, self.current_input_data, fm, iv)<span class="ansi-green-fg"> [repeated 25x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>   File &#34;/Users/bgreenbe/Github/isofit/isofit/core/fileio.py&#34;, line 684, in build_output<span class="ansi-green-fg"> [repeated 25x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>     rfl_alg_opt, Ls, coeffs = invert_algebraic(<span class="ansi-green-fg"> [repeated 25x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span> ValueError: not enough values to unpack (expected 3, got 2)<span class="ansi-green-fg"> [repeated 25x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span> INFO:2025-07-08,15:22:50 ||| Worker 2 completed 78/~105.0:: 74.29% complete
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span> INFO:2025-07-08,15:22:57 ||| Worker 1 completed 86/~105.0:: 81.9% complete
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span> INFO:2025-07-08,15:22:58 ||| Worker at start location (332,0) completed 9/10<span class="ansi-green-fg"> [repeated 3x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span> ERROR:2025-07-08,15:23:00 ||| <span class="ansi-green-fg"> [repeated 25x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>                     Encountered the following ValueError in (row,col) (376,0).<span class="ansi-green-fg"> [repeated 25x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>                     Results for this pixel will be all zeros.<span class="ansi-green-fg"> [repeated 25x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span> Traceback (most recent call last):<span class="ansi-green-fg"> [repeated 25x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>   File &#34;/Users/bgreenbe/Github/isofit/isofit/core/isofit.py&#34;, line 263, in run_set_of_spectra<span class="ansi-green-fg"> [repeated 25x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>     self.io.write_spectrum(row, col, states, self.fm, self.iv)<span class="ansi-green-fg"> [repeated 25x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>   File &#34;/Users/bgreenbe/Github/isofit/isofit/core/fileio.py&#34;, line 747, in write_spectrum<span class="ansi-green-fg"> [repeated 25x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>     to_write = self.build_output(states, self.current_input_data, fm, iv)<span class="ansi-green-fg"> [repeated 25x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>   File &#34;/Users/bgreenbe/Github/isofit/isofit/core/fileio.py&#34;, line 684, in build_output<span class="ansi-green-fg"> [repeated 25x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>     rfl_alg_opt, Ls, coeffs = invert_algebraic(<span class="ansi-green-fg"> [repeated 25x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span> ValueError: not enough values to unpack (expected 3, got 2)<span class="ansi-green-fg"> [repeated 25x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span> INFO:2025-07-08,15:23:00 ||| Worker 2 completed 89/~105.0:: 84.76% complete<span class="ansi-green-fg"> [repeated 3x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span> INFO:2025-07-08,15:22:59 ||| Worker at start location (343,0) completed 10/11
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span> ERROR:2025-07-08,15:23:05 ||| <span class="ansi-green-fg"> [repeated 25x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>                     Encountered the following ValueError in (row,col) (383,0).<span class="ansi-green-fg"> [repeated 25x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>                     Results for this pixel will be all zeros.<span class="ansi-green-fg"> [repeated 25x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span> Traceback (most recent call last):<span class="ansi-green-fg"> [repeated 25x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>   File &#34;/Users/bgreenbe/Github/isofit/isofit/core/isofit.py&#34;, line 263, in run_set_of_spectra<span class="ansi-green-fg"> [repeated 25x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>     self.io.write_spectrum(row, col, states, self.fm, self.iv)<span class="ansi-green-fg"> [repeated 25x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>   File &#34;/Users/bgreenbe/Github/isofit/isofit/core/fileio.py&#34;, line 747, in write_spectrum<span class="ansi-green-fg"> [repeated 25x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>     to_write = self.build_output(states, self.current_input_data, fm, iv)<span class="ansi-green-fg"> [repeated 25x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>   File &#34;/Users/bgreenbe/Github/isofit/isofit/core/fileio.py&#34;, line 684, in build_output<span class="ansi-green-fg"> [repeated 25x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>     rfl_alg_opt, Ls, coeffs = invert_algebraic(<span class="ansi-green-fg"> [repeated 25x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span> ValueError: not enough values to unpack (expected 3, got 2)<span class="ansi-green-fg"> [repeated 25x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span> INFO:2025-07-08,15:23:05 ||| Worker at start location (354,0) completed 10/11
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span> INFO:2025-07-08,15:23:06 ||| Worker 3 completed 97/~105.0:: 92.38% complete<span class="ansi-green-fg"> [repeated 2x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span> ERROR:2025-07-08,15:23:10 ||| <span class="ansi-green-fg"> [repeated 21x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>                     Encountered the following ValueError in (row,col) (412,0).<span class="ansi-green-fg"> [repeated 21x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>                     Results for this pixel will be all zeros.<span class="ansi-green-fg"> [repeated 21x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span> Traceback (most recent call last):<span class="ansi-green-fg"> [repeated 21x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>   File &#34;/Users/bgreenbe/Github/isofit/isofit/core/isofit.py&#34;, line 263, in run_set_of_spectra<span class="ansi-green-fg"> [repeated 21x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>     self.io.write_spectrum(row, col, states, self.fm, self.iv)<span class="ansi-green-fg"> [repeated 21x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>   File &#34;/Users/bgreenbe/Github/isofit/isofit/core/fileio.py&#34;, line 747, in write_spectrum<span class="ansi-green-fg"> [repeated 21x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>     to_write = self.build_output(states, self.current_input_data, fm, iv)<span class="ansi-green-fg"> [repeated 21x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>   File &#34;/Users/bgreenbe/Github/isofit/isofit/core/fileio.py&#34;, line 684, in build_output<span class="ansi-green-fg"> [repeated 21x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>     rfl_alg_opt, Ls, coeffs = invert_algebraic(<span class="ansi-green-fg"> [repeated 21x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span> ValueError: not enough values to unpack (expected 3, got 2)<span class="ansi-green-fg"> [repeated 21x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17537)</span> INFO:2025-07-08,15:23:08 ||| Worker at start location (386,0) completed 10/11<span class="ansi-green-fg"> [repeated 3x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span> INFO:2025-07-08,15:23:07 ||| Worker 0 completed 97/~105.0:: 92.38% complete
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>
+<span class="ansi-cyan-fg">(Worker pid=17535)</span>
+<span class="ansi-cyan-fg">(Worker pid=17538)</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>
+INFO:2025-07-08,15:23:16 || isofit.py:run() | Inversions complete.  91.06s total, 4.6123 spectra/s, 1.1531 spectra/s/core
+INFO:2025-07-08,15:23:16 || apply_oe.py:apply_oe() | Analytical line inference
+INFO:2025-07-08,15:23:16 || configs.py:create_new_config() | Loading config file: /Users/bgreenbe/.isofit/neon_subset/output/NIS01_20210403_173647/config/NIS01_20210403_173647_isofit.json
+INFO:2025-07-08,15:23:16 || radiative_transfer_engine.py:__init__() | Loading from wavelength_file: /Users/bgreenbe/.isofit/neon_subset/output/NIS01_20210403_173647/data/wavelengths.txt
+INFO:2025-07-08,15:23:16 || radiative_transfer_engine.py:__init__() | Prebuilt LUT provided
+INFO:2025-07-08,15:23:16 || luts.py:load() | Loading LUT into memory
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span> ERROR:2025-07-08,15:23:16 ||| <span class="ansi-green-fg"> [repeated 19x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>                     Encountered the following ValueError in (row,col) (419,0).<span class="ansi-green-fg"> [repeated 19x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>                     Results for this pixel will be all zeros.<span class="ansi-green-fg"> [repeated 19x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span> Traceback (most recent call last):<span class="ansi-green-fg"> [repeated 19x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>   File &#34;/Users/bgreenbe/Github/isofit/isofit/core/isofit.py&#34;, line 263, in run_set_of_spectra<span class="ansi-green-fg"> [repeated 19x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>     self.io.write_spectrum(row, col, states, self.fm, self.iv)<span class="ansi-green-fg"> [repeated 19x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>   File &#34;/Users/bgreenbe/Github/isofit/isofit/core/fileio.py&#34;, line 747, in write_spectrum<span class="ansi-green-fg"> [repeated 19x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>     to_write = self.build_output(states, self.current_input_data, fm, iv)<span class="ansi-green-fg"> [repeated 19x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>   File &#34;/Users/bgreenbe/Github/isofit/isofit/core/fileio.py&#34;, line 684, in build_output<span class="ansi-green-fg"> [repeated 19x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span>     rfl_alg_opt, Ls, coeffs = invert_algebraic(<span class="ansi-green-fg"> [repeated 19x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span> ValueError: not enough values to unpack (expected 3, got 2)<span class="ansi-green-fg"> [repeated 19x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17536)</span> INFO:2025-07-08,15:23:16 ||| Worker at start location (419,0) completed 10/11<span class="ansi-green-fg"> [repeated 3x across cluster]</span>
+WARNING:2025-07-08,15:23:16 || luts.py:load() | thermal_upwelling is fully NaN, leaving as-is
+WARNING:2025-07-08,15:23:16 || luts.py:load() | thermal_downwelling is fully NaN, leaving as-is
+INFO:2025-07-08,15:23:16 || radiative_transfer_engine.py:__init__() | LUT grid loaded from file
+2025-07-08 15:23:17,031 INFO worker.py:1747 -- Calling ray.init() again after it has already been called.
+INFO:2025-07-08,15:23:17 || atm_interpolation.py:atm_interpolation() | Beginning atmospheric interpolation 4 cores
+INFO:2025-07-08,15:23:18 || atm_interpolation.py:atm_interpolation() | Parallel atmospheric interpolations complete.  1.3430540561676025 s total, 3142.8370143526467 spectra/s, 785.7092535881617 spectra/s/core
+2025-07-08 15:23:18,445 INFO worker.py:1747 -- Calling ray.init() again after it has already been called.
+<span class="ansi-cyan-fg">(Worker pid=17655)</span> INFO:2025-07-08,15:23:22 ||| Analytical line writing line 4
+<span class="ansi-cyan-fg">(Worker pid=17655)</span> INFO:2025-07-08,15:23:28 ||| Analytical line writing line 9<span class="ansi-green-fg"> [repeated 8x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17655)</span> INFO:2025-07-08,15:23:34 ||| Analytical line writing line 17<span class="ansi-green-fg"> [repeated 8x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17655)</span> INFO:2025-07-08,15:23:40 ||| Analytical line writing line 25<span class="ansi-green-fg"> [repeated 8x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17655)</span> INFO:2025-07-08,15:23:46 ||| Analytical line writing line 33<span class="ansi-green-fg"> [repeated 8x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17655)</span> INFO:2025-07-08,15:23:52 ||| Analytical line writing line 42<span class="ansi-green-fg"> [repeated 8x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17655)</span> INFO:2025-07-08,15:23:58 ||| Analytical line writing line 50<span class="ansi-green-fg"> [repeated 8x across cluster]</span>
+<span class="ansi-cyan-fg">(Worker pid=17655)</span> INFO:2025-07-08,15:24:04 ||| Analytical line writing line 58<span class="ansi-green-fg"> [repeated 8x across cluster]</span>
+INFO:2025-07-08,15:24:10 || analytical_line.py:analytical_line() | Analytical line inversions complete.  51.63s total, 81.7487 spectra/s, 20.4372 spectra/s/core
+INFO:2025-07-08,15:24:10 || apply_oe.py:apply_oe() | Done.
+<span class="ansi-cyan-fg">(Worker pid=17657)</span> INFO:2025-07-08,15:24:07 ||| Analytical line writing line 60<span class="ansi-green-fg"> [repeated 5x across cluster]</span>
+I0000 00:00:1752013450.613965 2663318 chttp2_transport.cc:1182] ipv4:127.0.0.1:65123: Got goaway [2] err=UNAVAILABLE:GOAWAY received; Error code: 2; Debug Text: Cancelling all calls {grpc_status:14, http2_error:2, created_time:&#34;2025-07-08T15:24:10.613957-07:00&#34;, file_line:1171, file:&#34;external/com_github_grpc_grpc/src/core/ext/transport/chttp2/transport/chttp2_transport.cc&#34;}
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">spectral.io</span><span class="w"> </span><span class="kn">import</span> <span class="n">envi</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="k">for</span> <span class="n">_key</span><span class="p">,</span> <span class="n">key</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">report</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
+  <span class="k">if</span> <span class="n">_key</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
+
+    <span class="n">rfl_ds</span> <span class="o">=</span> <span class="n">envi</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">output</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;NIS01_20210403_</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span><span class="s1">&#39;output&#39;</span><span class="p">,</span><span class="sa">f</span><span class="s1">&#39;NIS01_20210403_</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s1">_rfl.hdr&#39;</span><span class="p">))</span>
+    <span class="n">rfl_rgb</span> <span class="o">=</span> <span class="n">rfl_ds</span><span class="o">.</span><span class="n">open_memmap</span><span class="p">(</span><span class="n">interleave</span><span class="o">=</span><span class="s1">&#39;bip&#39;</span><span class="p">)[:,:,</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">60</span><span class="p">,</span><span class="mi">40</span><span class="p">,</span><span class="mi">30</span><span class="p">])]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">wl</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="nb">float</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">rfl_ds</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s1">&#39;wavelength&#39;</span><span class="p">]])</span>
+
+    <span class="n">miny</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">([</span><span class="n">i</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">i</span><span class="p">[</span><span class="mi">1</span><span class="p">]])</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">i</span> <span class="ow">in</span> <span class="n">report</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">()])</span><span class="o">-</span><span class="mi">5</span>
+    <span class="n">maxy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">([</span><span class="n">i</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">i</span><span class="p">[</span><span class="mi">1</span><span class="p">]])</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">i</span> <span class="ow">in</span> <span class="n">report</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">()])</span><span class="o">+</span><span class="mi">5</span>
+    <span class="n">minx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">([</span><span class="n">i</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="n">i</span><span class="p">[</span><span class="mi">3</span><span class="p">]])</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">i</span> <span class="ow">in</span> <span class="n">report</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">()])</span><span class="o">-</span><span class="mi">5</span>
+    <span class="n">maxx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">([</span><span class="n">i</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="n">i</span><span class="p">[</span><span class="mi">3</span><span class="p">]])</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">i</span> <span class="ow">in</span> <span class="n">report</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">()])</span><span class="o">+</span><span class="mi">5</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">rfl_rgb</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">rfl_rgb</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;NIS01_20210403_</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">i</span> <span class="ow">in</span> <span class="n">report</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">i</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">-</span><span class="n">minx</span><span class="p">,</span><span class="n">i</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">-</span><span class="n">minx</span><span class="p">,</span><span class="n">i</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">-</span><span class="n">minx</span><span class="p">,</span><span class="n">i</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">-</span><span class="n">minx</span><span class="p">,</span><span class="n">i</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">-</span><span class="n">minx</span><span class="p">],[</span><span class="n">i</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="n">miny</span><span class="p">,</span><span class="n">i</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="n">miny</span><span class="p">,</span><span class="n">i</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">miny</span><span class="p">,</span><span class="n">i</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">miny</span><span class="p">,</span><span class="n">i</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="n">miny</span><span class="p">],</span><span class="n">label</span><span class="o">=</span><span class="n">k</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">i</span> <span class="ow">in</span> <span class="n">report</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+        <span class="n">in_situ_path</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;~/.isofit/neon_subset/FieldSpectrometer/</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s1">01/Data/</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s1">01_Refl.dat&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">expanduser</span><span class="p">())</span>
+        <span class="n">in_situ</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">genfromtxt</span><span class="p">(</span><span class="n">in_situ_path</span><span class="p">,</span> <span class="n">skip_header</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">in_situ</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">in_situ</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;In Situ </span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span><span class="n">ls</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
+        <span class="n">mean_rfl</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">rfl_ds</span><span class="o">.</span><span class="n">open_memmap</span><span class="p">(</span><span class="n">interleave</span><span class="o">=</span><span class="s1">&#39;bip&#39;</span><span class="p">)[</span><span class="n">i</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="n">miny</span><span class="p">:</span><span class="n">i</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">miny</span><span class="p">,</span><span class="n">i</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">-</span><span class="n">minx</span><span class="p">:</span><span class="n">i</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">-</span><span class="n">minx</span><span class="p">,:],</span><span class="n">axis</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">wl</span><span class="p">,</span> <span class="n">mean_rfl</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Ret. </span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/sensor_examples_neon_13_0.png" src="../_images/sensor_examples_neon_13_0.png" />
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/sensor_examples_neon_13_1.png" src="../_images/sensor_examples_neon_13_1.png" />
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/sensor_examples_neon_13_2.png" src="../_images/sensor_examples_neon_13_2.png" />
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/sensor_examples_neon_13_3.png" src="../_images/sensor_examples_neon_13_3.png" />
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/sensor_examples_neon_13_4.png" src="../_images/sensor_examples_neon_13_4.png" />
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/sensor_examples_neon_13_5.png" src="../_images/sensor_examples_neon_13_5.png" />
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="Per-Pixel-Retrievals">
+<h2>Per-Pixel Retrievals<a class="headerlink" href="#Per-Pixel-Retrievals" title="Link to this heading"></a></h2>
+<p>This next section is an excercise in running ISOFIT in pixel mode (dynamically from python).</p>
+<p>To get started with executing ISOFIT for iterable improvements, ISOFIT is comprised of three primary pieces:</p>
+<ol class="arabic simple">
+<li><p>The <code class="docutils literal notranslate"><span class="pre">ForwardModel</span></code> object</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">IO</span></code> object</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">Inverse</span></code> object</p></li>
+</ol>
+<p>There is also an <code class="docutils literal notranslate"><span class="pre">Isofit</span></code> object that holds each of the other three, and is commonly used for more generic runs (it is what is called by apply_oe).</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">isofit.core.isofit</span><span class="w"> </span><span class="kn">import</span> <span class="n">Isofit</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">isofit.core.fileio</span><span class="w"> </span><span class="kn">import</span> <span class="n">IO</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">isofit.core.forward</span><span class="w"> </span><span class="kn">import</span> <span class="n">ForwardModel</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">isofit.inversion.inverse</span><span class="w"> </span><span class="kn">import</span> <span class="n">Inversion</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">isofit.inversion.inverse_simple</span><span class="w"> </span><span class="kn">import</span> <span class="n">invert_algebraic</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">isofit.configs</span><span class="w"> </span><span class="kn">import</span> <span class="n">configs</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">isofit.core.geometry</span><span class="w"> </span><span class="kn">import</span> <span class="n">Geometry</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">spectral.io</span><span class="w"> </span><span class="kn">import</span> <span class="n">envi</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+
+<span class="c1"># Enable the ISOFIT logger</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">()</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Now run actual retrievals</span>
+<span class="n">config</span> <span class="o">=</span> <span class="n">configs</span><span class="o">.</span><span class="n">create_new_config</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">output</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;NIS01_20210403_</span><span class="si">{</span><span class="n">neon_id</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span><span class="s1">&#39;config&#39;</span><span class="p">,</span><span class="sa">f</span><span class="s1">&#39;NIS01_20210403_</span><span class="si">{</span><span class="n">neon_id</span><span class="si">}</span><span class="s1">_isofit.json&#39;</span><span class="p">))</span>
+<span class="n">config</span><span class="o">.</span><span class="n">forward_model</span><span class="o">.</span><span class="n">surface</span><span class="o">.</span><span class="n">surface_file</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="s1">&#39;~/.isofit/examples/20171108_Pasadena/configs/surface.mat&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">expanduser</span><span class="p">())</span>
+
+<span class="c1">#model = Isofit(os.path.join(output,f&#39;NIS01_20210403_{neon_id}&#39;,&#39;config&#39;,f&#39;NIS01_20210403_{neon_id}_isofit.json&#39;))</span>
+<span class="n">config</span><span class="o">.</span><span class="n">input</span><span class="o">.</span><span class="n">measured_radiance_file</span> <span class="o">=</span>  <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">subset_dir</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;NIS01_20210403_</span><span class="si">{</span><span class="n">neon_id</span><span class="si">}</span><span class="s1">_rdn_ort&#39;</span><span class="p">)</span>
+<span class="n">config</span><span class="o">.</span><span class="n">input</span><span class="o">.</span><span class="n">obs_file</span> <span class="o">=</span>  <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">subset_dir</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;NIS01_20210403_</span><span class="si">{</span><span class="n">neon_id</span><span class="si">}</span><span class="s1">_obs_ort&#39;</span><span class="p">)</span>
+<span class="n">config</span><span class="o">.</span><span class="n">input</span><span class="o">.</span><span class="n">loc_file</span> <span class="o">=</span>  <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">subset_dir</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;NIS01_20210403_</span><span class="si">{</span><span class="n">neon_id</span><span class="si">}</span><span class="s1">_loc_ort&#39;</span><span class="p">)</span>
+
+<span class="n">fm</span> <span class="o">=</span> <span class="n">ForwardModel</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+<span class="n">io</span> <span class="o">=</span> <span class="n">IO</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">fm</span><span class="p">)</span>
+<span class="n">inv</span> <span class="o">=</span> <span class="n">Inversion</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">fm</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+INFO:2025-07-08,15:50:17 || configs.py:create_new_config() | Loading config file: /Users/bgreenbe/.isofit/neon_subset/output/NIS01_20210403_173647/config/NIS01_20210403_173647_isofit.json
+INFO:2025-07-08,15:50:17 || radiative_transfer_engine.py:__init__() | Loading from wavelength_file: /Users/bgreenbe/.isofit/neon_subset/output/NIS01_20210403_173647/data/wavelengths.txt
+INFO:2025-07-08,15:50:17 || radiative_transfer_engine.py:__init__() | Prebuilt LUT provided
+INFO:2025-07-08,15:50:17 || luts.py:load() | Loading LUT into memory
+WARNING:2025-07-08,15:50:17 || luts.py:load() | thermal_upwelling is fully NaN, leaving as-is
+WARNING:2025-07-08,15:50:17 || luts.py:load() | thermal_downwelling is fully NaN, leaving as-is
+INFO:2025-07-08,15:50:17 || radiative_transfer_engine.py:__init__() | LUT grid loaded from file
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">region</span> <span class="o">=</span> <span class="s1">&#39;Veg&#39;</span>
+<span class="n">offsets</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">miny</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">([</span><span class="n">i</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">i</span><span class="p">[</span><span class="mi">1</span><span class="p">]])</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">i</span> <span class="ow">in</span> <span class="n">report</span><span class="p">[</span><span class="n">neon_id</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">()])</span><span class="o">-</span><span class="mi">5</span>
+<span class="n">maxy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">([</span><span class="n">i</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">i</span><span class="p">[</span><span class="mi">1</span><span class="p">]])</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">i</span> <span class="ow">in</span> <span class="n">report</span><span class="p">[</span><span class="n">neon_id</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">()])</span><span class="o">+</span><span class="mi">5</span>
+<span class="n">minx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">([</span><span class="n">i</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="n">i</span><span class="p">[</span><span class="mi">3</span><span class="p">]])</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">i</span> <span class="ow">in</span> <span class="n">report</span><span class="p">[</span><span class="n">neon_id</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">()])</span><span class="o">-</span><span class="mi">5</span>
+<span class="n">maxx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">([</span><span class="n">i</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="n">i</span><span class="p">[</span><span class="mi">3</span><span class="p">]])</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">i</span> <span class="ow">in</span> <span class="n">report</span><span class="p">[</span><span class="n">neon_id</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">()])</span><span class="o">+</span><span class="mi">5</span>
+<span class="n">offsets</span><span class="p">[</span><span class="n">neon_id</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">minx</span><span class="p">,</span><span class="n">miny</span><span class="p">]</span>
+<span class="n">adj_roi</span> <span class="o">=</span> <span class="p">[</span><span class="n">roi</span><span class="p">[</span><span class="n">region</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">offsets</span><span class="p">[</span><span class="n">neon_id</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span> <span class="n">roi</span><span class="p">[</span><span class="n">region</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">offsets</span><span class="p">[</span><span class="n">neon_id</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span> <span class="n">roi</span><span class="p">[</span><span class="n">region</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span> <span class="o">-</span> <span class="n">offsets</span><span class="p">[</span><span class="n">neon_id</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">roi</span><span class="p">[</span><span class="n">region</span><span class="p">][</span><span class="mi">3</span><span class="p">]</span> <span class="o">-</span> <span class="n">offsets</span><span class="p">[</span><span class="n">neon_id</span><span class="p">][</span><span class="mi">0</span><span class="p">]]</span>
+
+<span class="n">rdn</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">envi</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">input</span><span class="o">.</span><span class="n">measured_radiance_file</span> <span class="o">+</span> <span class="s1">&#39;.hdr&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">open_memmap</span><span class="p">(</span><span class="n">interleave</span><span class="o">=</span><span class="s1">&#39;bip&#39;</span><span class="p">)[</span><span class="n">adj_roi</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span><span class="n">adj_roi</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">adj_roi</span><span class="p">[</span><span class="mi">2</span><span class="p">]:</span><span class="n">adj_roi</span><span class="p">[</span><span class="mi">3</span><span class="p">],:]</span><span class="o">.</span><span class="n">copy</span><span class="p">(),</span><span class="n">axis</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">obs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">envi</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">input</span><span class="o">.</span><span class="n">obs_file</span> <span class="o">+</span> <span class="s1">&#39;.hdr&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">open_memmap</span><span class="p">(</span><span class="n">interleave</span><span class="o">=</span><span class="s1">&#39;bip&#39;</span><span class="p">)[</span><span class="n">adj_roi</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span><span class="n">adj_roi</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">adj_roi</span><span class="p">[</span><span class="mi">2</span><span class="p">]:</span><span class="n">adj_roi</span><span class="p">[</span><span class="mi">3</span><span class="p">],:]</span><span class="o">.</span><span class="n">copy</span><span class="p">(),</span><span class="n">axis</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">loc</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">envi</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">input</span><span class="o">.</span><span class="n">loc_file</span> <span class="o">+</span> <span class="s1">&#39;.hdr&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">open_memmap</span><span class="p">(</span><span class="n">interleave</span><span class="o">=</span><span class="s1">&#39;bip&#39;</span><span class="p">)[</span><span class="n">adj_roi</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span><span class="n">adj_roi</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">adj_roi</span><span class="p">[</span><span class="mi">2</span><span class="p">]:</span><span class="n">adj_roi</span><span class="p">[</span><span class="mi">3</span><span class="p">],:]</span><span class="o">.</span><span class="n">copy</span><span class="p">(),</span><span class="n">axis</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+
+<span class="n">geom</span> <span class="o">=</span> <span class="n">Geometry</span><span class="p">(</span><span class="n">obs</span><span class="o">=</span><span class="n">obs</span><span class="p">,</span><span class="n">loc</span><span class="o">=</span><span class="n">loc</span><span class="p">)</span>
+<span class="n">states</span> <span class="o">=</span> <span class="n">inv</span><span class="o">.</span><span class="n">invert</span><span class="p">(</span><span class="n">rdn</span><span class="p">,</span> <span class="n">geom</span><span class="p">)</span>
+
+<span class="n">x_surface</span><span class="p">,</span> <span class="n">x_RT</span><span class="p">,</span> <span class="n">x_instrument</span> <span class="o">=</span> <span class="n">fm</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="n">states</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,:])</span>
+
+<span class="n">x_alg</span><span class="p">,</span> <span class="n">coeffs</span> <span class="o">=</span> <span class="n">invert_algebraic</span><span class="p">(</span><span class="n">fm</span><span class="o">.</span><span class="n">surface</span><span class="p">,</span> <span class="n">fm</span><span class="o">.</span><span class="n">RT</span><span class="p">,</span> <span class="n">fm</span><span class="o">.</span><span class="n">instrument</span><span class="p">,</span>
+                           <span class="n">x_surface</span><span class="p">,</span> <span class="n">x_RT</span><span class="p">,</span> <span class="n">x_instrument</span><span class="p">,</span>
+                           <span class="n">rdn</span><span class="p">,</span> <span class="n">geom</span><span class="p">,</span>
+                           <span class="p">)</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+WARNING:2025-07-08,15:50:30 || geometry.py:__init__() | Earth sun distance not provided. Proceeding without might cause some inaccuracies down the line
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">closest_wl</span><span class="p">(</span><span class="n">mv</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">io</span><span class="o">.</span><span class="n">meas_wl</span><span class="o">-</span><span class="n">mv</span><span class="p">))</span>
+
+<span class="n">wl_nan</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">meas_wl</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">wl_nan</span><span class="p">[</span><span class="n">closest_wl</span><span class="p">(</span><span class="mi">1360</span><span class="p">):</span><span class="n">closest_wl</span><span class="p">(</span><span class="mi">1410</span><span class="p">)]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+<span class="n">wl_nan</span><span class="p">[</span><span class="n">closest_wl</span><span class="p">(</span><span class="mi">1800</span><span class="p">):</span><span class="n">closest_wl</span><span class="p">(</span><span class="mi">1970</span><span class="p">)]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">states</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="n">offset</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">states</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="mi">4</span><span class="p">):</span>
+    <span class="n">lab</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;Step </span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s1">&#39;</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">lab</span> <span class="o">=</span> <span class="s1">&#39;Algebraic inversion at initial guess&#39;</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">wl_nan</span><span class="p">,</span> <span class="n">states</span><span class="p">[</span><span class="n">n</span><span class="p">,:</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="n">offset</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">lab</span><span class="p">)</span>
+    <span class="n">offset</span> <span class="o">+=</span> <span class="mf">0.04</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">wl_nan</span><span class="p">,</span> <span class="n">states</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,:</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="n">offset</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Step </span><span class="si">{</span><span class="n">states</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">states</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">2</span><span class="p">:])</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+(13, 428)
+[0.10742364 0.60519719]
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/sensor_examples_neon_18_1.png" src="../_images/sensor_examples_neon_18_1.png" />
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../how_to_run/functions.html" class="btn btn-neutral float-left" title="Internal Functions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../information/contribute.html" class="btn btn-neutral float-right" title="Contributing" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright Copyright 2018 California Institute of Technology.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
