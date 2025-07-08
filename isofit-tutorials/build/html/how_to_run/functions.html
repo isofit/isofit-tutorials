@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Internal Functions &mdash; ISOFIT: Imaging Spectrometer Optimal FITting Tutorials  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../_static/nbsphinx-code-cells.css?v=2aa19091" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="NEON" href="../sensor_examples/neon.html" />
+    <link rel="prev" title="Apply OE" href="apply_oe.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            ISOFIT: Imaging Spectrometer Optimal FITting Tutorials
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Running Isofit</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="apply_oe.html">Apply OE</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Internal Functions</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Sensor examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../sensor_examples/neon.html">NEON</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Information</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../information/contribute.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../information/code_of_conduct.html">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../information/project_support.html">Project Support</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">ISOFIT: Imaging Spectrometer Optimal FITting Tutorials</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Internal Functions</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/how_to_run/functions.ipynb.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="Internal-Functions">
+<h1>Internal Functions<a class="headerlink" href="#Internal-Functions" title="Link to this heading"></a></h1>
+<p>When debugging issues or testing configurations, it may be advantagous to run Isofit in a more controlled manner than the end-to-end Apply OE pipeline. This notebook gives a quick introduction to the structure of Isofit and how it can be used more like a Python package.</p>
+<p>NOTE: Isofit is actively developed, so while we make sure that Apply OE is stable from a CLI standpoint, individual functions are subject to change.</p>
+<p>We’ll start with the medium example found at <code class="docutils literal notranslate"><span class="pre">~/.isofit/imagecube/medium</span></code>. First, run Apply OE on this example, or for more adept users, run Apply OE with the <code class="docutils literal notranslate"><span class="pre">--config_only</span></code> flag. The objective here, is to generate an Isofit config file at <code class="docutils literal notranslate"><span class="pre">~/.isofit/imagecube/small/config/ang20170323t202244_isofit.json</span></code>. This saves us the trouble of building the configuration file manually. We can edit the Apply OE generated configuration as needed.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Imports</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">spectral</span><span class="w"> </span><span class="kn">import</span> <span class="n">envi</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">isofit.core.common</span><span class="w"> </span><span class="kn">import</span> <span class="n">envi_header</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">isofit.core.isofit</span><span class="w"> </span><span class="kn">import</span> <span class="n">Isofit</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">isofit.configs</span><span class="w"> </span><span class="kn">import</span> <span class="n">configs</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">isofit.core.forward</span><span class="w"> </span><span class="kn">import</span> <span class="n">ForwardModel</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">isofit.inversion.inverse</span><span class="w"> </span><span class="kn">import</span> <span class="n">Inversion</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">isofit.core.geometry</span><span class="w"> </span><span class="kn">import</span> <span class="n">Geometry</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">isofit.core.fileio</span><span class="w"> </span><span class="kn">import</span> <span class="n">IO</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">isofit.inversion.inverse_simple</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">invert_algebraic</span><span class="p">,</span>
+    <span class="n">invert_analytical</span><span class="p">,</span>
+    <span class="n">invert_simple</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load the input data</span>
+<span class="n">rdn_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s1">&#39;~/.isofit/imagecube/medium/ang20170323t202244_rdn_7k-8k&#39;</span><span class="p">)</span>
+<span class="n">loc_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s1">&#39;~/.isofit/imagecube/medium/ang20170323t202244_loc_7k-8k&#39;</span><span class="p">)</span>
+<span class="n">obs_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s1">&#39;~/.isofit/imagecube/medium/ang20170323t202244_obs_7k-8k&#39;</span><span class="p">)</span>
+
+<span class="n">rdn</span> <span class="o">=</span> <span class="n">envi</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">envi_header</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">rdn_path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">())))</span>
+<span class="n">loc</span> <span class="o">=</span> <span class="n">envi</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">envi_header</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">loc_path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">())))</span>
+<span class="n">obs</span> <span class="o">=</span> <span class="n">envi</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">envi_header</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">obs_path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">())))</span>
+
+<span class="n">rdn_im</span> <span class="o">=</span> <span class="n">rdn</span><span class="o">.</span><span class="n">open_memmap</span><span class="p">(</span><span class="n">interleave</span><span class="o">=</span><span class="s1">&#39;bip&#39;</span><span class="p">)</span>
+<span class="n">loc_im</span> <span class="o">=</span> <span class="n">loc</span><span class="o">.</span><span class="n">open_memmap</span><span class="p">(</span><span class="n">interleave</span><span class="o">=</span><span class="s1">&#39;bip&#39;</span><span class="p">)</span>
+<span class="n">obs_im</span> <span class="o">=</span> <span class="n">obs</span><span class="o">.</span><span class="n">open_memmap</span><span class="p">(</span><span class="n">interleave</span><span class="o">=</span><span class="s1">&#39;bip&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>Much of the internal Isofit structure is object-based.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">config</span></code> object contains the full Isofit config. This is constructed directly from the config <code class="docutils literal notranslate"><span class="pre">.json</span></code> file:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize the config object</span>
+<span class="n">config_file</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s1">&#39;~/.isofit/imagecube/small/config/ang20170323t202244_isofit.json&#39;</span><span class="p">)</span>
+<span class="n">config</span> <span class="o">=</span>  <span class="n">configs</span><span class="o">.</span><span class="n">create_new_config</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">config_file</span><span class="o">.</span><span class="n">expanduser</span><span class="p">()))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The config object:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Config attributes:&#39;</span><span class="p">)</span>
+<span class="p">[</span><span class="nb">print</span><span class="p">(</span><span class="n">key</span><span class="p">)</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="nb">vars</span><span class="p">(</span><span class="n">config</span><span class="p">)</span><span class="o">.</span><span class="n">keys</span><span class="p">()]</span>
+<span class="nb">print</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Example:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Forward model type: </span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">_forward_model_type</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Forward model: </span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">forward_model</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+The config object:
+&lt;isofit.configs.configs.Config object at 0x109bb97e0&gt;
+
+Config attributes:
+_input_type
+input
+_output_type
+output
+_forward_model_type
+forward_model
+_implementation_type
+implementation
+
+Example:
+Forward model type: &lt;class &#39;isofit.configs.sections.forward_model_config.ForwardModelConfig&#39;&gt;
+Forward model: &lt;isofit.configs.sections.forward_model_config.ForwardModelConfig object at 0x109ed3d90&gt;
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">multi_fm</span> <span class="o">=</span> <span class="n">ForwardModel</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+<span class="n">multi_iv</span> <span class="o">=</span> <span class="n">Inversion</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">multi_fm</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="apply_oe.html" class="btn btn-neutral float-left" title="Apply OE" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../sensor_examples/neon.html" class="btn btn-neutral float-right" title="NEON" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright Copyright 2018 California Institute of Technology.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

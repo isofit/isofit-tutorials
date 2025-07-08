@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Apply OE &mdash; ISOFIT: Imaging Spectrometer Optimal FITting Tutorials  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../_static/nbsphinx-code-cells.css?v=2aa19091" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Internal Functions" href="functions.html" />
+    <link rel="prev" title="ISOFIT tutorials" href="../index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            ISOFIT: Imaging Spectrometer Optimal FITting Tutorials
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Running Isofit</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Apply OE</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#What-is-Apply-OE?">What is Apply OE?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#How-do-you-run-Apply-OE?">How do you run Apply OE?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#The-Analytical-Line">The Analytical Line</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="functions.html">Internal Functions</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Sensor examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../sensor_examples/neon.html">NEON</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Information</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../information/contribute.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../information/code_of_conduct.html">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../information/project_support.html">Project Support</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">ISOFIT: Imaging Spectrometer Optimal FITting Tutorials</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Apply OE</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/how_to_run/apply_oe.ipynb.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="Apply-OE">
+<h1>Apply OE<a class="headerlink" href="#Apply-OE" title="Link to this heading"></a></h1>
+<section id="What-is-Apply-OE?">
+<h2>What is Apply OE?<a class="headerlink" href="#What-is-Apply-OE?" title="Link to this heading"></a></h2>
+<p>Apply OE is the built-in end-to-end atmospheric correction pipeline, and is the easiest way to run Isofit. Apply OE is run via a command line interface (CLI) tool accessed with a terminal call:</p>
+<p><code class="docutils literal notranslate"><span class="pre">isofit</span> <span class="pre">apply_oe</span> <span class="pre">--help</span></code></p>
+<p>The function docstring is printed when this command is run within a terminal window, and acts as a guide for how to run the function.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>isofit apply_oe --help
+
+Usage: isofit apply_oe [OPTIONS] INPUT_RADIANCE INPUT_LOC INPUT_OBS
+                      WORKING_DIRECTORY SENSOR
+
+ Applies OE over a flightline using a radiative transfer engine. This
+ executes ISOFIT in a generalized way, accounting for the types of variation
+ that might be considered typical.
+
+ Observation (obs) and location (loc) files are used to determine appropriate
+ geometry lookup tables and provide a heuristic means of determining
+ atmospheric water ranges.
+
+ Parameters
+ ----------
+ input_radiance : str
+     Radiance data cube. Expected to be ENVI format
+ input_loc : str
+     Location data cube of shape (Lon, Lat, Elevation). Expected to be ENVI format
+ input_obs : str
+     Observation data cube of shape:
+         (path length, to-sensor azimuth, to-sensor zenith,
+         to-sun azimuth, to-sun zenith, phase,
+         slope, aspect, cosine i, UTC time)
+     Expected to be ENVI format
+ working_directory : str
+     Directory to stage multiple outputs, will contain subdirectories
+ sensor : str
+     The sensor used for acquisition, will be used to set noise and datetime
+     settings
+ surface_path : str
+     Path to surface model or json dict of surface model configuration
+ copy_input_files : bool, default=False
+     Flag to choose to copy input_radiance, input_loc, and input_obs locally into
+     the working_directory
+ modtran_path : str, default=None
+     Location of MODTRAN utility. Alternately set with `MODTRAN_DIR` environment
+     variable
+ wavelength_path : str, default=None
+     Location to get wavelength information from, if not specified the radiance
+     header will be used
+ surface_category : str, default=&quot;multicomponent_surface&quot;
+     The type of ISOFIT surface priors to use.  Default is multicomponent_surface
+ aerosol_climatology_path : str, default=None
+     Specific aerosol climatology information to use in MODTRAN
+ rdn_factors_path : str, default=None
+     Specify a radiometric correction factor, if desired
+ atmosphere_type : str, default=&quot;ATM_MIDLAT_SUMMER&quot;
+     Atmospheric profile to be used for MODTRAN simulations.  Unused for other
+     radiative transfer models.
+ channelized_uncertainty_path : str, default=None
+     Path to a channelized uncertainty file
+ model_discrepancy_path : str, default=None
+     Modifies S_eps in the OE formalism as the Gamma additive term, as:
+     S_eps = Sy + Kb.dot(self.Sb).dot(Kb.T) + Gamma
+ lut_config_file : str, default=None
+     Path to a look up table configuration file, which will override defaults
+     choices
+ multiple_restarts : bool, default=False
+     Use multiple initial starting poitns for each OE ptimization run, using
+     the corners of the atmospheric variables as starting points.  This gives
+     a more robust, albeit more expensive, solution.
+ logging_level : str, default=&quot;INFO&quot;
+     Logging level with which to run ISOFIT
+ log_file : str, default=None
+     File path to write ISOFIT logs to
+ n_cores : int, default=1
+     Number of cores to run ISOFIT with. Substantial parallelism is available, and
+     full runs will be very slow in serial. Suggested to max this out on the
+     available system
+ presolve : int, default=False
+     Flag to use a presolve mode to estimate the available atmospheric water range.
+     Runs a preliminary inversion over the image with a 1-D LUT of water vapor, and
+     uses the resulting range (slightly expanded) to bound determine the full LUT.
+     Advisable to only use with small cubes or in concert with the empirical_line
+     setting, or a significant speed penalty will be incurred
+ empirical_line : bool, default=False
+     Use an empirical line interpolation to run full inversions over only a subset
+     of pixels, determined using a SLIC superpixel segmentation, and use a KDTREE of
+     local solutions to interpolate radiance-&gt;reflectance. Generally a good option
+     if not trying to analyze the atmospheric state at fine scale resolution.
+     Mutually exclusive with analytical_line
+ analytical_line : bool, default=False
+     Use an analytical solution to the fixed atmospheric state to solve for each
+     pixel.  Starts by running a full OE retrieval on each SLIC superpixel, then
+     interpolates the atmospheric state to each pixel, and closes with the
+     analytical solution.
+     Mutually exclusive with empirical_line
+ ray_temp_dir : str, default=&quot;/tmp/ray&quot;
+     Location of temporary directory for ray parallelization engine
+ emulator_base : str, default=None
+     Location of emulator base path. Point this at the model folder (or h5 file) of
+     sRTMnet to use the emulator instead of MODTRAN. An additional file with the
+     same basename and the extention _aux.npz must accompany
+     e.g. /path/to/emulator.h5 /path/to/emulator_aux.npz
+ segmentation_size : int, default=40
+     If empirical_line is enabled, sets the size of segments to construct
+ num_neighbors : list[int], default=[]
+     Forced number of neighbors for empirical line extrapolation - overides default
+     set from segmentation_size parameter
+ atm_sigma : list[int], default=[2]
+     A list of smoothing factors to use during the atmospheric interpolation, one
+     for each atmospheric parameter (or broadcast to all if only one is provided).
+     Only used with the analytical line.
+ pressure_elevation : bool, default=False
+     Flag to retrieve elevation
+ prebuilt_lut : str, default=None
+     Use this pre-constructed look up table for all retrievals. Must be an
+     ISOFIT-compatible RTE NetCDF
+ no_min_lut_spacing : bool, default=False
+     Don&#39;t allow the LUTConfig to remove a LUT dimension because of minimal spacing.
+ inversion_windows : list[float], default=None
+     Override the default inversion windows.  Will supercede any sensor specific
+     defaults that are in place.
+     Must be in 2-item tuples
+ config_only : bool, default=False
+     Generates the configuration then exits before execution. If presolve is
+     enabled, that run will still occur.
+ interpolate_bad_rdn : bool, default=False
+     Flag to perform a per-pixel interpolation across no-data and NaN data bands.
+     Does not interpolate vectors that are entire no-data or NaN, only partial.
+     Currently only designed for wavelength interpolation on spectra.
+     Does NOT do any spatial interpolation
+ interpolate_inplace : bool, default=False
+     Flag to tell interpolation to work on the file in place, or generate a
+     new interpolated rdn file. The location of the new file will be in the
+     &quot;input&quot; directory within the working directory.
+
+ References
+ ----------
+ D.R. Thompson, A. Braverman,P.G. Brodrick, A. Candela, N. Carbon, R.N. Clark,D. Connelly, R.O. Green, R.F.
+ Kokaly, L. Li, N. Mahowald, R.L. Miller, G.S. Okin, T.H.Painter, G.A. Swayze, M. Turmon, J. Susilouto, and
+ D.S. Wettergreen. Quantifying Uncertainty for Remote Spectroscopy of Surface Composition. Remote Sensing of
+ Environment, 2020. doi: https://doi.org/10.1016/j.rse.2020.111898.
+
+ sRTMnet emulator:
+ P.G. Brodrick, D.R. Thompson, J.E. Fahlen, M.L. Eastwood, C.M. Sarture, S.R. Lundeen, W. Olson-Duvall,
+ N. Carmon, and R.O. Green. Generalized radiative transfer emulation for imaging spectroscopy reflectance
+ retrievals. Remote Sensing of Environment, 261:112476, 2021.doi: 10.1016/j.rse.2021.112476.
+
+Options:
+ -sp, --surface_path TEXT        [required]
+ --copy_input_files
+ --modtran_path TEXT
+ --wavelength_path TEXT
+ --surface_category TEXT
+ --aerosol_climatology_path TEXT
+ --rdn_factors_path TEXT
+ --atmosphere_type TEXT
+ --channelized_uncertainty_path TEXT
+ --model_discrepancy_path TEXT
+ --lut_config_file TEXT
+ --multiple_restarts
+ --logging_level TEXT
+ --log_file TEXT
+ --n_cores INTEGER
+ --presolve
+ --empirical_line
+ --analytical_line
+ --ray_temp_dir TEXT
+ --emulator_base TEXT
+ --segmentation_size INTEGER
+ -nn, --num_neighbors INTEGER
+ -as, --atm_sigma FLOAT
+ --pressure_elevation
+ --prebuilt_lut TEXT
+ --no_min_lut_spacing
+ --inversion_windows FLOAT...
+ --config_only
+ --interpolate_bad_rdn
+ --interpolate_inplace
+ --debug-args                    Prints the arguments list without executing
+                                 the command
+ --profile TEXT
+ --help                          Show this message and exit.
+</pre></div>
+</div>
+<p>The Apply OE function can leverage a large number of input parameters, but most are optional. The important inputs are the non-optional arguments:</p>
+<p><code class="docutils literal notranslate"><span class="pre">INPUT_RADIANCE</span></code> <code class="docutils literal notranslate"><span class="pre">INPUT_LOC</span></code> <code class="docutils literal notranslate"><span class="pre">INPUT_OBS</span></code> <code class="docutils literal notranslate"><span class="pre">WORKING_DIRECTORY</span></code> <code class="docutils literal notranslate"><span class="pre">SENSOR</span></code> and <code class="docutils literal notranslate"><span class="pre">--surface_path</span></code>.</p>
+<p>which must be entered in the specified order. Descriptions of each are found in the docstring printed above. It is important to note that the <code class="docutils literal notranslate"><span class="pre">INPUT_RADIANCE</span></code>, <code class="docutils literal notranslate"><span class="pre">INPUT_LOC</span></code>, and <code class="docutils literal notranslate"><span class="pre">INPUT_OBS</span></code> are ENVI raster data formats that must be at the same row-column dimensions. The <code class="docutils literal notranslate"><span class="pre">--surface_path</span></code> points Isofit torwards the constructed prior distribution file for surface reflectance. Optional arguments are denoted by the ‘–’ in their name, e.g. <code class="docutils literal notranslate"><span class="pre">--modtran_path</span></code>, <code class="docutils literal notranslate"><span class="pre">--pressure_elevation</span></code>. It is
+important to note that the default radiative transfer engine (RTE) is currently set to Modtran. You must specify an <code class="docutils literal notranslate"><span class="pre">--emulator_path</span></code> without a Modtran installation.</p>
+</section>
+<section id="How-do-you-run-Apply-OE?">
+<h2>How do you run Apply OE?<a class="headerlink" href="#How-do-you-run-Apply-OE?" title="Link to this heading"></a></h2>
+<p>The script is run via the CLI. For example:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>isofit apply_oe \
+  ~/.isofit/imagecube/small/ang20170323t202244_rdn_7000-7010 \
+  ~/.isofit/imagecube/small/ang20170323t202244_loc_7000-7010 \
+  ~/.isofit/imagecube/small/ang20170323t202244_obs_7000-7010 \
+  ~/.isofit/examples/image_cube/small \
+  ang \
+  --surface_path ~/.isofit/imagecube/small/data/surface.mat \
+  --emulator_base ~/.isofit/srtmnet/sRTMnet_v120.h5 \
+  --n_cores 10 \
+  --presolve \
+</pre></div>
+</div>
+<p>Here,</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>~/.isofit/imagecube/small/ang20170323t202244_rdn_7000-7010
+~/.isofit/imagecube/small/ang20170323t202244_loc_7000-7010
+~/.isofit/imagecube/small/ang20170323t202244_obs_7000-7010
+</pre></div>
+</div>
+<p>are the radiance, location, and observational geometry files respectively. The <code class="docutils literal notranslate"><span class="pre">\</span></code> tells the CLI call to expect a multi-line input. The remaining two requried parameters are <code class="docutils literal notranslate"><span class="pre">ang</span></code>, the sensor designation (AVIRIS-NG), and the <code class="docutils literal notranslate"><span class="pre">--surface_path</span></code> pointing to the surface prior file at <code class="docutils literal notranslate"><span class="pre">~/.isofit/imagecube/small/data/surface.mat</span></code>.</p>
+<p>The remaining arguments set Apply OE to run with:</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">--emulator_base</span></code> points isofit to the location of the sRTMnet emulator to usse as the radiative transfer engine (RTE)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--n_cores</span> <span class="pre">=</span> <span class="pre">10</span></code> CPU cores</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">--presolve</span></code> algorithm to narrow down the water vapor retrievals</p></li>
+</ol>
+<p>We can examine both the inputs and outputs of Apply OE with this run call:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Common imports</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">spectral</span><span class="w"> </span><span class="kn">import</span> <span class="n">envi</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">isofit.core.common</span><span class="w"> </span><span class="kn">import</span> <span class="n">envi_header</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load the input files</span>
+<span class="n">rdn_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s1">&#39;~/.isofit/imagecube/small/ang20170323t202244_rdn_7000-7010&#39;</span><span class="p">)</span>
+<span class="n">loc_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s1">&#39;~/.isofit/imagecube/small/ang20170323t202244_loc_7000-7010&#39;</span><span class="p">)</span>
+<span class="n">obs_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s1">&#39;~/.isofit/imagecube/small/ang20170323t202244_obs_7000-7010&#39;</span><span class="p">)</span>
+
+<span class="n">rdn</span> <span class="o">=</span> <span class="n">envi</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">envi_header</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">rdn_path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">())))</span>
+<span class="n">loc</span> <span class="o">=</span>  <span class="n">envi</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">envi_header</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">loc_path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">())))</span>
+<span class="n">obs</span> <span class="o">=</span>  <span class="n">envi</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">envi_header</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">obs_path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">())))</span>
+
+<span class="n">rdn_im</span> <span class="o">=</span> <span class="n">rdn</span><span class="o">.</span><span class="n">open_memmap</span><span class="p">(</span><span class="n">interleave</span><span class="o">=</span><span class="s1">&#39;bip&#39;</span><span class="p">)</span>
+<span class="n">loc_im</span> <span class="o">=</span> <span class="n">loc</span><span class="o">.</span><span class="n">open_memmap</span><span class="p">(</span><span class="n">interleave</span><span class="o">=</span><span class="s1">&#39;bip&#39;</span><span class="p">)</span>
+<span class="n">obs_im</span> <span class="o">=</span> <span class="n">obs</span><span class="o">.</span><span class="n">open_memmap</span><span class="p">(</span><span class="n">interleave</span><span class="o">=</span><span class="s1">&#39;bip&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Print the bands of the input files</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Band names in the location file:&#39;</span><span class="p">)</span>
+<span class="p">[</span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">loc</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s1">&#39;band names&#39;</span><span class="p">]]</span>
+
+<span class="nb">print</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Band names in the observational geometry file:&#39;</span><span class="p">)</span>
+<span class="n">temp</span> <span class="o">=</span> <span class="p">[</span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">obs</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s1">&#39;band names&#39;</span><span class="p">]]</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Band names in the location file:
+Longitude (WGS-84)
+Latitude (WGS-84)
+Elevation (m)
+
+Band names in the observational geometry file:
+Path length (m)
+To-sensor azimuth (0 to 360 degrees cw from N)
+To-sensor zenith (0 to 90 degrees from zenith)
+To-sun azimuth (0 to 360 degrees cw from N)
+To-sun zenith (0 to 90 degrees from zenith)
+Solar phase
+Slope
+Aspect
+Cosine(i)
+UTC Time
+Earth-sun distance (AU)
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the input data</span>
+<span class="n">normalize</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span><span class="p">:</span>  <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">vmin</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">vmax</span> <span class="o">-</span> <span class="n">vmin</span><span class="p">)</span>
+<span class="n">bands</span> <span class="o">=</span> <span class="p">[</span><span class="mi">55</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">15</span><span class="p">]</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">plot</span> <span class="o">=</span> <span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">normalize</span><span class="p">(</span><span class="n">rdn_im</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">bands</span><span class="p">],</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">15</span><span class="p">))</span>
+<span class="n">plot</span> <span class="o">=</span> <span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">loc_im</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+<span class="n">plot</span> <span class="o">=</span> <span class="n">axs</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">obs_im</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
+
+<span class="n">title</span> <span class="o">=</span> <span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Radiance (RGB)&#39;</span><span class="p">)</span>
+<span class="n">title</span> <span class="o">=</span> <span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Longitude (WGS-84)&#39;</span><span class="p">)</span>
+<span class="n">title</span> <span class="o">=</span> <span class="n">axs</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Solar zenith angle (Deg)&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/how_to_run_apply_oe_12_0.png" src="../_images/how_to_run_apply_oe_12_0.png" />
+</div>
+</div>
+<p>The input image doesn’t look like much because this is just a 10x10 pixel example. However we see per-pixel spectral variation in the radiance RGBs, and systematic variation in the location and geometric variables.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load the output files</span>
+<span class="n">rfl_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s1">&#39;~/.isofit/imagecube/small/output/ang20170323t202244_rfl&#39;</span><span class="p">)</span>
+<span class="n">state_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s1">&#39;~/.isofit/imagecube/small/output/ang20170323t202244_state&#39;</span><span class="p">)</span>
+<span class="n">uncert_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s1">&#39;~/.isofit/imagecube/small/output/ang20170323t202244_uncert&#39;</span><span class="p">)</span>
+
+<span class="n">rfl</span> <span class="o">=</span> <span class="n">envi</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">envi_header</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">rfl_path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">())))</span>
+<span class="n">state</span> <span class="o">=</span> <span class="n">envi</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">envi_header</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">state_path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">())))</span>
+<span class="n">uncert</span> <span class="o">=</span> <span class="n">envi</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">envi_header</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">uncert_path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">())))</span>
+
+<span class="n">rfl_im</span> <span class="o">=</span> <span class="n">rfl</span><span class="o">.</span><span class="n">open_memmap</span><span class="p">(</span><span class="n">interleave</span><span class="o">=</span><span class="s1">&#39;bip&#39;</span><span class="p">)</span>
+<span class="n">state_im</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">open_memmap</span><span class="p">(</span><span class="n">interleave</span><span class="o">=</span><span class="s1">&#39;bip&#39;</span><span class="p">)</span>
+<span class="n">uncert_im</span> <span class="o">=</span> <span class="n">uncert</span><span class="o">.</span><span class="n">open_memmap</span><span class="p">(</span><span class="n">interleave</span><span class="o">=</span><span class="s1">&#39;bip&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Shape of the _rfl file: </span><span class="si">{</span><span class="n">rfl_im</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Shape of the _state file: </span><span class="si">{</span><span class="n">state_im</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Shape of the _uncert file: </span><span class="si">{</span><span class="n">uncert_im</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Shape of the _rfl file: (10, 10, 425)
+Shape of the _state file: (10, 10, 427)
+Shape of the _uncert file: (10, 10, 427)
+</pre></div></div>
+</div>
+<p>The difference between the <code class="docutils literal notranslate"><span class="pre">_rfl</span></code> file and the <code class="docutils literal notranslate"><span class="pre">_state</span></code> file is that the <code class="docutils literal notranslate"><span class="pre">_rfl</span></code> file only contains the solutions for surface reflectance variables. Here, the AVIRIS-NG image contains 425 wavelength bands. As a result, the <code class="docutils literal notranslate"><span class="pre">_rfl</span></code> contains 425 bands. The <code class="docutils literal notranslate"><span class="pre">_state</span></code> and <code class="docutils literal notranslate"><span class="pre">_uncert</span></code> files contain the surface reflectance solutions and uncertainty calculated as the standard deviation of the posterior distributions for the 425 wavelength bands and for non-reflectance statevector elements; here,
+aerosol optical depth (AOD) and water vapor (H2O).</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the output data</span>
+<span class="n">normalize</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span><span class="p">:</span>  <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">vmin</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">vmax</span> <span class="o">-</span> <span class="n">vmin</span><span class="p">)</span>
+<span class="n">bands</span> <span class="o">=</span> <span class="p">[</span><span class="mi">55</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">15</span><span class="p">]</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">axs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ravel</span><span class="p">(</span><span class="n">axs</span><span class="p">)</span>
+<span class="n">plot</span> <span class="o">=</span> <span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">normalize</span><span class="p">(</span><span class="n">rfl_im</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">bands</span><span class="p">],</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">))</span>
+<span class="n">uncert</span> <span class="o">=</span> <span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">uncert_im</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="mi">55</span><span class="p">])</span>
+<span class="n">aod</span> <span class="o">=</span> <span class="n">axs</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">state_im</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">])</span>
+<span class="n">h2o</span> <span class="o">=</span> <span class="n">axs</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">state_im</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">uncert</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">aod</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">h2o</span><span class="p">)</span>
+
+<span class="n">title</span> <span class="o">=</span> <span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Reflectance&#39;</span><span class="p">)</span>
+<span class="n">title</span> <span class="o">=</span> <span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Uncertainty (at 650 nm)&#39;</span><span class="p">)</span>
+<span class="n">title</span> <span class="o">=</span> <span class="n">axs</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;AOD&#39;</span><span class="p">)</span>
+<span class="n">title</span> <span class="o">=</span> <span class="n">axs</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;H2O&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/how_to_run_apply_oe_16_0.png" src="../_images/how_to_run_apply_oe_16_0.png" />
+</div>
+</div>
+</section>
+<section id="The-Analytical-Line">
+<h2>The Analytical Line<a class="headerlink" href="#The-Analytical-Line" title="Link to this heading"></a></h2>
+<p>In the example above, we ran Isofit using the full optimal estimation (OE) on each pixel independently. Computationally, this amounts to iterating through each row-column pair to solve for the full state-vector (427 variables in the above case). However for large images, this demands long run-times, and ignores the principle that some state-vector elements, namely the atmospheric variables like AOD and H2O, should not vary from one pixel to another, but rather should be spatially smooth, and
+only vary over multi-pixel length scales <a class="reference external" href="https://www.sciencedirect.com/science/article/pii/S0034425723004534/">Link to the relevent paper</a>.</p>
+<p>The analytical line and empirical line algorithms leverage the assumption of a spatially smooth atmosphere to decrease run times by a factor of 10. Currently, we suggest using the analytical line algorithm and not the empirical line algorithm.</p>
+<p>See the following CLI call to run Apply OE with the analytical line algorithm:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>isofit apply_oe \
+  ~/.isofit/imagecube/medium/ang20170323t202244_rdn_7k-8k \
+  ~/.isofit/imagecube/medium/ang20170323t202244_loc_7k-8k \
+  ~/.isofit/imagecube/medium/ang20170323t202244_obs_7k-8k \
+  ~/.isofit/imagecube/medium \
+  ang \
+  --surface_path ~/.isofit/imagecube/small/data/surface.mat \
+  --emulator_base ~/.isofit/srtmnet/sRTMnet_v120.h5 \
+  --n_cores 10 \
+  --presolve \
+  --log_file ~/.isofit/imagecube/medium/log.txt \
+  --analytical_line \
+  --segmentation_size 50
+</pre></div>
+</div>
+<p>Most of the input parameters are identical to the per-pixel application above. However, we’ve added a <code class="docutils literal notranslate"><span class="pre">--log_file</span></code>, the <code class="docutils literal notranslate"><span class="pre">--analytical_line</span></code> flag, and a <code class="docutils literal notranslate"><span class="pre">--segmentation_size</span></code>. The <code class="docutils literal notranslate"><span class="pre">--log_file</span></code> points the program to write a text file to print logging statements during run time. The <code class="docutils literal notranslate"><span class="pre">--analytical_line</span></code> flag tells Isofit to use the analytical line algorithm.</p>
+<p>A simple overview for the anylitical line algorithm:</p>
+<ol class="arabic simple">
+<li><p>All three input files are “segmented” into superpixel blocks using the SLIC algorithm. The <code class="docutils literal notranslate"><span class="pre">--segmentation_size</span></code> value sets the number of pixels that each superpixel contains.</p></li>
+<li><p>At the superpixel resolution, Isofit solves for the OE solutions, which provides both surface and atmospheric state variables.</p></li>
+<li><p>Atmospheric state variables are spatially interpolated to full image resolution. The spatial interpolation uses the Apply OE parameters <code class="docutils literal notranslate"><span class="pre">--num_neighbors</span></code> and <code class="docutils literal notranslate"><span class="pre">--atm_sigma</span></code>.</p></li>
+<li><p>With a fixed atmosphere, we leverage a closed form solution for surface state elements that allows for a solution convergence in a single iteration.</p></li>
+</ol>
+<p>We can visualize what the segmentation is doing by leveraging the <code class="docutils literal notranslate"><span class="pre">isofit</span> <span class="pre">reconstruct_subs</span></code> CLI command.</p>
+<p>Visualizing the input data:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plotting the input data</span>
+<span class="n">rdn_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s1">&#39;~/.isofit/imagecube/medium/ang20170323t202244_rdn_7k-8k&#39;</span><span class="p">)</span>
+<span class="n">loc_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s1">&#39;~/.isofit/imagecube/medium/ang20170323t202244_loc_7k-8k&#39;</span><span class="p">)</span>
+<span class="n">obs_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s1">&#39;~/.isofit/imagecube/medium/ang20170323t202244_obs_7k-8k&#39;</span><span class="p">)</span>
+
+<span class="n">subs_rdn_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s1">&#39;~/.isofit/imagecube/medium/input/ang20170323t202244_subs_recon_rdn&#39;</span><span class="p">)</span>
+<span class="n">subs_loc_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s1">&#39;~/.isofit/imagecube/medium/input/ang20170323t202244_subs_recon_loc&#39;</span><span class="p">)</span>
+<span class="n">subs_obs_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s1">&#39;~/.isofit/imagecube/medium/input/ang20170323t202244_subs_recon_obs&#39;</span><span class="p">)</span>
+
+<span class="n">rdn</span> <span class="o">=</span> <span class="n">envi</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">envi_header</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">rdn_path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">())))</span>
+<span class="n">loc</span> <span class="o">=</span> <span class="n">envi</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">envi_header</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">loc_path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">())))</span>
+<span class="n">obs</span> <span class="o">=</span> <span class="n">envi</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">envi_header</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">obs_path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">())))</span>
+
+<span class="n">subs_rdn</span> <span class="o">=</span> <span class="n">envi</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">envi_header</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">subs_rdn_path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">())))</span>
+<span class="n">subs_loc</span> <span class="o">=</span> <span class="n">envi</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">envi_header</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">subs_loc_path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">())))</span>
+<span class="n">subs_obs</span> <span class="o">=</span> <span class="n">envi</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">envi_header</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">subs_obs_path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">())))</span>
+
+<span class="n">rdn_im</span> <span class="o">=</span> <span class="n">rdn</span><span class="o">.</span><span class="n">open_memmap</span><span class="p">(</span><span class="n">interleave</span><span class="o">=</span><span class="s1">&#39;bip&#39;</span><span class="p">)</span>
+<span class="n">loc_im</span> <span class="o">=</span> <span class="n">loc</span><span class="o">.</span><span class="n">open_memmap</span><span class="p">(</span><span class="n">interleave</span><span class="o">=</span><span class="s1">&#39;bip&#39;</span><span class="p">)</span>
+<span class="n">obs_im</span> <span class="o">=</span> <span class="n">obs</span><span class="o">.</span><span class="n">open_memmap</span><span class="p">(</span><span class="n">interleave</span><span class="o">=</span><span class="s1">&#39;bip&#39;</span><span class="p">)</span>
+
+<span class="n">subs_rdn_im</span> <span class="o">=</span> <span class="n">subs_rdn</span><span class="o">.</span><span class="n">open_memmap</span><span class="p">(</span><span class="n">interleave</span><span class="o">=</span><span class="s1">&#39;bip&#39;</span><span class="p">)</span>
+<span class="n">subs_loc_im</span> <span class="o">=</span> <span class="n">subs_loc</span><span class="o">.</span><span class="n">open_memmap</span><span class="p">(</span><span class="n">interleave</span><span class="o">=</span><span class="s1">&#39;bip&#39;</span><span class="p">)</span>
+<span class="n">subs_obs_im</span> <span class="o">=</span> <span class="n">subs_obs</span><span class="o">.</span><span class="n">open_memmap</span><span class="p">(</span><span class="n">interleave</span><span class="o">=</span><span class="s1">&#39;bip&#39;</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">axs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ravel</span><span class="p">(</span><span class="n">axs</span><span class="p">)</span>
+
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">normalize</span><span class="p">(</span><span class="n">rdn_im</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">400</span><span class="p">,</span> <span class="p">:,</span> <span class="n">bands</span><span class="p">],</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">15</span><span class="p">))</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">loc</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">400</span><span class="p">,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">])</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">obs</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">400</span><span class="p">,</span> <span class="p">:,</span> <span class="mi">4</span><span class="p">])</span>
+
+<span class="n">axs</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">normalize</span><span class="p">(</span><span class="n">subs_rdn_im</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">400</span><span class="p">,</span> <span class="p">:,</span> <span class="n">bands</span><span class="p">],</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">15</span><span class="p">))</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">subs_loc</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">400</span><span class="p">,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">])</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">subs_obs</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">400</span><span class="p">,</span> <span class="p">:,</span> <span class="mi">4</span><span class="p">])</span>
+
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Radiance&#39;</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Longitude&#39;</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Elevation&#39;</span><span class="p">)</span>
+
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Full resolution&#39;</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Superpixel resolution&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers). Got range [0.1097916..1.0983623].
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/how_to_run_apply_oe_21_1.png" src="../_images/how_to_run_apply_oe_21_1.png" />
+</div>
+</div>
+<p>We can examine the results from Apply OE after the OE solutions on the superpixels:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">wl</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">rdn</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s1">&#39;wavelength&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
+
+<span class="n">state_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s1">&#39;~/.isofit/imagecube/medium/output/ang20170323t202244_recon_subs_state&#39;</span><span class="p">)</span>
+<span class="n">state</span>  <span class="o">=</span> <span class="n">envi</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">envi_header</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">state_path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">())))</span>
+<span class="n">state_im</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">open_memmap</span><span class="p">(</span><span class="n">interleave</span><span class="o">=</span><span class="s1">&#39;bip&#39;</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">tight_layout</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">normalize</span><span class="p">(</span><span class="n">rdn_im</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">400</span><span class="p">,</span> <span class="p">:,</span> <span class="n">bands</span><span class="p">],</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">15</span><span class="p">))</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">normalize</span><span class="p">(</span><span class="n">state_im</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">400</span><span class="p">,</span> <span class="p">:,</span> <span class="n">bands</span><span class="p">],</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">))</span>
+<span class="n">aod</span> <span class="o">=</span> <span class="n">axs</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">state_im</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">400</span><span class="p">,</span> <span class="p">:,</span> <span class="o">-</span><span class="mi">2</span><span class="p">])</span>
+<span class="n">h2o</span> <span class="o">=</span> <span class="n">axs</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">state_im</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">400</span><span class="p">,</span> <span class="p">:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">aod</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">h2o</span><span class="p">)</span>
+
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Radiance&#39;</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Reflectance&#39;</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;AOD&#39;</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;H2O&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers). Got range [0.1097916..1.0983623].
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers). Got range [0.12389879..1.5404001].
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/how_to_run_apply_oe_24_1.png" src="../_images/how_to_run_apply_oe_24_1.png" />
+</div>
+</div>
+<p>Finally, we can examine the final results at the end of the anlaytical line algorithm:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rfl_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s1">&#39;~/.isofit/imagecube/medium/output/ang20170323t202244_rfl&#39;</span><span class="p">)</span>
+<span class="n">atm_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s1">&#39;~/.isofit/imagecube/medium/output/ang20170323t202244_atm_interp&#39;</span><span class="p">)</span>
+
+<span class="n">rfl</span>  <span class="o">=</span> <span class="n">envi</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">envi_header</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">rfl_path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">())))</span>
+<span class="n">atm</span>  <span class="o">=</span> <span class="n">envi</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">envi_header</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">atm_path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">())))</span>
+
+<span class="n">rfl_im</span> <span class="o">=</span> <span class="n">rfl</span><span class="o">.</span><span class="n">open_memmap</span><span class="p">(</span><span class="n">interleave</span><span class="o">=</span><span class="s1">&#39;bip&#39;</span><span class="p">)</span>
+<span class="n">atm_im</span> <span class="o">=</span> <span class="n">atm</span><span class="o">.</span><span class="n">open_memmap</span><span class="p">(</span><span class="n">interleave</span><span class="o">=</span><span class="s1">&#39;bip&#39;</span><span class="p">)</span>
+
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">tight_layout</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">normalize</span><span class="p">(</span><span class="n">rdn_im</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">400</span><span class="p">,</span> <span class="p">:,</span> <span class="n">bands</span><span class="p">],</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">15</span><span class="p">))</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">normalize</span><span class="p">(</span><span class="n">rfl_im</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">400</span><span class="p">,</span> <span class="p">:,</span> <span class="n">bands</span><span class="p">],</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">))</span>
+<span class="n">aod</span> <span class="o">=</span> <span class="n">axs</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">atm_im</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">400</span><span class="p">,</span> <span class="p">:,</span> <span class="o">-</span><span class="mi">2</span><span class="p">])</span>
+<span class="n">h2o</span> <span class="o">=</span> <span class="n">axs</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">atm_im</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">400</span><span class="p">,</span> <span class="p">:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">aod</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">h2o</span><span class="p">)</span>
+
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Radiance&#39;</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Reflectance&#39;</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;AOD&#39;</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;H2O&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers). Got range [0.1097916..1.0983623].
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers). Got range [0.11736042..1.7135264].
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/how_to_run_apply_oe_26_1.png" src="../_images/how_to_run_apply_oe_26_1.png" />
+</div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../index.html" class="btn btn-neutral float-left" title="ISOFIT tutorials" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="functions.html" class="btn btn-neutral float-right" title="Internal Functions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright Copyright 2018 California Institute of Technology.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
