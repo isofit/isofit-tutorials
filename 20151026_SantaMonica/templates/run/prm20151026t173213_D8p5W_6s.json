@@ -24,7 +24,7 @@
     },
 
     "surface": {
-      "surface_category": "additive_glint_surface",
+      "surface_category": "glint_model_surface",
       "surface_file": "{examples}/20151026_SantaMonica/data/prm20151028_surface_coastal_model.mat"
     },
 
@@ -50,8 +50,8 @@
         "H2O_ABSCO": 0.01
       },
       "lut_grid": {
-        "H2OSTR": [0.5,0.7,1.0],
-        "AOT550": [0.0,0.05,0.1]
+        "H2OSTR": [1.4, 3.56],
+        "AOT550": [0.7003, 0.9001]
       },
       "radiative_transfer_engines": {
         "vswir": {
@@ -68,7 +68,7 @@
           "month": 10,
           "day": 26,
           "sim_path": "{examples}/20151026_SantaMonica/lut/",
-          "lut_path": "{examples}/20151026_SantaMonica/lut/D8p5W_6s.nc",
+          "lut_path": "{examples}/20151026_SantaMonica/lut/lut.nc",
           "lut_names": {"H2OSTR": null, "AOT550": null}
         }
       }
@@ -78,7 +78,6 @@
 
   "implementation": {
     "inversion": {
-      "integration_grid": {"GLINT": [0, 0.001, 0.002]},
       "windows": [[400.0, 1000.0]]
     }
   }
