@@ -1,0 +1,115 @@
+{
+    "forward_model": {
+        "instrument": {
+            "SNR": 500,
+            "integrations": 100,
+            "unknowns": {
+                "uncorrelated_radiometric_uncertainty": 0.01
+            },
+            "wavelength_file": "{examples}/20231110_Prism_Multisurface/remote/wavelengths.txt"
+        },
+        "radiative_transfer": {
+            "lut_grid": {
+                "AOT550": [
+                    0.2008,
+                    0.3007,
+                    0.4006,
+                    0.5005,
+                    0.6004
+                ],
+                "H2OSTR": [
+                    1.64,
+                    1.88,
+                    2.12,
+                    2.36,
+                    2.6
+                ],
+                "observer_zenith": [
+                    6.437699794769287,
+                    15.77750015258789
+                ]
+            },
+            "radiative_transfer_engines": {
+                "vswir": {
+                    "aerosol_model_file": "{data}/aerosol_model.txt",
+                    "aerosol_template_file": "{data}/aerosol_template.json",
+                    "earth_sun_distance_file": "{data}/earth_sun_distance.txt",
+                    "engine_name": "sRTMnet",
+                    "irradiance_file": "{examples}/20151026_SantaMonica/data/prism_optimized_irr.dat",
+                    "lut_names": {
+                        "AOT550": null,
+                        "H2OSTR": null,
+                        "observer_zenith": null
+                    },
+                    "lut_path": "{examples}/20231110_Prism_Multisurface/lut/lut.nc",
+                    "multipart_transmittance": true,
+                    "statevector_names": [
+                        "H2OSTR",
+                        "AOT550"
+                    ],
+                    "template_file": "{examples}/20231110_Prism_Multisurface/configs/prm20231110t071521_modtran_tpl.json"
+                }
+            },
+            "statevector": {
+                "AOT550": {
+                    "bounds": [
+                        0.001,
+                        1.0
+                    ],
+                    "init": 0.1009,
+                    "prior_mean": 0.1009,
+                    "prior_sigma": 10.0,
+                    "scale": 1
+                },
+                "H2OSTR": {
+                    "bounds": [
+                        0.2,
+                        5.0
+                    ],
+                    "init": 2.72,
+                    "prior_mean": 2.72,
+                    "prior_sigma": 100.0,
+                    "scale": 1
+                }
+            },
+            "unknowns": {
+                "H2O_ABSCO": 0.0
+            }
+        },
+        "surface": {
+            "surface_category": "multicomponent_surface",
+            "surface_file": "{examples}/20231110_Prism_Multisurface/remote/single_surface_test_surface.mat"
+        }
+    },
+    "implementation": {
+        "debug_mode": false,
+        "inversion": {
+            "windows": [
+                [
+                    350.0,
+                    1360.0
+                ],
+                [
+                    1410,
+                    1800.0
+                ],
+                [
+                    1970.0,
+                    2500.0
+                ]
+            ]
+        },
+        "n_cores": 15,
+        "ray_temp_dir": "/tmp/ray"
+    },
+    "input": {
+        "loc_file": "{examples}/20231110_Prism_Multisurface/remote/prm20231110t071521_loc_two_px",
+        "measured_radiance_file": "{examples}/20231110_Prism_Multisurface/remote/prm20231110t071521_rdn_two_px",
+        "obs_file": "{examples}/20231110_Prism_Multisurface/remote/prm20231110t071521_obs_two_px"
+    },
+    "output": {
+        "estimated_reflectance_file": "{examples}/20231110_Prism_Multisurface/output/prm20231110t071521_single_surface_rfl",
+        "estimated_state_file": "{examples}/20231110_Prism_Multisurface/output/prm20231110t071521_single_surface_state",
+        "posterior_uncertainty_file": "{examples}/20231110_Prism_Multisurface/output/prm20231110t071521_single_surface_uncert"
+    }
+}

@@ -1,0 +1,47 @@
+{
+  "output_model_file": "{examples}/20231110_Prism_Multisurface/remote/multi_surface_test_surface.mat",
+  "wavelength_file":   "{examples}/20231110_Prism_Multisurface/remote/wavelengths.txt",
+  "normalize":"Euclidean",
+  "reference_windows":[[400,1250],[1500,1700],[2100,2450]],
+  "sources":
+    [
+      {
+        "input_spectrum_files":
+          [
+            "{data}/reflectance/filtered_veg"
+          ],
+        "n_components": 2,
+        "windows": [
+          {"interval":[300,350], "regularizer":10, "correlation":"decorrelated"},
+          {"interval":[350,500], "regularizer":1e-5, "correlation":"EM","name":"aerosol","feather_forward":1e-3},
+          {"interval":[500,740], "regularizer":1e-4, "correlation":"decorrelated"},
+          {"interval":[740,1250], "regularizer":1e-6, "correlation":"EM", "name": "shallow-water"},
+          {"interval":[1250,1325], "regularizer":1e-8, "correlation":"EM", "name": "osf"},
+          {"interval":[1325,1960], "regularizer":10, "correlation": "decorrelated"},
+          {"interval":[1960,2070], "regularizer":1e-4, "correlation":"EM","name": "co2","feather_forward":2e-3},
+          {"interval":[2070,2470], "regularizer":1e-3, "correlation":"decorrelated"},
+          {"interval":[2470,2500], "regularizer":1e-6, "correlation":"EM","isolated": 1, "name": "noise" }
+        ],
+        "surface_type": "land"
+      },
+      {
+        "input_spectrum_files":
+          [
+            "{data}/reflectance/glint_free_emit_lib"
+          ],
+        "n_components": 2,
+        "windows": [
+          {"interval":[300,400], "regularizer":10, "correlation":"decorrelated"},
+          {"interval":[400,440], "regularizer":1e-8, "correlation":"EM", "feather-forward": 1e-5},
+          {"interval":[440,880], "regularizer":1e-9, "correlation":"EM"},
+          {"interval":[880,1250], "regularizer":1e-6, "correlation":"EM", "name": "shallow-water"},
+          {"interval":[1250,1325], "regularizer":1e-8, "correlation":"EM", "name": "osf"},
+          {"interval":[1325,1960], "regularizer":10, "correlation": "EM" },
+          {"interval":[1960,2070], "regularizer":1e-3, "correlation":"EM","name": "co2"},
+          {"interval":[2070,2470], "regularizer":1e-3, "correlation":"decorrelated"},
+          {"interval":[2470,2600], "regularizer":1e-3, "correlation":"EM","isolated": 1, "name": "noise" }
+        ],
+        "surface_type": "water"
+      }
+  ]
+}
