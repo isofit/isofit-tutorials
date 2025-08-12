@@ -1,0 +1,12 @@
+ENVI
+description = {
+  Per-pixel multicomponent classification}
+samples = 1
+lines = 2
+bands = 1
+header offset = 0
+file type = ENVI Standard
+data type = 4
+interleave = bil
+byte order = 0
+band_names = { Classification }

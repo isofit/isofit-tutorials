@@ -1,5 +1,5 @@
 {
-  "output_model_file": "{examples}/20231110_Prism_Multisurface/remote/single_surface_test_surface.mat",
+  "output_model_file": "{examples}/20231110_Prism_Multisurface/remote/surface.mat",
   "wavelength_file":   "{examples}/20231110_Prism_Multisurface/remote/wavelengths.txt",
   "normalize":"Euclidean",
   "reference_windows":[[400,1250],[1500,1700],[2100,2450]],
@@ -21,7 +21,8 @@
           {"interval":[1960,2070], "regularizer":1e-4, "correlation":"EM","name": "co2","feather_forward":2e-3},
           {"interval":[2070,2470], "regularizer":1e-3, "correlation":"decorrelated"},
           {"interval":[2470,2500], "regularizer":1e-6, "correlation":"EM","isolated": 1, "name": "noise" }
-        ]
+        ],
+        "surface_category": "multicomponent_surface"
       },
       {
         "input_spectrum_files":
@@ -39,7 +40,8 @@
           {"interval":[1960,2070], "regularizer":1e-3, "correlation":"EM","name": "co2"},
           {"interval":[2070,2470], "regularizer":1e-3, "correlation":"decorrelated"},
           {"interval":[2470,2600], "regularizer":1e-3, "correlation":"EM","isolated": 1, "name": "noise" }
-        ]
+        ],
+        "surface_category": "glint_model_surface"
       }
   ]
 }
