@@ -81,12 +81,12 @@
                 "glint_model_surface": {
                     "surface_category": "glint_model_surface",
                     "surface_file": "{examples}/20231110_Prism_Multisurface/remote/multi_surface_test_surface_water.mat",
-                    "surface_int": 0
+                    "surface_int": 1
                 },
                 "multicomponent_surface": {
                     "surface_category": "multicomponent_surface",
                     "surface_file": "{examples}/20231110_Prism_Multisurface/remote/multi_surface_test_surface_land.mat",
-                    "surface_int": 1
+                    "surface_int": 0
                 }
             },
             "multi_surface_flag": true,

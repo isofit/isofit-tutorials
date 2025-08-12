@@ -22,7 +22,7 @@
           {"interval":[2070,2470], "regularizer":1e-3, "correlation":"decorrelated"},
           {"interval":[2470,2500], "regularizer":1e-6, "correlation":"EM","isolated": 1, "name": "noise" }
         ],
-        "surface_type": "land"
+        "surface_category": "land"
       },
       {
         "input_spectrum_files":
@@ -41,7 +41,7 @@
           {"interval":[2070,2470], "regularizer":1e-3, "correlation":"decorrelated"},
           {"interval":[2470,2600], "regularizer":1e-3, "correlation":"EM","isolated": 1, "name": "noise" }
         ],
-        "surface_type": "water"
+        "surface_category": "water"
       }
   ]
 }
