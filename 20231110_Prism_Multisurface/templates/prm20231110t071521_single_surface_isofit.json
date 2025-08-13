@@ -78,7 +78,7 @@
         },
         "surface": {
             "surface_category": "multicomponent_surface",
-            "surface_file": "{examples}/20231110_Prism_Multisurface/remote/single_surface_test_surface.mat"
+            "surface_file": "{examples}/20231110_Prism_Multisurface/remote/surface.mat"
         }
     },
     "implementation": {
