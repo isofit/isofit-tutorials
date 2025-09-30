@@ -57,12 +57,12 @@
       },
       "radiative_transfer_engines": {
         "vswir": {
-          "engine_name": "libradtran",
+          "engine_name": "LibRadTran",
           "wavelength_range": [370, 2505],
           "sim_path": "{examples}/20171108_Pasadena/lut/",
           "lut_path": "{examples}/20171108_Pasadena/lut/ang20171108t184227_libradtran.nc",
           "template_file": "{examples}/20171108_Pasadena/configs/ang20171108t184227_libradtran.inp",
-          "lut_names": ["H2OSTR", "AOT550"]
+          "lut_names": {"H2OSTR": null, "AOT550": null}
         }
       }
     }
