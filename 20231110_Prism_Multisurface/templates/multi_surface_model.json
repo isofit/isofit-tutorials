@@ -8,7 +8,7 @@
       {
         "input_spectrum_files":
           [
-            "{data}/reflectance/filtered_veg"
+            "{data}/reflectance/surface_model_ucsb"
           ],
         "n_components": 2,
         "windows": [
@@ -27,7 +27,7 @@
       {
         "input_spectrum_files":
           [
-            "{data}/reflectance/glint_free_emit_lib"
+            "{data}/reflectance/ocean_spectra_rev2"
           ],
         "n_components": 2,
         "windows": [

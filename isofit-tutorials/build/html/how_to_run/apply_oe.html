@@ -279,8 +279,8 @@ Options:
 </div>
 <p>The Apply OE function can leverage a large number of input parameters, but most are optional. The important inputs are the non-optional arguments:</p>
 <p><code class="docutils literal notranslate"><span class="pre">INPUT_RADIANCE</span></code> <code class="docutils literal notranslate"><span class="pre">INPUT_LOC</span></code> <code class="docutils literal notranslate"><span class="pre">INPUT_OBS</span></code> <code class="docutils literal notranslate"><span class="pre">WORKING_DIRECTORY</span></code> <code class="docutils literal notranslate"><span class="pre">SENSOR</span></code> and <code class="docutils literal notranslate"><span class="pre">--surface_path</span></code>.</p>
-<p>which must be entered in the specified order. Descriptions of each are found in the docstring printed above. It is important to note that the <code class="docutils literal notranslate"><span class="pre">INPUT_RADIANCE</span></code>, <code class="docutils literal notranslate"><span class="pre">INPUT_LOC</span></code>, and <code class="docutils literal notranslate"><span class="pre">INPUT_OBS</span></code> are ENVI raster data formats that must be at the same row-column dimensions. The <code class="docutils literal notranslate"><span class="pre">--surface_path</span></code> points Isofit torwards the constructed prior distribution file for surface reflectance. Optional arguments are denoted by the ‘–’ in their name, e.g. <code class="docutils literal notranslate"><span class="pre">--modtran_path</span></code>, <code class="docutils literal notranslate"><span class="pre">--pressure_elevation</span></code>. It is
-important to note that the default radiative transfer engine (RTE) is currently set to Modtran. You must specify an <code class="docutils literal notranslate"><span class="pre">--emulator_path</span></code> without a Modtran installation.</p>
+<p>which must be entered in the specified order. Descriptions of each are found in the docstring printed above. It is important to note that the <code class="docutils literal notranslate"><span class="pre">INPUT_RADIANCE</span></code>, <code class="docutils literal notranslate"><span class="pre">INPUT_LOC</span></code>, and <code class="docutils literal notranslate"><span class="pre">INPUT_OBS</span></code> are ENVI raster data formats that must be at the same row-column dimensions. The <code class="docutils literal notranslate"><span class="pre">--surface_path</span></code> points Isofit torwards the constructed prior distribution file for surface reflectance. Optional arguments are denoted by the ‘–’ in their name, e.g. <code class="docutils literal notranslate"><span class="pre">--modtran_path</span></code>, <code class="docutils literal notranslate"><span class="pre">--pressure_elevation</span></code>. The
+default radiative transfer engine (RTE) is currently set to Modtran. Most new users will use the sRTMnet emulator for which you must specify an <code class="docutils literal notranslate"><span class="pre">--emulator_path</span></code>.</p>
 </section>
 <section id="How-do-you-run-Apply-OE?">
 <h2>How do you run Apply OE?<a class="headerlink" href="#How-do-you-run-Apply-OE?" title="Link to this heading"></a></h2>
@@ -306,9 +306,9 @@ important to note that the default radiative transfer engine (RTE) is currently 
 <p>are the radiance, location, and observational geometry files respectively. The <code class="docutils literal notranslate"><span class="pre">\</span></code> tells the CLI call to expect a multi-line input. The remaining two requried parameters are <code class="docutils literal notranslate"><span class="pre">ang</span></code>, the sensor designation (AVIRIS-NG), and the <code class="docutils literal notranslate"><span class="pre">--surface_path</span></code> pointing to the surface prior file at <code class="docutils literal notranslate"><span class="pre">~/.isofit/imagecube/small/data/surface.mat</span></code>.</p>
 <p>The remaining arguments set Apply OE to run with:</p>
 <ol class="arabic simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">--emulator_base</span></code> points isofit to the location of the sRTMnet emulator to usse as the radiative transfer engine (RTE)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--emulator_base</span></code> points isofit to the location of the sRTMnet emulator to use as the radiative transfer engine (RTE)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">--n_cores</span> <span class="pre">=</span> <span class="pre">10</span></code> CPU cores</p></li>
-<li><p>The <code class="docutils literal notranslate"><span class="pre">--presolve</span></code> algorithm to narrow down the water vapor retrievals</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">--presolve</span></code> algorithm to narrow down the water vapor retrievals, which leads to faster total processing time</p></li>
 </ol>
 <p>We can examine both the inputs and outputs of Apply OE with this run call:</p>
 <div class="nbinput nblast docutils container">
@@ -410,7 +410,8 @@ Earth-sun distance (AU)
 <img alt="../_images/how_to_run_apply_oe_12_0.png" src="../_images/how_to_run_apply_oe_12_0.png" />
 </div>
 </div>
-<p>The input image doesn’t look like much because this is just a 10x10 pixel example. However we see per-pixel spectral variation in the radiance RGBs, and systematic variation in the location and geometric variables.</p>
+<p>The input image doesn’t look like much because this is just a 10x10 pixel example. However we see per-pixel spectral variation in the radiance RGB, and systematic variation in the location and geometric variables.</p>
+<p>Looking at the output data:</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
@@ -482,7 +483,7 @@ aerosol optical depth (AOD) and water vapor (H2O).</p>
 </section>
 <section id="The-Analytical-Line">
 <h2>The Analytical Line<a class="headerlink" href="#The-Analytical-Line" title="Link to this heading"></a></h2>
-<p>In the example above, we ran Isofit using the full optimal estimation (OE) on each pixel independently. Computationally, this amounts to iterating through each row-column pair to solve for the full state-vector (427 variables in the above case). However for large images, this demands long run-times, and ignores the principle that some state-vector elements, namely the atmospheric variables like AOD and H2O, should not vary from one pixel to another, but rather should be spatially smooth, and
+<p>In the example above, we ran Isofit using the full optimal estimation (OE) on each pixel independently. Computationally, this amounts to iterating through each row-column pair to solve for the full state-vector (427 variables in the above case). However for large images, this demands long run-times, and ignores the principle that some state-vector elements, namely the atmospheric variables like AOD and H2O, should not vary from one pixel to the next, but rather should be spatially smooth, and
 only vary over multi-pixel length scales <a class="reference external" href="https://www.sciencedirect.com/science/article/pii/S0034425723004534/">Link to the relevent paper</a>.</p>
 <p>The analytical line and empirical line algorithms leverage the assumption of a spatially smooth atmosphere to decrease run times by a factor of 10. Currently, we suggest using the analytical line algorithm and not the empirical line algorithm.</p>
 <p>See the following CLI call to run Apply OE with the analytical line algorithm:</p>
@@ -573,7 +574,7 @@ Clipping input data to the valid range for imshow with RGB data ([0..1] for floa
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/how_to_run_apply_oe_21_1.png" src="../_images/how_to_run_apply_oe_21_1.png" />
+<img alt="../_images/how_to_run_apply_oe_20_1.png" src="../_images/how_to_run_apply_oe_20_1.png" />
 </div>
 </div>
 <p>We can examine the results from Apply OE after the OE solutions on the superpixels:</p>
@@ -617,7 +618,7 @@ Clipping input data to the valid range for imshow with RGB data ([0..1] for floa
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/how_to_run_apply_oe_24_1.png" src="../_images/how_to_run_apply_oe_24_1.png" />
+<img alt="../_images/how_to_run_apply_oe_22_1.png" src="../_images/how_to_run_apply_oe_22_1.png" />
 </div>
 </div>
 <p>Finally, we can examine the final results at the end of the anlaytical line algorithm:</p>
@@ -665,7 +666,7 @@ Clipping input data to the valid range for imshow with RGB data ([0..1] for floa
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/how_to_run_apply_oe_26_1.png" src="../_images/how_to_run_apply_oe_26_1.png" />
+<img alt="../_images/how_to_run_apply_oe_24_1.png" src="../_images/how_to_run_apply_oe_24_1.png" />
 </div>
 </div>
 </section>

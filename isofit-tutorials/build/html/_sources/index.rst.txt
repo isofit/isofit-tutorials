@@ -19,14 +19,14 @@ Table of contents:
 
 .. toctree::
   :Caption: Running Isofit 
-  :maxdepth: 3
+  :maxdepth: 1
 
   how_to_run/apply_oe.ipynb
   how_to_run/functions.ipynb
 
 .. toctree::
   :caption: Sensor examples 
-  :maxdepth: 2
+  :maxdepth: 1
 
   sensor_examples/neon
 
