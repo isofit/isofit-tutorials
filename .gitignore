@@ -3,12 +3,12 @@
 *.egg*/
 *__pycache__/
 
-# ISOFIT output directories
-isotuts/NEON/*
-!isotuts/NEON/*.ipynb
-
 # Jupyter server files
 .ipynb*/
 
 # MAC
 .DS_Store
+
+# uv files
+.python-version
+uv.lock

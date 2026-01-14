@@ -1,0 +1,19 @@
+site_name: ISOFIT Tutorials
+repo_name: isofit/isofit-tutorials
+repo_url: https://github.com/isofit/isofit-tutorials
+docs_dir: docs/
+theme:
+  name: readthedocs
+plugins:
+  - search
+  - nbconvert:
+      execute_enabled: true
+      max_workers: 1
+      execute_options:
+        exit_on_error: false
+nav:
+  - Home: index.md
+  - Notebooks:
+    - notebooks/apply_oe.md
+    - notebooks/neon.md
+    - notebooks/neon_single_pixel.md

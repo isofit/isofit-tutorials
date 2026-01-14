@@ -3,7 +3,7 @@ import logging
 from spectral.io import envi
 
 
-Logger = logging.getLogger(__file__)
+Logger = logging.getLogger(__name__)
 
 
 def getMetadata(file, remove=['fwhm', 'band names', 'wavelength', 'wavelength units']):
@@ -26,6 +26,7 @@ def getMetadata(file, remove=['fwhm', 'band names', 'wavelength', 'wavelength un
             Logger.warning(f'Key {key!r} not found in the metadata, skipping')
 
     return metadata
+
 
 def fakeLOC(rdn, lon, lat, elv, output=None, **kwargs):
     """
@@ -65,6 +66,7 @@ def fakeLOC(rdn, lon, lat, elv, output=None, **kwargs):
     loc[..., 2] = elv
 
     del ds, loc
+
 
 def fakeOBS(rdn, param0=0, sea=0, sez=0, soa=0, soz=0, phase=0, slope=0, aspect=0, cosi=0, param9=0, param10=0, output=None, **kwargs):
     """
