@@ -20,7 +20,9 @@ jobs:
       - name: Set up Python
         run: uv python install 3.13
       - name: Install dependencies
-        run: uv sync
+        run: |
+          uv sync
+          uv pip install -e .
       - name: Download ISOFIT dependencies
         run: |
           # TODO: Uncomment once PR is merged and new ISOFIT version is released: https://github.com/isofit/isofit/pull/836
@@ -35,4 +37,4 @@ jobs:
           mv ../examples/NEON .
           uv run isofit --path examples . build
       - name: Build and deploy docs
-        run: uv run mkdocs gh-deploy --force
+        run: uv run --active mkdocs gh-deploy --force
