@@ -24,9 +24,9 @@ jobs:
       - name: Download ISOFIT dependencies
         run: |
           # TODO: Uncomment once PR is merged and new ISOFIT version is released: https://github.com/isofit/isofit/pull/836
-          # uv run isofit --base .. --path examples .    # Set the checked out repo as the examples path
-          # uv run isofit download examples --neon       # Download only the NEON dataset
-          # uv run isofit download all --except examples # Download all other ISOFIT extras
+          # uv run isofit --base .. --path examples .     # Set the checked out repo as the examples path
+          # uv run isofit download examples --neon        # Download only the NEON dataset
+          # uv run isofit download all --exclude examples # Download all other ISOFIT extras
           # uv run isofit build
           #
           # For now, manually do each step:
