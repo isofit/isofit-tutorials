@@ -21,5 +21,18 @@ jobs:
         run: uv python install 3.13
       - name: Install dependencies
         run: uv sync
+      - name: Download ISOFIT dependencies
+        run: |
+          # TODO: Uncomment once PR is merged and new ISOFIT version is released: https://github.com/isofit/isofit/pull/836
+          # uv run isofit --base .. --path examples .     # Set the checked out repo as the examples path
+          # uv run isofit download examples --neon        # Download only the NEON dataset
+          # uv run isofit download all --exclude examples # Download all other ISOFIT extras
+          # uv run isofit build
+          #
+          # For now, manually do each step:
+          uv run isofit --base ..
+          uv run isofit download all
+          mv ../examples/NEON .
+          uv run isofit --path examples . build
       - name: Build and deploy docs
         run: uv run mkdocs gh-deploy --force
