@@ -10,11 +10,36 @@ plugins:
       execute_enabled: true
       max_workers: 1
       execute_options:
-        kernel_name: python3
+        # kernel_name: python3
         exit_on_error: false
 nav:
-  - Home: index.md
-  - Notebooks:
-    - notebooks/apply_oe.md
-    - notebooks/neon.md
-    - notebooks/neon_single_pixel.md
+  - Getting Started:
+    - About: https://isofit.readthedocs.io/en/latest/custom/about.html
+    - Installation: https://isofit.readthedocs.io/en/latest/custom/installation.html
+    - Quick Start with sRTMnet (Recommended for new users): https://isofit.readthedocs.io/en/latest/custom/installation.html#quick-start-with-srtmnet-recommended-for-new-users
+    - Data: https://isofit.readthedocs.io/en/latest/custom/data.html
+    - Extra Downloads: https://isofit.readthedocs.io/en/latest/custom/data.html#extra-downloads
+    - Configuration Options: https://isofit.readthedocs.io/en/latest/custom/data.html#configuration-options
+    - Downloads: https://isofit.readthedocs.io/en/latest/custom/data.html#downloads
+    - Developers: https://isofit.readthedocs.io/en/latest/custom/data.html#developers
+    - Best Practices: https://isofit.readthedocs.io/en/latest/custom/best_practices.html
+  - Tutorials:
+    - About: index.md
+    - Notebooks:
+      - notebooks/apply_oe.md
+      - notebooks/neon.md
+      - notebooks/neon_single_pixel.md
+  - Docker:
+    - Tags: https://isofit.readthedocs.io/en/latest/custom/docker.html
+    - Getting Started: https://isofit.readthedocs.io/en/latest/custom/docker.html#getting-started
+    - Jupyter: https://isofit.readthedocs.io/en/latest/custom/docker.html#jupyter
+    - Slim: https://isofit.readthedocs.io/en/latest/custom/docker.html#slim
+  - Information:
+    - Bibliography: https://isofit.readthedocs.io/en/latest/custom/bibliography.html
+    - Code of Conduct: https://isofit.readthedocs.io/en/latest/custom/code_of_conduct.html
+  - Developers:
+    - Contributing: https://isofit.readthedocs.io/en/latest/custom/CONTRIBUTING.html
+    - Documentation: https://isofit.readthedocs.io/en/latest/custom/documentation.html
+    - Profiling: https://isofit.readthedocs.io/en/latest/custom/profiling.html#
+  - API:
+    - API Reference: https://isofit.readthedocs.io/en/latest/autoapi/index.html#
