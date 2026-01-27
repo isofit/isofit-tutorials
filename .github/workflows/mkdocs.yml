@@ -30,4 +30,7 @@ jobs:
           uv run isofit download all --exclude examples # Download all other ISOFIT extras
           uv run isofit build
       - name: Build and deploy docs
-        run: uv run --active --directory . mkdocs gh-deploy --force
+        run: |
+          # The mkdocs-nbconvert plugin has some issues with uv run, so invoke it first which seems to fix it
+          source .venv/bin/activate
+          mkdocs gh-deploy --force
