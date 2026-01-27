@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Apply OE - ISOFIT Tutorials</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Apply OE";
+        var mkdocs_page_input_path = "notebooks/apply_oe.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> ISOFIT Tutorials
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="" href="https://isofit.readthedocs.io/en/latest/custom/about.html">About</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="https://isofit.readthedocs.io/en/latest/custom/installation.html">Installation</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="https://isofit.readthedocs.io/en/latest/custom/installation.html#quick-start-with-srtmnet-recommended-for-new-users">Quick Start with sRTMnet (Recommended for new users)</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="https://isofit.readthedocs.io/en/latest/custom/data.html">Data</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="https://isofit.readthedocs.io/en/latest/custom/data.html#extra-downloads">Extra Downloads</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="https://isofit.readthedocs.io/en/latest/custom/data.html#configuration-options">Configuration Options</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="https://isofit.readthedocs.io/en/latest/custom/data.html#downloads">Downloads</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="https://isofit.readthedocs.io/en/latest/custom/data.html#developers">Developers</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="https://isofit.readthedocs.io/en/latest/custom/best_practices.html">Best Practices</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Tutorials</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../..">About</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" >Notebooks</a>
+    <ul class="current">
+                <li class="toctree-l2 current"><a class="reference internal current" href="#">Apply OE</a>
+    <ul class="current">
+    <li class="toctree-l3"><a class="reference internal" href="#how-do-you-run-apply-oe">How do you run Apply OE?</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#the-analytical-line">The Analytical Line</a>
+    </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../neon/">NEON</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../neon_single_pixel/">NEON Single Pixel</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Docker</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="" href="https://isofit.readthedocs.io/en/latest/custom/docker.html">Tags</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="https://isofit.readthedocs.io/en/latest/custom/docker.html#getting-started">Getting Started</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="https://isofit.readthedocs.io/en/latest/custom/docker.html#jupyter">Jupyter</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="https://isofit.readthedocs.io/en/latest/custom/docker.html#slim">Slim</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Information</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="" href="https://isofit.readthedocs.io/en/latest/custom/bibliography.html">Bibliography</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="https://isofit.readthedocs.io/en/latest/custom/code_of_conduct.html">Code of Conduct</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Developers</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="" href="https://isofit.readthedocs.io/en/latest/custom/CONTRIBUTING.html">Contributing</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="https://isofit.readthedocs.io/en/latest/custom/documentation.html">Documentation</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="https://isofit.readthedocs.io/en/latest/custom/profiling.html#">Profiling</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">API</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="" href="https://isofit.readthedocs.io/en/latest/autoapi/index.html#">API Reference</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">ISOFIT Tutorials</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Tutorials</li>
+          <li class="breadcrumb-item">Notebooks</li>
+      <li class="breadcrumb-item active">Apply OE</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/isofit/isofit-tutorials/edit/master/docs/notebooks/apply_oe.md">Edit on isofit/isofit-tutorials</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="apply-oe">Apply OE</h1>
+<p>Apply OE is the built-in end-to-end atmospheric correction pipeline, and is the easiest way to run Isofit. Apply OE is run via a command line interface (CLI) tool accessed with a terminal call:</p>
+<pre><code class="language-bash">isofit apply_oe --help
+</code></pre>
+<p>The function docstring is printed when this command is run within a terminal window, and acts as a guide for how to run the function.</p>
+<pre><code class="language-python">from isofit.utils.apply_oe import apply_oe
+
+print(apply_oe.__doc__)
+</code></pre>
+<pre><code>Applies OE over a flightline using a radiative transfer engine. This executes
+ISOFIT in a generalized way, accounting for the types of variation that might be
+considered typical.
+
+Observation (obs) and location (loc) files are used to determine appropriate
+geometry lookup tables and provide a heuristic means of determining atmospheric
+water ranges.
+
+
+Parameters
+----------
+input_radiance : str
+    Radiance data cube. Expected to be ENVI format
+input_loc : str
+    Location data cube of shape (Lon, Lat, Elevation). Expected to be ENVI format
+input_obs : str
+    Observation data cube of shape:
+        (path length, to-sensor azimuth, to-sensor zenith,
+        to-sun azimuth, to-sun zenith, phase,
+        slope, aspect, cosine i, UTC time)
+    Expected to be ENVI format
+working_directory : str
+    Directory to stage multiple outputs, will contain subdirectories
+sensor : str
+    The sensor used for acquisition, will be used to set noise and datetime
+    settings
+surface_path : str
+    Path to surface model or json dict of surface model configuration
+copy_input_files : bool, default=False
+    Flag to choose to copy input_radiance, input_loc, and input_obs locally into
+    the working_directory
+modtran_path : str, default=None
+    Location of MODTRAN utility. Alternately set with `MODTRAN_DIR` environment
+    variable
+wavelength_path : str, default=None
+    Location to get wavelength information from, if not specified the radiance
+    header will be used
+surface_category : str, default="multicomponent_surface"
+    The type of ISOFIT surface priors to use.  Default is multicomponent_surface
+aerosol_climatology_path : str, default=None
+    Specific aerosol climatology information to use in MODTRAN
+rdn_factors_path : str, default=None
+    Specify a radiometric correction factor, if desired
+atmosphere_type : str, default="ATM_MIDLAT_SUMMER"
+    Atmospheric profile to be used for MODTRAN simulations.  Unused for other
+    radiative transfer models.
+channelized_uncertainty_path : str, default=None
+    Path to a wavelength-specific channelized uncertainty file - used to augment Sy in the OE formalism
+instrument_noise_path : str, default=None
+    Path to a wavelength-specific instrument noise file, used to derive per-wavelength NEDL / SNR
+dn_uncertainty_file:  str, default=None
+    Path to a linearity .mat file to augment S matrix with linearity uncertainty
+model_discrepancy_path : str, default=None
+    Modifies S_eps in the OE formalism as the Gamma additive term, as:
+    S_eps = Sy + Kb.dot(self.Sb).dot(Kb.T) + Gamma
+lut_config_file : str, default=None
+    Path to a look up table configuration file, which will override defaults
+    choices
+multiple_restarts : bool, default=False
+    Use multiple initial starting poitns for each OE ptimization run, using
+    the corners of the atmospheric variables as starting points.  This gives
+    a more robust, albeit more expensive, solution.
+logging_level : str, default="INFO"
+    Logging level with which to run ISOFIT
+log_file : str, default=None
+    File path to write ISOFIT logs to
+n_cores : int, default=1
+    Number of cores to run ISOFIT with. Substantial parallelism is available, and
+    full runs will be very slow in serial. Suggested to max this out on the
+    available system
+presolve : int, default=False
+    Flag to use a presolve mode to estimate the available atmospheric water range.
+    Runs a preliminary inversion over the image with a 1-D LUT of water vapor, and
+    uses the resulting range (slightly expanded) to bound determine the full LUT.
+    Advisable to only use with small cubes or in concert with the empirical_line
+    setting, or a significant speed penalty will be incurred
+empirical_line : bool, default=False
+    Use an empirical line interpolation to run full inversions over only a subset
+    of pixels, determined using a SLIC superpixel segmentation, and use a KDTREE of
+    local solutions to interpolate radiance-&gt;reflectance. Generally a good option
+    if not trying to analyze the atmospheric state at fine scale resolution.
+    Mutually exclusive with analytical_line
+analytical_line : bool, default=False
+    Use an analytical solution to the fixed atmospheric state to solve for each
+    pixel.  Starts by running a full OE retrieval on each SLIC superpixel, then
+    interpolates the atmospheric state to each pixel, and closes with the
+    analytical solution.
+    Mutually exclusive with empirical_line
+ray_temp_dir : str, default="/tmp/ray"
+    Location of temporary directory for ray parallelization engine
+emulator_base : str, default=None
+    Location of emulator base path. Point this at the 3C or 6C .h5 files.
+    sRTMnet to use the emulator instead of MODTRAN. An additional file with the
+    same basename and the extention _aux.npz must accompany
+    e.g. /path/to/emulator.h5 /path/to/emulator_aux.npz
+segmentation_size : int, default=40
+    If empirical_line is enabled, sets the size of segments to construct
+num_neighbors : list[int], default=[]
+    Forced number of neighbors for empirical line extrapolation - overides default
+    set from segmentation_size parameter
+atm_sigma : list[int], default=[2]
+    A list of smoothing factors to use during the atmospheric interpolation, one
+    for each atmospheric parameter (or broadcast to all if only one is provided).
+    Only used with the analytical line.
+pressure_elevation : bool, default=False
+    Flag to retrieve elevation
+prebuilt_lut : str, default=None
+    Use this pre-constructed look up table for all retrievals. Must be an
+    ISOFIT-compatible RTE NetCDF
+no_min_lut_spacing : bool, default=False
+    Don't allow the LUTConfig to remove a LUT dimension because of minimal spacing.
+inversion_windows : list[float], default=None
+    Override the default inversion windows.  Will supercede any sensor specific
+    defaults that are in place.
+    Must be in 2-item tuples
+config_only : bool, default=False
+    Generates the configuration then exits before execution. If presolve is
+    enabled, that run will still occur.
+interpolate_bad_rdn : bool, default=False
+    Flag to perform a per-pixel interpolation across no-data and NaN data bands.
+    Does not interpolate vectors that are entire no-data or NaN, only partial.
+    Currently only designed for wavelength interpolation on spectra.
+    Does NOT do any spatial interpolation
+interpolate_inplace : bool, default=False
+    Flag to tell interpolation to work on the file in place, or generate a
+    new interpolated rdn file. The location of the new file will be in the
+    "input" directory within the working directory.
+skyview_factor : str, default=None
+    Flag to determine method to account for skyview factor. Default is None, creating an array of 1s.
+    Other option is "slope" which will approx. based on cos^2(slope/2).
+    Other option is a path to a skyview ENVI file computed via skyview.py utility or other source.
+    Please note data must range from 0-1.
+resources : bool, default=False
+    Enables the system resource tracker. Must also have the log_file set.
+retrieve_co2 : bool, default=False
+    Flag to retrieve CO2 in the state vector. Only available with emulator at the moment.
+
+
+References
+----------
+D.R. Thompson, A. Braverman,P.G. Brodrick, A. Candela, N. Carbon, R.N. Clark,D. Connelly, R.O. Green, R.F.
+Kokaly, L. Li, N. Mahowald, R.L. Miller, G.S. Okin, T.H.Painter, G.A. Swayze, M. Turmon, J. Susilouto, and
+D.S. Wettergreen. Quantifying Uncertainty for Remote Spectroscopy of Surface Composition. Remote Sensing of
+Environment, 2020. doi: https://doi.org/10.1016/j.rse.2020.111898.
+
+
+sRTMnet emulator:
+P.G. Brodrick, D.R. Thompson, J.E. Fahlen, M.L. Eastwood, C.M. Sarture, S.R. Lundeen, W. Olson-Duvall,
+N. Carmon, and R.O. Green. Generalized radiative transfer emulation for imaging spectroscopy reflectance
+retrievals. Remote Sensing of Environment, 261:112476, 2021.doi: 10.1016/j.rse.2021.112476.
+</code></pre>
+<p>The Apply OE function can leverage a large number of input parameters, but most are optional. The important inputs are the non-optional arguments:</p>
+<p><code>INPUT_RADIANCE</code> <code>INPUT_LOC</code> <code>INPUT_OBS</code> <code>WORKING_DIRECTORY</code> <code>SENSOR</code> and <code>--surface_path</code>.</p>
+<p>which must be entered in the specified order (except <code>--surface_path</code> which can be added at any point but still required). Descriptions of each are found in the docstring printed above. It is important to note that the <code>INPUT_RADIANCE</code>, <code>INPUT_LOC</code>, and <code>INPUT_OBS</code> are ENVI raster data formats that must be at the same row-column dimensions. The <code>--surface_path</code> points Isofit torwards the constructed prior distribution file for surface reflectance. Optional arguments are denoted by the '--' in their name, e.g.  <code>--modtran_path</code>, <code>--pressure_elevation</code>. It is important to note that the default radiative transfer engine (RTE) is currently set to Modtran. You must specify an <code>--emulator_path</code> without a Modtran installation.</p>
+<h2 id="how-do-you-run-apply-oe">How do you run Apply OE?</h2>
+<p>The script is run via the CLI. For example:</p>
+<blockquote>
+<p><code>IC=$(isofit path imagecube)</code> sets the environment variable <code>IC</code> to the output of the command <code>isofit path imagecube</code>. This is just used to reuse the same output for multiple arguments.
+Depending on the user's isofit installation environment, this path may vary. This command ensures the correct path is retrieved</p>
+</blockquote>
+<pre><code class="language-bash">  IC=$(isofit path imagecube)/small EX=$(isofit path examples)/image_cube/small \
+  isofit apply_oe \
+  $IC/ang20170323t202244_rdn_7000-7010 \
+  $IC/ang20170323t202244_loc_7000-7010 \
+  $IC/ang20170323t202244_obs_7000-7010 \
+  $EX \
+  ang \
+  --surface_path $EX/configs/surface.json \
+  --emulator_base $(isofit path srtmnet --key file) \
+  --n_cores 10 \
+  --presolve \
+</code></pre>
+<p>Here,</p>
+<pre><code>$IC/ang20170323t202244_rdn_7000-7010
+$IC/ang20170323t202244_loc_7000-7010
+$IC/ang20170323t202244_obs_7000-7010
+</code></pre>
+<p>are the radiance, location, and observational geometry files respectively. The <code>\</code> tells the CLI call to expect a multi-line input. The remaining two requried parameters are <code>ang</code>, the sensor designation (AVIRIS-NG), and the <code>--surface_path</code> pointing to the surface configuration file which will be built at runtime.</p>
+<p>The remaining arguments set Apply OE to run with:
+1) <code>--emulator_base</code> points isofit to the location of the sRTMnet emulator to usse as the radiative transfer engine (RTE)
+2) <code>--n_cores = 10</code> CPU cores
+3) The <code>--presolve</code> algorithm to narrow down the water vapor retrievals</p>
+<pre><code class="language-python"># Alternatively, you can programatically call apply_oe. If you executed apply_oe via the command line above, do not run this
+# We use the env object to retrieve the actual location of the ISOFIT extra dependencies instead of assuming where they could be
+import os
+import shutil
+
+from isofit.utils.apply_oe import apply_oe
+from isofit.data import env
+
+output = env.path(&quot;examples&quot;, &quot;image_cube&quot;, &quot;small&quot;)
+
+# Cleanup any previous runs; comment this out if you want to preserve a previous run's output
+if (o := output / &quot;output&quot;).exists():
+    shutil.rmtree(o)
+
+apply_oe(
+    input_radiance    = str(env.path(&quot;imagecube&quot;, &quot;small&quot;, &quot;ang20170323t202244_rdn_7000-7010&quot;)),
+    input_loc         = str(env.path(&quot;imagecube&quot;, &quot;small&quot;, &quot;ang20170323t202244_loc_7000-7010&quot;)),
+    input_obs         = str(env.path(&quot;imagecube&quot;, &quot;small&quot;, &quot;ang20170323t202244_obs_7000-7010&quot;)),
+    working_directory = str(output),
+    sensor            = &quot;ang&quot;,
+    surface_path      = str(env.path(&quot;examples&quot;, &quot;image_cube&quot;, &quot;small&quot;, &quot;configs&quot;, &quot;surface.json&quot;)),
+    emulator_base     = str(env.path(&quot;srtmnet&quot;, key=&quot;srtmnet.file&quot;)),
+    presolve          = True,
+    n_cores           = os.cpu_count(),
+)
+</code></pre>
+<pre><code>INFO:2026-01-27,20:53:56 || apply_oe.py:apply_oe() | Checking input data files...
+
+
+INFO:2026-01-27,20:53:56 || apply_oe.py:apply_oe() | ...Data file checks complete
+
+
+INFO:2026-01-27,20:53:56 || apply_oe.py:apply_oe() | Setting up files and directories....
+
+
+INFO:2026-01-27,20:53:56 || template_construction.py:__init__() | Flightline ID: ang20170323t202244
+
+
+INFO:2026-01-27,20:53:56 || template_construction.py:__init__() | no noise path found, proceeding without
+
+
+INFO:2026-01-27,20:53:56 || apply_oe.py:apply_oe() | ...file/directory setup complete
+
+
+INFO:2026-01-27,20:53:56 || apply_oe.py:apply_oe() | Using inversion windows: [[350.0, 1360.0], [1410, 1800.0], [1970.0, 2500.0]]
+
+
+INFO:2026-01-27,20:53:56 || template_construction.py:get_wavelengths() | No wavelength file provided. Obtaining wavelength grid from ENVI header of radiance cube.
+
+
+INFO:2026-01-27,20:53:56 || template_construction.py:get_wavelengths() | Wavelength units of nm inferred...converting to microns
+
+
+INFO:2026-01-27,20:53:56 || template_construction.py:check_surface_model() | No surface model provided. Build new one using given config file.
+
+
+0 ['/home/runner/work/isofit-tutorials/data/reflectance/surface_model_ucsb']
+
+
+1 ['/home/runner/work/isofit-tutorials/data/reflectance/surface_model_ucsb']
+
+
+2 ['/home/runner/work/isofit-tutorials/data/reflectance/surface_model_ucsb']
+
+
+3 ['/home/runner/work/isofit-tutorials/data/reflectance/surface_model_ucsb']
+4 ['/home/runner/work/isofit-tutorials/data/reflectance/surface_model_ucsb']
+
+
+5 ['/home/runner/work/isofit-tutorials/data/reflectance/surface_model_ucsb']
+
+
+6 ['/home/runner/work/isofit-tutorials/data/reflectance/surface_model_ucsb']
+7 ['/home/runner/work/isofit-tutorials/data/reflectance/surface_model_ucsb']
+
+
+INFO:2026-01-27,20:53:59 || apply_oe.py:apply_oe() | Observation means:
+
+
+INFO:2026-01-27,20:53:59 || apply_oe.py:apply_oe() | Path (km): 20.716992087408016
+
+
+INFO:2026-01-27,20:53:59 || apply_oe.py:apply_oe() | To-sensor azimuth (deg): 71.27130737250893
+
+
+INFO:2026-01-27,20:53:59 || apply_oe.py:apply_oe() | To-sensor zenith (deg): 17.34528282852098
+
+
+INFO:2026-01-27,20:53:59 || apply_oe.py:apply_oe() | To-sun azimuth (deg): 197.3237574125862
+
+
+INFO:2026-01-27,20:53:59 || apply_oe.py:apply_oe() | To-sun zenith (deg): 32.45698605676816
+
+
+INFO:2026-01-27,20:53:59 || apply_oe.py:apply_oe() | Relative to-sun azimuth (deg): 126.05245004007726
+
+
+INFO:2026-01-27,20:53:59 || apply_oe.py:apply_oe() | Altitude (km): 19.808562728369008
+
+
+INFO:2026-01-27,20:53:59 || apply_oe.py:apply_oe() | Pre-solve H2O grid: [0.2  0.84 1.49 2.13 2.77 3.42 4.06 4.7  5.35 5.99]
+
+
+INFO:2026-01-27,20:53:59 || apply_oe.py:apply_oe() | Writing H2O pre-solve configuration file.
+
+
+INFO:2026-01-27,20:53:59 || ini.py:toTemplate() | Saved converted json to: /home/runner/work/isofit-tutorials/isofit-tutorials/image_cube/small/config/ang20170323t202244_h2o.json.tmpl
+
+
+INFO:2026-01-27,20:53:59 || apply_oe.py:apply_oe() | Run ISOFIT initial guess
+
+
+WARNING:2026-01-27,20:53:59 || __init__.py:checkNumThreads() | 
+******************************************************************************************
+! Number of threads is greater than 1 (currently: 4), this may greatly impact performance
+! Please set this the environment variables 'MKL_NUM_THREADS' and 'OMP_NUM_THREADS' to '1'
+******************************************************************************************
+
+
+INFO:2026-01-27,20:53:59 || configs.py:create_new_config() | Loading config file: /home/runner/work/isofit-tutorials/isofit-tutorials/image_cube/small/config/ang20170323t202244_h2o.json
+
+
+INFO:2026-01-27,20:53:59 || configs.py:get_config_errors() | Checking config sections for configuration issues
+
+
+INFO:2026-01-27,20:53:59 || configs.py:get_config_errors() | Configuration file checks complete, no errors found.
+
+
+/home/runner/work/isofit-tutorials/isofit-tutorials/.venv/lib/python3.13/site-packages/numpy/_core/fromnumeric.py:3824: RuntimeWarning: Mean of empty slice
+  return _methods._mean(a, axis=axis, dtype=dtype,
+/home/runner/work/isofit-tutorials/isofit-tutorials/.venv/lib/python3.13/site-packages/numpy/_core/_methods.py:142: RuntimeWarning: invalid value encountered in scalar divide
+  ret = ret.dtype.type(ret / rcount)
+
+
+
+---------------------------------------------------------------------------
+
+RuntimeError                              Traceback (most recent call last)
+
+Cell In[2], line 15
+     12 if (o := output / "output").exists():
+     13     shutil.rmtree(o)
+---&gt; 15 apply_oe(
+     16     input_radiance    = str(env.path("imagecube", "small", "ang20170323t202244_rdn_7000-7010")),
+     17     input_loc         = str(env.path("imagecube", "small", "ang20170323t202244_loc_7000-7010")),
+     18     input_obs         = str(env.path("imagecube", "small", "ang20170323t202244_obs_7000-7010")),
+     19     working_directory = str(output),
+     20     sensor            = "ang",
+     21     surface_path      = str(env.path("examples", "image_cube", "small", "configs", "surface.json")),
+     22     emulator_base     = str(env.path("srtmnet", key="srtmnet.file")),
+     23     presolve          = True,
+     24     n_cores           = os.cpu_count(),
+     25 )
+
+
+File ~/work/isofit-tutorials/isofit-tutorials/.venv/lib/python3.13/site-packages/isofit/utils/apply_oe.py:691, in apply_oe(input_radiance, input_loc, input_obs, working_directory, sensor, surface_path, copy_input_files, modtran_path, wavelength_path, surface_category, surface_class_file, classify_multisurface, aerosol_climatology_path, rdn_factors_path, atmosphere_type, channelized_uncertainty_path, instrument_noise_path, dn_uncertainty_file, model_discrepancy_path, lut_config_file, multiple_restarts, logging_level, log_file, n_cores, presolve, empirical_line, analytical_line, ray_temp_dir, emulator_base, segmentation_size, num_neighbors, atm_sigma, pressure_elevation, prebuilt_lut, no_min_lut_spacing, inversion_windows, config_only, interpolate_bad_rdn, interpolate_inplace, skyview_factor, resources, retrieve_co2)
+    689 # Run modtran retrieval
+    690 logging.info("Run ISOFIT initial guess")
+--&gt; 691 retrieval_h2o = isofit.Isofit(
+    692     paths.h2o_config_path,
+    693     level="INFO",
+    694     logfile=log_file,
+    695 )
+    696 retrieval_h2o.run()
+    697 del retrieval_h2o
+
+
+File ~/work/isofit-tutorials/isofit-tutorials/.venv/lib/python3.13/site-packages/isofit/core/isofit.py:105, in Isofit.__init__(self, config_file, level, logfile)
+     99 if (
+    100     self.config.implementation.ip_head is None
+    101     and self.config.implementation.redis_password is None
+    102 ):
+    103     rayargs["num_cpus"] = self.config.implementation.n_cores
+--&gt; 105 ray.init(**rayargs)
+    107 self.workers = None
+
+
+File ~/work/isofit-tutorials/isofit-tutorials/.venv/lib/python3.13/site-packages/ray/_private/client_mode_hook.py:104, in client_mode_hook.&lt;locals&gt;.wrapper(*args, **kwargs)
+    102     if func.__name__ != "init" or is_client_mode_enabled_by_default:
+    103         return getattr(ray, func.__name__)(*args, **kwargs)
+--&gt; 104 return func(*args, **kwargs)
+
+
+File ~/work/isofit-tutorials/isofit-tutorials/.venv/lib/python3.13/site-packages/ray/_private/worker.py:1806, in init(address, num_cpus, num_gpus, resources, labels, object_store_memory, local_mode, ignore_reinit_error, include_dashboard, dashboard_host, dashboard_port, job_config, configure_logging, logging_level, logging_format, logging_config, log_to_driver, namespace, runtime_env, enable_resource_isolation, system_reserved_cpu, system_reserved_memory, **kwargs)
+   1801         job_config.set_metadata(key, value)
+   1803 # RAY_JOB_CONFIG_JSON_ENV_VAR is only set at ray job manager level and has
+   1804 # higher priority in case user also provided runtime_env for ray.init()
+   1805 else:
+-&gt; 1806     runtime_env = _maybe_modify_runtime_env(runtime_env, _skip_env_hook)
+   1808     if runtime_env:
+   1809         # Set runtime_env in job_config if passed in as part of ray.init()
+   1810         job_config.set_runtime_env(runtime_env)
+
+
+File ~/work/isofit-tutorials/isofit-tutorials/.venv/lib/python3.13/site-packages/ray/_private/worker.py:1406, in _maybe_modify_runtime_env(runtime_env, _skip_env_hook)
+   1402     cmdline = _get_uv_run_cmdline()
+   1403     if cmdline:
+   1404         # This means the current driver is running in `uv run`, in which case we want
+   1405         # to propagate the uv environment to the workers.
+-&gt; 1406         return hook(runtime_env)
+   1408 if ray_constants.RAY_RUNTIME_ENV_HOOK in os.environ and not _skip_env_hook:
+   1409     return load_class(os.environ[ray_constants.RAY_RUNTIME_ENV_HOOK])(runtime_env)
+
+
+File ~/work/isofit-tutorials/isofit-tutorials/.venv/lib/python3.13/site-packages/ray/_private/runtime_env/uv_runtime_env_hook.py:343, in hook(runtime_env)
+    341 if "working_dir" not in runtime_env:
+    342     runtime_env["working_dir"] = os.getcwd()
+--&gt; 343     _check_working_dir_files(options, runtime_env)
+    345 return runtime_env
+
+
+File ~/work/isofit-tutorials/isofit-tutorials/.venv/lib/python3.13/site-packages/ray/_private/runtime_env/uv_runtime_env_hook.py:262, in _check_working_dir_files(uv_run_args, runtime_env)
+    259         current_path = current_path.parent
+    261 if pyproject and not pyproject.resolve().is_relative_to(working_dir):
+--&gt; 262     raise RuntimeError(
+    263         f"Your {pyproject.resolve()} is not in the working_dir {runtime_env['working_dir']}, "
+    264         "so the workers will not have access to the file. Make sure "
+    265         "the pyproject.toml file is in the working directory. "
+    266         "You can do so by specifying --directory in 'uv run', by changing the current "
+    267         "working directory before running 'uv run', or by using the 'working_dir' "
+    268         "parameter of the runtime_environment."
+    269     )
+
+
+RuntimeError: Your /home/runner/work/isofit-tutorials/isofit-tutorials/pyproject.toml is not in the working_dir /home/runner/work/isofit-tutorials/isofit-tutorials/notebooks, so the workers will not have access to the file. Make sure the pyproject.toml file is in the working directory. You can do so by specifying --directory in 'uv run', by changing the current working directory before running 'uv run', or by using the 'working_dir' parameter of the runtime_environment.
+</code></pre>
+<p>We can examine both the inputs and outputs of Apply OE with this run call:</p>
+<pre><code class="language-python"># Common imports
+import os
+from pathlib import Path
+
+from spectral import envi
+from matplotlib import pyplot as plt
+import numpy as np
+
+from isofit.core.common import envi_header
+from isofit.data import env
+</code></pre>
+<pre><code class="language-python"># Load the input files
+rdn_path = env.path(&quot;imagecube&quot;, &quot;small&quot;, &quot;ang20170323t202244_rdn_7000-7010&quot;)
+loc_path = env.path(&quot;imagecube&quot;, &quot;small&quot;, &quot;ang20170323t202244_loc_7000-7010&quot;)
+obs_path = env.path(&quot;imagecube&quot;, &quot;small&quot;, &quot;ang20170323t202244_obs_7000-7010&quot;)
+
+rdn = envi.open(envi_header(str(rdn_path)))
+loc = envi.open(envi_header(str(loc_path)))
+obs = envi.open(envi_header(str(obs_path)))
+
+rdn_im = rdn.open_memmap(interleave='bip')
+loc_im = loc.open_memmap(interleave='bip')
+obs_im = obs.open_memmap(interleave='bip')
+</code></pre>
+<pre><code class="language-python"># Print the bands of the input files
+print('Band names in the location file:')
+[print(f&quot;{i}&quot;) for i in loc.metadata['band names']]
+
+print()
+print('Band names in the observational geometry file:')
+temp = [print(f&quot;{i}&quot;) for i in obs.metadata['band names']]
+</code></pre>
+<pre><code class="language-python"># Plot the input data
+normalize = lambda x, vmin, vmax:  (x - vmin) / (vmax - vmin)
+bands = [55, 35, 15]
+
+fig, axs = plt.subplots(1, 3, sharex=True, sharey=True, figsize=(13, 4))
+plot = axs[0].imshow(normalize(rdn_im[..., bands], 0, 15))
+plot = axs[1].imshow(loc_im[..., 0])
+plot = axs[2].imshow(obs_im[..., 4])
+
+title = axs[0].set_title('Radiance (RGB)')
+title = axs[1].set_title('Longitude (WGS-84)')
+title = axs[2].set_title('Solar zenith angle (Deg)')
+</code></pre>
+<p>The input image doesn't look like much because this is just a 10x10 pixel example. However we see per-pixel spectral variation in the radiance RGBs, and systematic variation in the location and geometric variables.</p>
+<pre><code class="language-python"># Load the output files
+rfl_path = env.path(&quot;examples&quot;, &quot;image_cube&quot;, &quot;small&quot;, &quot;output&quot;, &quot;ang20170323t202244_rfl&quot;)
+state_path = env.path(&quot;examples&quot;, &quot;image_cube&quot;, &quot;small&quot;, &quot;output&quot;, &quot;ang20170323t202244_state&quot;)
+uncert_path = env.path(&quot;examples&quot;, &quot;image_cube&quot;, &quot;small&quot;, &quot;output&quot;, &quot;ang20170323t202244_uncert&quot;)
+
+rfl = envi.open(envi_header(str(rfl_path)))
+state = envi.open(envi_header(str(state_path)))
+uncert = envi.open(envi_header(str(uncert_path)))
+
+rfl_im = rfl.open_memmap(interleave='bip')
+state_im = state.open_memmap(interleave='bip')
+uncert_im = uncert.open_memmap(interleave='bip')
+
+print(f'Shape of the _rfl file: {rfl_im.shape}')
+print(f'Shape of the _state file: {state_im.shape}')
+print(f'Shape of the _uncert file: {uncert_im.shape}')
+</code></pre>
+<p>The difference between the <code>_rfl</code> file and the <code>_state</code> file is that the <code>_rfl</code> file only contains the solutions for surface reflectance variables. Here, the AVIRIS-NG image contains 425 wavelength bands. As a result, the <code>_rfl</code> contains 425 bands. The <code>_state</code> and <code>_uncert</code> files contain the surface reflectance solutions and uncertainty calculated as the standard deviation of the posterior distributions for the 425 wavelength bands and for non-reflectance statevector elements; here, aerosol optical depth (AOD) and water vapor (H2O).</p>
+<pre><code class="language-python"># Plot the output data
+normalize = lambda x, vmin, vmax:  (x - vmin) / (vmax - vmin)
+bands = [55, 35, 15]
+
+fig, axs = plt.subplots(2, 2, sharex=True, sharey=True, figsize=(8, 8))
+axs = np.ravel(axs)
+plot = axs[0].imshow(normalize(rfl_im[..., bands], 0, 0.3))
+uncert = axs[1].imshow(uncert_im[..., 55])
+aod = axs[2].imshow(state_im[..., -2])
+h2o = axs[3].imshow(state_im[..., -1])
+
+plt.colorbar(uncert)
+plt.colorbar(aod)
+plt.colorbar(h2o)
+
+title = axs[0].set_title('Reflectance')
+title = axs[1].set_title('Uncertainty (at 650 nm)')
+title = axs[2].set_title('AOD')
+title = axs[3].set_title('H2O')
+</code></pre>
+<h2 id="the-analytical-line">The Analytical Line</h2>
+<p>In the example above, we ran Isofit using the full optimal estimation (OE) on each pixel independently. Computationally, this amounts to iterating through each row-column pair to solve for the full state-vector (427 variables in the above case). However for large images, this demands long run-times, and ignores the principle that some state-vector elements, namely the atmospheric variables like AOD and H2O, should not vary from one pixel to another, but rather should be spatially smooth, and only vary over multi-pixel length scales <a href="https://www.sciencedirect.com/science/article/pii/S0034425723004534/">Link to the relevent paper</a>.</p>
+<p>The analytical line and empirical line algorithms leverage the assumption of a spatially smooth atmosphere to decrease run times by a factor of 10. Currently, we suggest using the analytical line algorithm and not the empirical line algorithm.</p>
+<p>See the following CLI call to run Apply OE with the analytical line algorithm:</p>
+<pre><code class="language-bash">  IC=$(isofit path imagecube)/medium EX=$(isofit path examples)/image_cube/medium \
+  isofit apply_oe \
+  $IC/ang20170323t202244_rdn_7k-8k \
+  $IC/ang20170323t202244_loc_7k-8k \
+  $IC/ang20170323t202244_obs_7k-8k \
+  $EX \
+  ang \
+  --surface_path $EX/configs/surface.json \
+  --emulator_base $(isofit path srtmnet --key file) \
+  --n_cores 10 \
+  --presolve \
+  --analytical_line \
+  --segmentation_size 50 \
+  --log_file $EX/log.txt
+</code></pre>
+<p>Most of the input parameters are identical to the per-pixel application above. However, we've added a <code>--log_file</code>, the <code>--analytical_line</code> flag, and a <code>--segmentation_size</code>. The <code>--log_file</code> points the program to write a text file to print logging statements during run time. The <code>--analytical_line</code> flag tells Isofit to use the analytical line algorithm.</p>
+<p>A simple overview for the anylitical line algorithm:</p>
+<p>1) All three input files are "segmented" into superpixel blocks using the SLIC algorithm. The  <code>--segmentation_size</code> value sets the number of pixels that each superpixel contains.</p>
+<p>2) At the superpixel resolution, Isofit solves for the OE solutions, which provides both surface and atmospheric state variables.</p>
+<p>3) Atmospheric state variables are spatially interpolated to full image resolution. The spatial interpolation uses the Apply OE parameters <code>--num_neighbors</code> and <code>--atm_sigma</code>.</p>
+<p>4) With a fixed atmosphere, we leverage a closed form solution for surface state elements that allows for a solution convergence in a single iteration.</p>
+<pre><code class="language-python"># Alternatively, you can programatically call apply_oe. If you executed apply_oe via the command line above, do not run this
+# We use the env object to retrieve the actual location of the ISOFIT extra dependencies instead of assuming where they could be
+import os
+import shutil
+
+from isofit.utils.apply_oe import apply_oe
+from isofit.data import env
+
+output = env.path(&quot;examples&quot;, &quot;image_cube&quot;, &quot;medium&quot;)
+
+# Cleanup any previous runs; comment this out if you want to preserve a previous run's output
+if (o := output / &quot;output&quot;).exists():
+    shutil.rmtree(o)
+
+apply_oe(
+    input_radiance    = str(env.path(&quot;imagecube&quot;, &quot;medium&quot;, &quot;ang20170323t202244_rdn_7k-8k&quot;)),
+    input_loc         = str(env.path(&quot;imagecube&quot;, &quot;medium&quot;, &quot;ang20170323t202244_loc_7k-8k&quot;)),
+    input_obs         = str(env.path(&quot;imagecube&quot;, &quot;medium&quot;, &quot;ang20170323t202244_obs_7k-8k&quot;)),
+    working_directory = str(output),
+    sensor            = &quot;ang&quot;,
+    surface_path      = str(env.path(&quot;examples&quot;, &quot;image_cube&quot;, &quot;medium&quot;, &quot;configs&quot;, &quot;surface.json&quot;)),
+    emulator_base     = str(env.path(&quot;srtmnet&quot;, key=&quot;srtmnet.file&quot;)),
+    presolve          = True,
+    n_cores           = os.cpu_count(),
+    analytical_line   = True,
+    segmentation_size = 50,
+)
+</code></pre>
+<p>We can visualize what the segmentation is doing by leveraging the <code>isofit reconstruct_subs</code> CLI command:</p>
+<pre><code class="language-bash">EX=$(isofit path examples)/image_cube/medium isofit reconstruct_subs \
+    $EX/input/ang20170323t202244_subs_rdn \
+    $EX/input/ang20170323t202244_subs_recon_rdn \
+    $EX/output/ang20170323t202244_lbl
+
+EX=$(isofit path examples)/image_cube/medium isofit reconstruct_subs \
+    $EX/input/ang20170323t202244_subs_loc \
+    $EX/input/ang20170323t202244_subs_recon_loc \
+    $EX/output/ang20170323t202244_lbl
+
+EX=$(isofit path examples)/image_cube/medium isofit reconstruct_subs \
+    $EX/input/ang20170323t202244_subs_obs \
+    $EX/input/ang20170323t202244_subs_recon_obs \
+    $EX/output/ang20170323t202244_lbl
+</code></pre>
+<pre><code class="language-python">from isofit.utils.reconstruct import reconstruct_subs
+
+for product in (&quot;rdn&quot;, &quot;loc&quot;, &quot;obs&quot;):
+    reconstruct_subs(
+        input_subs_path  = str(env.path(&quot;examples&quot;, &quot;image_cube&quot;, &quot;medium&quot;, &quot;input&quot;, f&quot;ang20170323t202244_subs_{product}&quot;)),
+        output_path      = str(env.path(&quot;examples&quot;, &quot;image_cube&quot;, &quot;medium&quot;, &quot;input&quot;, f&quot;ang20170323t202244_subs_recon_{product}&quot;)),
+        lbl_working_path = str(env.path(&quot;examples&quot;, &quot;image_cube&quot;, &quot;medium&quot;, &quot;output&quot;, &quot;ang20170323t202244_lbl&quot;)),
+    )
+</code></pre>
+<p>Visualizing the input data:</p>
+<pre><code class="language-python"># Plotting the input data
+rdn_path = env.path(&quot;imagecube&quot;, &quot;medium&quot;, &quot;ang20170323t202244_rdn_7k-8k&quot;)
+loc_path = env.path(&quot;imagecube&quot;, &quot;medium&quot;, &quot;ang20170323t202244_loc_7k-8k&quot;)
+obs_path = env.path(&quot;imagecube&quot;, &quot;medium&quot;, &quot;ang20170323t202244_obs_7k-8k&quot;)
+
+subs_rdn_path = env.path(&quot;examples&quot;, &quot;image_cube&quot;, &quot;medium&quot;, &quot;input&quot;, &quot;ang20170323t202244_subs_recon_rdn&quot;)
+subs_loc_path = env.path(&quot;examples&quot;, &quot;image_cube&quot;, &quot;medium&quot;, &quot;input&quot;, &quot;ang20170323t202244_subs_recon_loc&quot;)
+subs_obs_path = env.path(&quot;examples&quot;, &quot;image_cube&quot;, &quot;medium&quot;, &quot;input&quot;, &quot;ang20170323t202244_subs_recon_obs&quot;)
+
+rdn = envi.open(envi_header(str(rdn_path)))
+loc = envi.open(envi_header(str(loc_path)))
+obs = envi.open(envi_header(str(obs_path)))
+
+subs_rdn = envi.open(envi_header(str(subs_rdn_path)))
+subs_loc = envi.open(envi_header(str(subs_loc_path)))
+subs_obs = envi.open(envi_header(str(subs_obs_path)))
+
+rdn_im = rdn.open_memmap(interleave='bip')
+loc_im = loc.open_memmap(interleave='bip')
+obs_im = obs.open_memmap(interleave='bip')
+
+subs_rdn_im = subs_rdn.open_memmap(interleave='bip')
+subs_loc_im = subs_loc.open_memmap(interleave='bip')
+subs_obs_im = subs_obs.open_memmap(interleave='bip')
+
+fig, axs = plt.subplots(2, 3, sharex=True, sharey=True, figsize=(10, 10))
+axs = np.ravel(axs)
+
+axs[0].imshow(normalize(rdn_im[0:400, :, bands], 0, 15))
+axs[1].imshow(loc[0:400, :, 0])
+axs[2].imshow(obs[0:400, :, 4])
+
+axs[3].imshow(normalize(subs_rdn_im[0:400, :, bands], 0, 15))
+axs[4].imshow(subs_loc[0:400, :, 0])
+axs[5].imshow(subs_obs[0:400, :, 4])
+
+axs[0].set_title('Radiance')
+axs[1].set_title('Longitude')
+axs[2].set_title('Elevation')
+
+axs[0].set_ylabel('Full resolution')
+axs[3].set_ylabel('Superpixel resolution')
+plt.show()
+</code></pre>
+<p>We can examine the results from Apply OE after the OE solutions on the superpixels:</p>
+<pre><code class="language-python">wl = np.array(rdn.metadata['wavelength']).astype(float)
+
+state_path = str(env.path(&quot;examples&quot;, &quot;image_cube&quot;, &quot;medium&quot;, &quot;output&quot;, &quot;ang20170323t202244_recon_subs_state&quot;))
+reconstruct_subs(
+    input_subs_path  = str(env.path(&quot;examples&quot;, &quot;image_cube&quot;, &quot;medium&quot;, &quot;output&quot;, &quot;ang20170323t202244_subs_state&quot;)),
+    output_path      = state_path,
+    lbl_working_path = str(env.path(&quot;examples&quot;, &quot;image_cube&quot;, &quot;medium&quot;, &quot;output&quot;, &quot;ang20170323t202244_lbl&quot;)),
+)
+
+state = envi.open(envi_header(str(state_path)))
+state_im = state.open_memmap(interleave='bip')
+
+fig, axs = plt.subplots(1, 4, sharex=True, sharey=True, figsize=(8, 5), tight_layout=True)
+axs[0].imshow(normalize(rdn_im[0:400, :, bands], 0, 15))
+axs[1].imshow(normalize(state_im[0:400, :, bands], 0, 0.25))
+aod = axs[2].imshow(state_im[0:400, :, -2])
+h2o = axs[3].imshow(state_im[0:400, :, -1])
+
+plt.colorbar(aod)
+plt.colorbar(h2o)
+
+axs[0].set_title('Radiance')
+axs[1].set_title('Reflectance')
+axs[2].set_title('AOD')
+axs[3].set_title('H2O')
+plt.show()
+</code></pre>
+<p>Finally, we can examine the final results at the end of the anlaytical line algorithm:</p>
+<pre><code class="language-python">rfl_path = env.path(&quot;examples&quot;, &quot;image_cube&quot;, &quot;medium&quot;, &quot;output&quot;, &quot;ang20170323t202244_rfl&quot;)
+atm_path = env.path(&quot;examples&quot;, &quot;image_cube&quot;, &quot;medium&quot;, &quot;output&quot;, &quot;ang20170323t202244_atm_interp&quot;)
+
+rfl  = envi.open(envi_header(str(rfl_path)))
+atm  = envi.open(envi_header(str(atm_path)))
+
+rfl_im = rfl.open_memmap(interleave='bip')
+atm_im = atm.open_memmap(interleave='bip')
+
+
+fig, axs = plt.subplots(1, 4, sharex=True, sharey=True, figsize=(8, 5), tight_layout=True)
+axs[0].imshow(normalize(rdn_im[0:400, :, bands], 0, 15))
+axs[1].imshow(normalize(rfl_im[0:400, :, bands], 0, 0.25))
+aod = axs[2].imshow(atm_im[0:400, :, -2])
+h2o = axs[3].imshow(atm_im[0:400, :, -1])
+
+plt.colorbar(aod)
+plt.colorbar(h2o)
+
+axs[0].set_title('Radiance')
+axs[1].set_title('Reflectance')
+axs[2].set_title('AOD')
+axs[3].set_title('H2O')
+plt.show()
+</code></pre>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../.." class="btn btn-neutral float-left" title="About"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../neon/" class="btn btn-neutral float-right" title="NEON">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/isofit/isofit-tutorials" class="fa fa-code-fork" style="color: #fcfcfc"> isofit/isofit-tutorials</a>
+        </span>
+    
+    
+      <span><a href="../.." style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../neon/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
