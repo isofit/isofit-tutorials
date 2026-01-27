@@ -10,7 +10,7 @@ plugins:
       execute_enabled: true
       max_workers: 1
       execute_options:
-        # kernel_name: python3
+        kernel_name: python3
         exit_on_error: false
 nav:
   - Getting Started:
