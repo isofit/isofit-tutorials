@@ -7,8 +7,6 @@ theme:
 plugins:
   - search
   - nbconvert:
-      input_dir: .
-      recursive: true
       execute_enabled: true
       max_workers: 1
       execute_options:
