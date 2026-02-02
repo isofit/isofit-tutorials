@@ -31,6 +31,6 @@ jobs:
           uv run isofit build
       - name: Build and deploy docs
         run: |
-          # The mkdocs-nbconvert plugin has some issues with uv run, so invoke it first which seems to fix it
+          # The nbconvert module has some issues with uv run, so invoke it first which seems to fix it
           source .venv/bin/activate
           mkdocs gh-deploy --force
