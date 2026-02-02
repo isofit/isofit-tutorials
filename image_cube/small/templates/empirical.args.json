@@ -1,7 +1,7 @@
 [
-  "{imagecube}/small/ang20170323t202244_rdn_7000-7010",
-  "{imagecube}/small/ang20170323t202244_loc_7000-7010",
-  "{imagecube}/small/ang20170323t202244_obs_7000-7010",
+  "{examples}/image_cube/small/ang20170323t202244_rdn_7000-7010",
+  "{examples}/image_cube/small/ang20170323t202244_loc_7000-7010",
+  "{examples}/image_cube/small/ang20170323t202244_obs_7000-7010",
   "{examples}/image_cube/small",
   "ang",
   "--surface_path {examples}/image_cube/small/configs/surface.json",
