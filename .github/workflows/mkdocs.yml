@@ -1,9 +1,10 @@
-name: MkDocs
+name: Deploy MkDocs
 
 on:
   push:
     branches:
       - main
+      - dev
 
 permissions:
   contents: write
@@ -12,6 +13,10 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
+      - name: Configure git
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
       - uses: actions/checkout@v6
       - name: Install uv
         uses: astral-sh/setup-uv@v7
@@ -33,4 +38,10 @@ jobs:
         run: |
           # The nbconvert module has some issues with uv run, so invoke it first which seems to fix it
           source .venv/bin/activate
-          mkdocs gh-deploy --force
+          VERSION=$(isofit --version)
+          if [[ "${GITHUB_REF_NAME}" == "main" ]]; then
+            mike deploy --push --update-aliases "$VERSION" latest
+            mike set-default --push latest
+          else
+            mike deploy --push dev
+          fi

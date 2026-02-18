@@ -1,11 +1,38 @@
 site_name: ISOFIT Tutorials
+site_url: https://isofit.github.io/isofit-tutorials/
 repo_name: isofit/isofit-tutorials
 repo_url: https://github.com/isofit/isofit-tutorials
 docs_dir: docs/
 theme:
-  name: readthedocs
+  name: material
+  theme:
+  palette:
+    # Palette toggle for automatic mode (light during day, dark during night)
+    - media: "(prefers-color-scheme)"
+      toggle:
+        icon: material/brightness-auto
+        name: Switch to light mode
+    # Palette toggle for light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    # Palette toggle for dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Switch to system preference
+  features:
+    - navigation.instant
+    - navigation.instant.prefetch
+    - navigation.instant.progress
+    - navigation.expand
+    - navigation.path
 plugins:
   - search
+  - social
   - mkdocs-jupyter:
       # include: # Default: ["*.py", "*.ipynb"]
       # ignore: # ["some-irrelevant-files/*.ipynb"]
@@ -14,35 +41,47 @@ plugins:
       include_requirejs: true
       include_source: True
       kernel_name: python3
-
+markdown_extensions:
+  - attr_list
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - toc:
+      permalink: "#"
+      baselevel: 2
+extra:
+  version:
+    provider: mike
+  consent:
+    title: Cookie consent
+    description: >-
+      We use cookies to recognize your repeated visits and preferences, as well
+      as to measure the effectiveness of our documentation and whether users
+      find what they're searching for. With your consent, you're helping us to
+      make our documentation better.
 nav:
+  - About: https://isofit.github.io/isofit/latest
   - Getting Started:
-    - About: https://isofit.readthedocs.io/en/latest/custom/about.html
-    - Installation: https://isofit.readthedocs.io/en/latest/custom/installation.html
-    - Quick Start with sRTMnet (Recommended for new users): https://isofit.readthedocs.io/en/latest/custom/installation.html#quick-start-with-srtmnet-recommended-for-new-users
-    - Data: https://isofit.readthedocs.io/en/latest/custom/data.html
-    - Extra Downloads: https://isofit.readthedocs.io/en/latest/custom/data.html#extra-downloads
-    - Configuration Options: https://isofit.readthedocs.io/en/latest/custom/data.html#configuration-options
-    - Downloads: https://isofit.readthedocs.io/en/latest/custom/data.html#downloads
-    - Developers: https://isofit.readthedocs.io/en/latest/custom/data.html#developers
-    - Best Practices: https://isofit.readthedocs.io/en/latest/custom/best_practices.html
+    - Installation: https://isofit.github.io/isofit/latest/getting_started/installation
+    - Quick Start (New Users): https://isofit.github.io/isofit/latest/getting_started/quickstarts/srtmnet
+    - MODTRAN: https://isofit.github.io/isofit/latest/getting_started/quickstarts/modtran
+    - Best Practices: https://isofit.github.io/isofit/latest/getting_started/best_practices
+  - Extra Downloads:
+    - Dependencies: https://isofit.github.io/isofit/latest/extra_downloads/data
+    - Building Examples: https://isofit.github.io/isofit/latest/extra_downloads/building_examples
+  - Examples: https://isofit.github.io/isofit/latest/examples
   - Tutorials:
     - About: index.md
     - Notebooks:
       - notebooks/apply_oe.ipynb
       - notebooks/neon.ipynb
       - notebooks/neon_single_pixel.ipynb
-  - Docker:
-    - Tags: https://isofit.readthedocs.io/en/latest/custom/docker.html
-    - Getting Started: https://isofit.readthedocs.io/en/latest/custom/docker.html#getting-started
-    - Jupyter: https://isofit.readthedocs.io/en/latest/custom/docker.html#jupyter
-    - Slim: https://isofit.readthedocs.io/en/latest/custom/docker.html#slim
+  - Docker: https://isofit.github.io/isofit/latest/docker
   - Information:
-    - Bibliography: https://isofit.readthedocs.io/en/latest/custom/bibliography.html
-    - Code of Conduct: https://isofit.readthedocs.io/en/latest/custom/code_of_conduct.html
+    - Bibliography: https://isofit.github.io/isofit/latest/information/bibliography
+    - Code of Conduct: https://isofit.github.io/isofit/latest/information/code_of_conduct
   - Developers:
-    - Contributing: https://isofit.readthedocs.io/en/latest/custom/CONTRIBUTING.html
-    - Documentation: https://isofit.readthedocs.io/en/latest/custom/documentation.html
-    - Profiling: https://isofit.readthedocs.io/en/latest/custom/profiling.html#
-  - API:
-    - API Reference: https://isofit.readthedocs.io/en/latest/autoapi/index.html#
+    - Contributing: https://isofit.github.io/isofit/latest/developers/contributing
+    - Documentation: https://isofit.github.io/isofit/latest/developers/documentation
+    - Testing: https://isofit.github.io/isofit/latest/developers/testing
+  - Reference: https://isofit.github.io/isofit/latest/api/isofit/
