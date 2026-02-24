@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+         <loc>https://isofit.github.io/isofit-tutorials/3.7.3/</loc>
+         <lastmod>2026-02-24</lastmod>
+    </url>
+    <url>
+         <loc>https://isofit.github.io/isofit-tutorials/3.7.3/notebooks/apply_oe/</loc>
+         <lastmod>2026-02-24</lastmod>
+    </url>
+    <url>
+         <loc>https://isofit.github.io/isofit-tutorials/3.7.3/notebooks/neon/</loc>
+         <lastmod>2026-02-24</lastmod>
+    </url>
+    <url>
+         <loc>https://isofit.github.io/isofit-tutorials/3.7.3/notebooks/neon_single_pixel/</loc>
+         <lastmod>2026-02-24</lastmod>
+    </url>
+</urlset>
