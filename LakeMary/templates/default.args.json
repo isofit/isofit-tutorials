@@ -1,0 +1,13 @@
+[
+  "{examples}/LakeMary/data/emit20250327T212148_000_test",
+  "{examples}/LakeMary/data/emit20250327T212148_000_LOC_test",
+  "{examples}/LakeMary/data/emit20250327T212148_000_OBS_test",
+  "{examples}/LakeMary",
+  "emit",
+  "--surface_path {examples}/LakeMary/configs/surface.json",
+  "--wavelength_path {examples}/LakeMary/data/wavelengths.txt",
+  "--emulator_base {srtmnet}/sRTMnet_v120.h5",
+  "--n_cores {cores}",
+  "--skyview_factor slope",
+  "--analytical_line"
+]
