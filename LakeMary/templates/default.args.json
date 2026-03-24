@@ -8,6 +8,5 @@
   "--wavelength_path {examples}/LakeMary/data/wavelengths.txt",
   "--emulator_base {srtmnet}/sRTMnet_v120.h5",
   "--n_cores {cores}",
-  "--skyview_factor slope",
-  "--analytical_line"
+  "--skyview_factor slope"
 ]
