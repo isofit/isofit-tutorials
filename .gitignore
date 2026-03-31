@@ -12,3 +12,7 @@
 # uv files
 .python-version
 uv.lock
+
+# Docs
+.cache/
+site/
