@@ -1,7 +1,7 @@
 [
-  "{examples}/LakeMary/data/emit20250327T212148_000_test",
-  "{examples}/LakeMary/data/emit20250327T212148_000_LOC_test",
-  "{examples}/LakeMary/data/emit20250327T212148_000_OBS_test",
+  "{examples}/LakeMary/data/emit20250327T212148_000_RDN",
+  "{examples}/LakeMary/data/emit20250327T212148_000_LOC",
+  "{examples}/LakeMary/data/emit20250327T212148_000_OBS",
   "{examples}/LakeMary",
   "emit",
   "--surface_path {examples}/LakeMary/configs/surface.json",
