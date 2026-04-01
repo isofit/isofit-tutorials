@@ -3,7 +3,7 @@
   "{examples}/SeaBASS_prism_001/data/prm20231108t133822_001_LOC",
   "{examples}/SeaBASS_prism_001/data/prm20231108t133822_001_OBS",
   "{examples}/SeaBASS",
-  "emit",
+  "prism",
   "--surface_path {examples}/SeaBASS_prism_001/configs/surface.json",
   "--wavelength_path {examples}/SeaBASS_prism_001/data/wavelengths.txt",
   "--emulator_base {srtmnet}/sRTMnet_v120.h5",
