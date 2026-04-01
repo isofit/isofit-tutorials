@@ -1,6 +1,6 @@
 {
-  "output_model_file": "{examples}/SeaBASS/data/surface_model.mat",
-  "wavelength_file":   "{examples}/SeaBASS/data//wavelengths.txt",
+  "output_model_file": "{examples}/SeaBASS_prism_001/data/surface_model.mat",
+  "wavelength_file":   "{examples}/SeaBASS_prism_001/data//wavelengths.txt",
   "normalize":"Euclidean",
   "reference_windows":[[400,1250]],
   "sources":
