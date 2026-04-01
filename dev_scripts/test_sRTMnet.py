@@ -23,21 +23,19 @@ lg = lut_grid      = fc.forward_model.radiative_transfer.lut_grid
 
 #% Update config params for this test
 ec.wavelength_range  = None
-ec.irradiance_file   = env.path('examples', '20151026_SantaMonica', 'data', 'prism_optimized_irr.dat')
-ec.engine_base_dir   = env.path('sixs')
+ec.irradiance_file   = str(env.path('examples', '20151026_SantaMonica', 'data', 'prism_optimized_irr.dat'))
+ec.engine_base_dir   = str(env.path('sixs'))
 
 # Path to emulator
-ec.emulator_aux_file = env.path('srtmnet', 'sRTMnet_v120_aux.npz')
-ec.emulator_file     = env.path('srtmnet', 'sRTMnet_v120.h5')
+ec.emulator_aux_file = str(env.path('srtmnet', 'sRTMnet_v120_aux.npz'))
+ec.emulator_file     = str(env.path('srtmnet', 'sRTMnet_v120.h5'))
+
+from pathlib import Path
+
 
 #% Remove LUT files
-files = [
-    ec.lut_path,
-    '6S.' + ec.lut_path,
-    ec.sim_path + '/sRTMnet.predicts.nc'
-]
 
-for file in files:
+for file in Path(ec.lut_path).parent.glob("*.nc"):
     if os.path.exists(file):
         print(f'Removing {file}')
         os.remove(file)
@@ -56,3 +54,4 @@ rte = SimulatedModtranRT(
 #%%
 # Load the LUT and look around
 rte.lut.load()
+rte.lut
