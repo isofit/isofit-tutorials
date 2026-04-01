@@ -1,0 +1,23 @@
+{
+  "output_model_file": "{examples}/SeaBASS/data/surface_model.mat",
+  "wavelength_file":   "{examples}/SeaBASS/data//wavelengths.txt",
+  "normalize":"Euclidean",
+  "reference_windows":[[400,1250]],
+  "sources":
+    [
+      {
+        "input_spectrum_files":
+          [
+            "{data}/reflectance/glint_free_emit_lib"
+          ],
+        "n_components": 2,
+        "windows": [
+	  {"interval":[300,400], "regularizer":1e-2, "correlation":"decorrelated"},
+          {"interval":[400,880], "regularizer":1e-4, "correlation":"decorrelated"},
+          {"interval":[880,1250], "regularizer":1e-5, "correlation":"decorrelated"}
+        ],
+        "surface_category": "glint_model_surface"
+      }
+  ]
+}
+

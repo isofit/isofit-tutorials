@@ -1,0 +1,11 @@
+[
+  "{examples}/SeaBASS/data/prm20231108t133822_001_RDN",
+  "{examples}/SeaBASS/data/prm20231108t133822_001_LOC",
+  "{examples}/SeaBASS/data/prm20231108t133822_001_OBS",
+  "{examples}/SeaBASS",
+  "emit",
+  "--surface_path {examples}/SeaBASS/configs/surface.json",
+  "--wavelength_path {examples}/SeaBASS/data/wavelengths.txt",
+  "--emulator_base {srtmnet}/sRTMnet_v120.h5",
+  "--n_cores {cores}"
+]
