@@ -25,3 +25,6 @@ build-backend = "hatchling.build"
 
 [tool.hatch.build.targets.wheel]
 packages = ["isotuts"]
+
+[tool.hatch.metadata]
+allow-direct-references = true
