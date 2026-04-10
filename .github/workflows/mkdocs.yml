@@ -43,7 +43,7 @@ jobs:
       - name: Build and deploy docs
         run: |
           VERSION=$(isofit --version)
-          mike deploy --update-aliases "$(isofit --version)" latest
+          mike deploy --push --update-aliases "$(isofit --version)" latest
           mike set-default latest
 
   dev:
@@ -81,4 +81,4 @@ jobs:
 
       - name: Build and deploy docs
         run: |
-          mike deploy dev
+          mike deploy --push dev
