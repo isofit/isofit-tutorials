@@ -19,6 +19,8 @@ jobs:
           git config --global user.email "github-actions@github.com"
 
       - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0 # required for mike
 
       - name: Install uv
         uses: astral-sh/setup-uv@v7
@@ -41,8 +43,8 @@ jobs:
       - name: Build and deploy docs
         run: |
           VERSION=$(isofit --version)
-          mike deploy --push --update-aliases "$(isofit --version)" latest
-          mike set-default --push latest
+          mike deploy --update-aliases "$(isofit --version)" latest
+          mike set-default latest
 
   dev:
     runs-on: ubuntu-latest
@@ -53,6 +55,11 @@ jobs:
           git config --global user.email "github-actions@github.com"
 
       - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0 # required for mike
+
+      - name: Fetch gh-pages
+        run: git fetch origin gh-pages --depth=1
 
       - name: Install uv
         uses: astral-sh/setup-uv@v7
@@ -74,4 +81,4 @@ jobs:
 
       - name: Build and deploy docs
         run: |
-          mike deploy --push dev
+          mike deploy dev
