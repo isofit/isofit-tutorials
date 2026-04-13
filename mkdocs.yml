@@ -77,7 +77,6 @@ nav:
       - notebooks/apply_oe.ipynb
       - notebooks/inversions.ipynb
       - notebooks/neon.ipynb
-      - notebooks/neon_single_pixel.ipynb
   - Docker: https://isofit.github.io/isofit/latest/docker
   - Information:
     - Bibliography: https://isofit.github.io/isofit/latest/information/bibliography
