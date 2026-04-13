@@ -41,6 +41,7 @@ plugins:
       include_requirejs: true
       include_source: True
       kernel_name: python3
+      custom_mathjax_url: "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS_CHTML-full,Safe"
 markdown_extensions:
   - attr_list
   - admonition
@@ -74,8 +75,8 @@ nav:
     - About: index.md
     - Notebooks:
       - notebooks/apply_oe.ipynb
+      - notebooks/inversions.ipynb
       - notebooks/neon.ipynb
-      - notebooks/neon_single_pixel.ipynb
   - Docker: https://isofit.github.io/isofit/latest/docker
   - Information:
     - Bibliography: https://isofit.github.io/isofit/latest/information/bibliography
