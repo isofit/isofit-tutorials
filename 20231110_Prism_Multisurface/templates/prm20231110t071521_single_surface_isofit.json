@@ -29,26 +29,24 @@
                     15.77750015258789
                 ]
             },
-            "radiative_transfer_engines": {
-                "vswir": {
-                    "aerosol_model_file": "{data}/aerosol_model.txt",
-                    "aerosol_template_file": "{data}/aerosol_template.json",
-                    "earth_sun_distance_file": "{data}/earth_sun_distance.txt",
-                    "engine_name": "sRTMnet",
-                    "irradiance_file": "{examples}/20151026_SantaMonica/data/prism_optimized_irr.dat",
-                    "lut_names": {
-                        "AOT550": null,
-                        "H2OSTR": null,
-                        "observer_zenith": null
-                    },
-                    "lut_path": "{examples}/20231110_Prism_Multisurface/lut/lut.nc",
-                    "multipart_transmittance": true,
-                    "statevector_names": [
-                        "H2OSTR",
-                        "AOT550"
-                    ],
-                    "template_file": "{examples}/20231110_Prism_Multisurface/configs/prm20231110t071521_modtran_tpl.json"
-                }
+            "engine": {
+                "aerosol_model_file": "{data}/aerosol_model.txt",
+                "aerosol_template_file": "{data}/aerosol_template.json",
+                "earth_sun_distance_file": "{data}/earth_sun_distance.txt",
+                "engine_name": "sRTMnet",
+                "irradiance_file": "{examples}/20151026_SantaMonica/data/prism_optimized_irr.dat",
+                "lut_names": {
+                    "AOT550": null,
+                    "H2OSTR": null,
+                    "observer_zenith": null
+                },
+                "lut_path": "{examples}/20231110_Prism_Multisurface/lut/lut.nc",
+                "multipart_transmittance": true,
+                "statevector_names": [
+                    "H2OSTR",
+                    "AOT550"
+                ],
+                "template_file": "{examples}/20231110_Prism_Multisurface/configs/prm20231110t071521_modtran_tpl.json"
             },
             "statevector": {
                 "AOT550": {

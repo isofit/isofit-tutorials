@@ -72,28 +72,26 @@
                     2.2775
                 ]
             },
-            "radiative_transfer_engines": {
-                "vswir": {
-                    "aerosol_model_file": "{data}/aerosol_model.txt",
-                    "aerosol_template_file": "{data}/aerosol_template.json",
-                    "earth_sun_distance_file": "{data}/earth_sun_distance.txt",
-                    "wavelength_file": "{examples}/20250308_AV3Cal_wltest/remote/wavelengths_highres.txt",
-                    "irradiance_file": "{examples}/20151026_SantaMonica/data/prism_optimized_irr.dat",
-                    "engine_name": "sRTMnet",
-                    "glint_model": false,
-                    "lut_names": {
-                        "AOT550": null,
-                        "H2OSTR": null
-                    },
-                    "lut_path": "{examples}/20250308_AV3Cal_wltest/lut_full/test_lut.nc",
-                    "multipart_transmittance": false,
-                    "sim_path": "{examples}/20250308_AV3Cal_wltest/lut_full",
-                    "statevector_names": [
-                        "AOT550",
-                        "H2OSTR"
-                    ],
-                    "template_file": "{examples}/20250308_AV3Cal_wltest/configs/AV320250308t200738_modtran_tpl.json"
-                }
+            "engine": {
+                "aerosol_model_file": "{data}/aerosol_model.txt",
+                "aerosol_template_file": "{data}/aerosol_template.json",
+                "earth_sun_distance_file": "{data}/earth_sun_distance.txt",
+                "wavelength_file": "{examples}/20250308_AV3Cal_wltest/remote/wavelengths_highres.txt",
+                "irradiance_file": "{examples}/20151026_SantaMonica/data/prism_optimized_irr.dat",
+                "engine_name": "sRTMnet",
+                "glint_model": false,
+                "lut_names": {
+                    "AOT550": null,
+                    "H2OSTR": null
+                },
+                "lut_path": "{examples}/20250308_AV3Cal_wltest/lut_full/test_lut.nc",
+                "multipart_transmittance": false,
+                "sim_path": "{examples}/20250308_AV3Cal_wltest/lut_full",
+                "statevector_names": [
+                    "AOT550",
+                    "H2OSTR"
+                ],
+                "template_file": "{examples}/20250308_AV3Cal_wltest/configs/AV320250308t200738_modtran_tpl.json"
             },
             "statevector": {
                 "AOT550": {

@@ -18,7 +18,7 @@ env.load()
 
 cf = env.path('examples', '20171108_Pasadena', 'configs', 'modtran', 'ang20171108t184227_beckmanlawn.json')
 fc = full_config   = configs.create_new_config(cf)
-ec = engine_config = fc.forward_model.radiative_transfer.radiative_transfer_engines[0]
+ec = engine_config = fc.forward_model.radiative_transfer.engine
 lg = lut_grid      = fc.forward_model.radiative_transfer.lut_grid
 
 # Update config for this test

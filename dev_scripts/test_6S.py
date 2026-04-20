@@ -20,7 +20,7 @@ env.load()
 # Initialize the config
 cf = env.path('examples', '20151026_SantaMonica', 'configs', 'run', 'prm20151026t173213_D9W_6s.json')
 fc = full_config   = configs.create_new_config(cf)
-ec = engine_config = fc.forward_model.radiative_transfer.radiative_transfer_engines[0]
+ec = engine_config = fc.forward_model.radiative_transfer.engine
 lg = lut_grid      = fc.forward_model.radiative_transfer.lut_grid
 
 # Update config for this test

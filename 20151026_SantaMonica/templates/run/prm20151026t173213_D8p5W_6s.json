@@ -53,24 +53,22 @@
         "H2OSTR": [1.4, 3.56],
         "AOT550": [0.7003, 0.9001]
       },
-      "radiative_transfer_engines": {
-        "vswir": {
-          "engine_name": "6s",
-          "irradiance_file": "{examples}/20151026_SantaMonica/data/prism_optimized_irr.dat",
-          "earth_sun_distance_file": "{data}/earth_sun_distance.txt",
-          "engine_base_dir": "{sixs}",
-          "solzen": 55.21,
-          "solaz": 141.70,
-          "elev": 0.0,
-          "alt": 20.0,
-          "viewaz": 202.89063,
-          "viewzen": 1.08,
-          "month": 10,
-          "day": 26,
-          "sim_path": "{examples}/20151026_SantaMonica/lut/",
-          "lut_path": "{examples}/20151026_SantaMonica/lut/lut.nc",
-          "lut_names": {"H2OSTR": null, "AOT550": null}
-        }
+      "engine": {
+        "engine_name": "6s",
+        "irradiance_file": "{examples}/20151026_SantaMonica/data/prism_optimized_irr.dat",
+        "earth_sun_distance_file": "{data}/earth_sun_distance.txt",
+        "engine_base_dir": "{sixs}",
+        "solzen": 55.21,
+        "solaz": 141.70,
+        "elev": 0.0,
+        "alt": 20.0,
+        "viewaz": 202.89063,
+        "viewzen": 1.08,
+        "month": 10,
+        "day": 26,
+        "sim_path": "{examples}/20151026_SantaMonica/lut/",
+        "lut_path": "{examples}/20151026_SantaMonica/lut/lut.nc",
+        "lut_names": {"H2OSTR": null, "AOT550": null}
       }
     }
   },
