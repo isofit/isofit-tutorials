@@ -1,0 +1,6 @@
+{
+    "aerosol_2_range": [0.05, 0.55],
+    "aerosol_2_spacing": 0.25,
+    "h2o_spacing": 1.0,
+    "h2o_range": [0.2, 2.2]
+}
