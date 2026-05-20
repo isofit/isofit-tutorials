@@ -1,0 +1,12 @@
+ENVI
+description = {
+  Converted from AV320250308t200738_loc.txt}
+samples = 1
+lines   = 1
+bands   = 3
+header offset = 0
+file type = ENVI Standard
+data type = 5
+interleave = bsq
+byte order = 0
+band names = {Longitude, Latitude, Elevation}

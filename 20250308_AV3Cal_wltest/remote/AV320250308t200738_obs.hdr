@@ -1,0 +1,12 @@
+ENVI
+description = {
+  Converted from AV320250308t200738_obs.txt}
+samples = 1
+lines   = 1
+bands   = 11
+header offset = 0
+file type = ENVI Standard
+data type = 5
+interleave = bsq
+byte order = 0
+band names = {Path length (m), To-sensor azimuth (deg), To-sensor zenith (deg), To-sun azimuth (deg), To-sun zenith (deg), Solar phase (deg), Slope (rad), Aspect (deg), Cosine solar zenith angle, UTC time (decimal hours), Earth-sun distance (AU)}
