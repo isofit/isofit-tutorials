@@ -43,7 +43,7 @@
             "correlation":"EM"
           },
           {
-            "interval":[2450,2550],
+            "interval":[2450,2600],
             "regularizer":1e-4,
             "correlation":"EM"
           }
