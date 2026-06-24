@@ -90,7 +90,8 @@
                 }
             },
             "multi_surface_flag": true,
-            "surface_class_file": "{examples}/20231110_Prism_Multisurface/remote/prm20231110t071521_surface_class"
+            "surface_class_file": "{examples}/20231110_Prism_Multisurface/remote/prm20231110t071521_surface_class",
+            "refractive_index_path": "{data}/h2o_real_refractive_index.txt"
         }
     },
     "implementation": {
