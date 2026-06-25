@@ -24,7 +24,8 @@
 
     "surface": {
       "surface_category": "glint_model_surface",
-      "surface_file": "{examples}/20151026_SantaMonica/data/prm20151028_surface_coastal_model.mat"
+      "surface_file": "{examples}/20151026_SantaMonica/data/prm20151028_surface_coastal_model.mat",
+      "refractive_index_path": "{data}/h2o_real_refractive_index.txt"
     },
 
     "radiative_transfer":
