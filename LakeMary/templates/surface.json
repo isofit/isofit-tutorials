@@ -1,52 +1,115 @@
 {
   "output_model_file": "{examples}/LakeMary/data/surface_model.mat",
   "wavelength_file":   "{examples}/LakeMary/data/wavelengths.txt",
-  "normalize": "Euclidean",
-  "reference_windows": [[400,1300],[1450,1700],[2100,2450]],
+  "normalize":"Euclidean",
+  "reference_windows":[[400,1250],[1500,1700],[2100,2450]],
   "sources":
     [
       {
         "input_spectrum_files":
           [
-            "{data}/reflectance/surface_model_ucsb"
+            "filtered_other"
           ],
-        "n_components": 8,
+        "n_components": 1,
         "windows": [
-          {
-            "interval":[300,400],
-            "regularizer":1e-4,
-            "correlation":"EM"
-          },
-          {
-            "interval":[400,1300],
-            "regularizer":1e-6,
-            "correlation":"EM"
-          },
-          {
-            "interval":[1300,1450],
-            "regularizer":1e-4,
-            "correlation":"EM"
-          },
-          {
-            "interval":[1450,1700],
-            "regularizer":1e-6,
-            "correlation":"EM"
-          },
-          {
-            "interval":[1700,2100],
-            "regularizer":1e-4,
-            "correlation":"EM"
-          },
-          {
-            "interval":[2100,2450],
-            "regularizer":1e-6,
-            "correlation":"EM"
-          },
-          {
-            "interval":[2450,2550],
-            "regularizer":1e-4,
-            "correlation":"EM"
-          }
+          {"interval":[300,750], "regularizer":1e-2, "correlation":"EM","name":"uv-nir"},
+          {"interval":[750,770], "regularizer":1e-6, "correlation":"EM", "name":"O2-band"},
+          {"interval":[770,909], "regularizer":1e-2, "correlation":"EM","name":"nir"},
+          {"interval":[909,920], "regularizer":1e-4, "correlation":"EM", "name":"shallow-water-A"},
+          {"interval":[920,940], "regularizer":1e-5, "correlation":"EM", "name":"shallow-water-B"},
+          {"interval":[940,1250], "regularizer":1e-6, "correlation":"EM", "name":"shallow-water-C"},
+          {"interval":[1250,1325], "regularizer":1e-8, "correlation":"EM", "name": "osf"},
+          {"interval":[1325,1400], "regularizer":10, "correlation": "decorrelated","name":"deep-water-A"},
+          {"interval":[1400,1500], "regularizer":1e-4, "correlation": "EM","name":"deep-water-A-edge"},
+          {"interval":[1500,1820], "regularizer":1e-2, "correlation": "EM","name":"swir1"},
+          {"interval":[1820,1960], "regularizer":10, "correlation": "decorrelated","name":"deep-water-B"},
+          {"interval":[1960,2090], "regularizer":1e-4, "correlation":"EM","name": "co2"},
+          {"interval":[2090,2300], "regularizer":1e-2, "correlation":"EM","name":"swir2"},
+          {"interval":[2300,2470], "regularizer":1e-3, "correlation":"EM", "name": "noise" },
+          {"interval":[2470,2500], "regularizer":1e-8, "correlation":"EM", "name": "noise" }
+        ]
+      },
+      {
+        "input_spectrum_files":
+          [
+            "surface_mixture_veg_soil"
+          ],
+        "n_components": 2,
+        "windows": [
+          {"interval":[300,750], "regularizer":1e-1, "correlation":"decorrelated","name":"uv-nir"},
+          {"interval":[750,770], "regularizer":1e-6, "correlation":"EM", "name":"O2-band"},
+          {"interval":[770,909], "regularizer":1e-1, "correlation":"decorrelated","name":"nir"},
+          {"interval":[909,920], "regularizer":1e-4, "correlation":"EM", "name":"shallow-water-A"},
+          {"interval":[920,940], "regularizer":1e-5, "correlation":"EM", "name":"shallow-water-B"},
+          {"interval":[940,1250], "regularizer":1e-5, "correlation":"EM", "name":"shallow-water-C"},
+          {"interval":[1250,1325], "regularizer":1e-7, "correlation":"EM", "name": "osf"},
+          {"interval":[1325,1400], "regularizer":10, "correlation": "decorrelated","name":"deep-water-A"},
+          {"interval":[1400,1500], "regularizer":1e-4, "correlation": "EM","name":"deep-water-A-edge"},
+          {"interval":[1500,1820], "regularizer":1e-2, "correlation": "EM","name":"swir1"},
+          {"interval":[1820,1960], "regularizer":10, "correlation": "decorrelated","name":"deep-water-B"},
+          {"interval":[1960,2090], "regularizer":1e-4, "correlation":"EM","name": "co2"},
+          {"interval":[2090,2470], "regularizer":1e-3, "correlation":"EM","name":"swir2"},
+          {"interval":[2470,2600], "regularizer":1e-8, "correlation":"EM", "name": "noise" }
+        ]
+      },
+      {
+        "input_spectrum_files":
+          [
+            "filtered_veg"
+          ],
+        "n_components": 1,
+        "windows": [
+          {"interval":[300,350], "regularizer":1e-2, "correlation":"EM"},
+          {"interval":[350,500], "regularizer":1e-6, "correlation":"EM","name":"aerosol"},
+          {"interval":[500,750], "regularizer":1e-4, "correlation":"EM","name":"vis"},
+          {"interval":[750,1250], "regularizer":1e-6, "correlation":"EM", "name":"shallow-water"},
+          {"interval":[1250,1325], "regularizer":1e-8, "correlation":"EM", "name": "osf"},
+          {"interval":[1325,1400], "regularizer":10, "correlation": "decorrelated","name":"deep-water-A"},
+          {"interval":[1400,1500], "regularizer":1e-4, "correlation": "EM","name":"deep-water-A-edge"},
+          {"interval":[1500,1820], "regularizer":1e-2, "correlation": "EM","name":"swir1"},
+          {"interval":[1820,1960], "regularizer":10, "correlation": "decorrelated","name":"deep-water-B"},
+          {"interval":[1960,2070], "regularizer":1e-4, "correlation":"EM","name": "co2"},
+          {"interval":[2070,2470], "regularizer":1e-3, "correlation":"EM","name":"swir2"},
+          {"interval":[2470,2500], "regularizer":1e-8, "correlation":"EM", "name": "noise" }
+        ]
+      },
+      {
+        "input_spectrum_files":
+          [
+            "filtered_ocean"
+          ],
+        "n_components": 1,
+        "windows": [
+          {"interval":[300,880], "regularizer":10, "correlation":"decorrelated"},
+          {"interval":[880,1250], "regularizer":1e-5, "correlation":"EM", "name": "nir"},
+          {"interval":[1250,1325], "regularizer":1e-6, "correlation":"EM", "name": "osf"},
+          {"interval":[1325,1400], "regularizer":10, "correlation": "decorrelated","name":"deep-water-A"},
+          {"interval":[1400,1820], "regularizer":1e-4, "correlation": "EM","name":"swir1"},
+          {"interval":[1820,1980], "regularizer":10, "correlation": "decorrelated","name":"deep-water-B"},
+          {"interval":[1980,2600], "regularizer":1e-4, "correlation": "EM", "name":"swir2"}
+        ]
+      },
+      {
+        "input_spectrum_files":
+          [
+            "surface_Liquids"
+          ],
+        "n_components": 2,
+        "windows": [
+          {"interval":[300,750], "regularizer":1e-2, "correlation":"EM","name":"uv-nir"},
+          {"interval":[750,770], "regularizer":1e-6, "correlation":"EM", "name":"O2-band"},
+          {"interval":[770,880], "regularizer":1e-2, "correlation":"EM","name":"nir"},
+          {"interval":[880,920], "regularizer":1e-4, "correlation":"EM", "name":"shallow-water-A"},
+          {"interval":[920,940], "regularizer":1e-5, "correlation":"EM", "name":"shallow-water-B"},
+          {"interval":[940,1250], "regularizer":1e-6, "correlation":"EM", "name":"shallow-water-C"},
+          {"interval":[1250,1325], "regularizer":1e-8, "correlation":"EM", "name": "osf"},
+          {"interval":[1325,1400], "regularizer":10, "correlation": "decorrelated","name":"deep-water-A"},
+          {"interval":[1400,1500], "regularizer":1e-4, "correlation": "EM","name":"deep-water-A-edge"},
+          {"interval":[1500,1820], "regularizer":1e-2, "correlation": "EM","name":"swir1"},
+          {"interval":[1820,1960], "regularizer":10, "correlation": "decorrelated","name":"deep-water-B"},
+          {"interval":[1960,2070], "regularizer":1e-4, "correlation":"EM","name": "co2"},
+          {"interval":[2070,2470], "regularizer":1e-4, "correlation":"EM","name":"swir2"},
+          {"interval":[2470,2500], "regularizer":1e-8, "correlation":"EM",  "name": "noise" }
         ]
       }
   ]
