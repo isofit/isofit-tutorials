@@ -1,0 +1,13 @@
+[
+  "{examples}/LakeMary/data/emit20250327T212148_000_RDN",
+  "{examples}/LakeMary/data/emit20250327T212148_000_LOC",
+  "{examples}/LakeMary/data/emit20250327T212148_000_OBS",
+  "{examples}/LakeMary",
+  "emit",
+  "--surface_path {examples}/LakeMary/configs/surface.json",
+  "--modtran_path {libradtran}",
+  "--lut_config_file {examples}/LakeMary/configs/lut_config.json",
+  "--wavelength_path {examples}/LakeMary/data/wavelengths.txt",
+  "--n_cores {cores}",
+  "--use_background_rfl"
+]
