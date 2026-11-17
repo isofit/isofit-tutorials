@@ -10,5 +10,6 @@
   "--wavelength_path {examples}/LakeMary/data/wavelengths.txt",
   "--n_cores {cores}",
   "--skyview_factor slope",
-  "--use_background_rfl"
+  "--use_background_rfl",
+  "--background_rfl_file {examples}/LakeMary/data/emit20250327T212148_bgrfl"
 ]
